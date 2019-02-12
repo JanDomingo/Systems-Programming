@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Assignment1.dir/main.c.o"
+  "CMakeFiles/Assignment1.dir/xbd.c.o"
   "Assignment1.pdb"
   "Assignment1"
 )

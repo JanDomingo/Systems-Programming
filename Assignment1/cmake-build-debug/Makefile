@@ -150,6 +150,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/Assignment1.dir/build.make CMakeFiles/Assignment1.dir/main.c.s
 .PHONY : main.c.s
 
+xbd.o: xbd.c.o
+
+.PHONY : xbd.o
+
+# target to build an object file
+xbd.c.o:
+	$(MAKE) -f CMakeFiles/Assignment1.dir/build.make CMakeFiles/Assignment1.dir/xbd.c.o
+.PHONY : xbd.c.o
+
+xbd.i: xbd.c.i
+
+.PHONY : xbd.i
+
+# target to preprocess a source file
+xbd.c.i:
+	$(MAKE) -f CMakeFiles/Assignment1.dir/build.make CMakeFiles/Assignment1.dir/xbd.c.i
+.PHONY : xbd.c.i
+
+xbd.s: xbd.c.s
+
+.PHONY : xbd.s
+
+# target to generate assembly for a file
+xbd.c.s:
+	$(MAKE) -f CMakeFiles/Assignment1.dir/build.make CMakeFiles/Assignment1.dir/xbd.c.s
+.PHONY : xbd.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... xbd.o"
+	@echo "... xbd.i"
+	@echo "... xbd.s"
 .PHONY : help
 
 

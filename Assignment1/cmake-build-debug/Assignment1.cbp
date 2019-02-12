@@ -81,6 +81,9 @@
 		<Unit filename="/Users/jandomingo/Dev/CS530/Assignment1/main.c">
 			<Option target="Assignment1"/>
 		</Unit>
+		<Unit filename="/Users/jandomingo/Dev/CS530/Assignment1/xbd.c">
+			<Option target="Assignment1"/>
+		</Unit>
 		<Unit filename="/Users/jandomingo/Dev/CS530/Assignment1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
