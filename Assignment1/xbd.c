@@ -3,7 +3,7 @@
  username: CSSC0463
  Project: CS530 Assignment 1
  File: xbd.c
- Notes: N/A
+ Notes: Output should match that as the unix command "xxd <filename>"
  Date Due: February 18, 2019
  Assignment Instructions:
     Develop, test and deliver a basic hexadecimal file dump 'xbd'
@@ -14,3 +14,6 @@
 *************************************************************/
 
 #include <stdio.h>
+
+//TODO: Figure out how to read files and get user input.
+//TODO: Figure out how to run in terminal
