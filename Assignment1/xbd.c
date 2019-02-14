@@ -17,3 +17,17 @@
 
 //TODO: Figure out how to read files and get user input.
 //TODO: Figure out how to run in terminal
+
+int main (int argc, char **argv) {
+    if (argc = 2) {
+        FILE *fp = fopen(argv[1], "r");  //Reads the parameter in argv[1]. (arg[0] is the name of the program)
+        if (fp == NULL) {
+            printf("File could not be opened.");
+            return -1;
+        }
+        while (!feof(fp)) {
+            //fscanf(fp, "%d", &num);
+            //printf("number = %d\n",num)
+        }
+    }
+}
