@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/jandomingo/Dev/CS530/Assignment1/xbd.c
+/Users/jandomingo/Dev/CS530/a1/xbd.c
 stdio.h
 -
 stdlib.h

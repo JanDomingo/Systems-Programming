@@ -12,9 +12,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39749c9c-bcaf-4881-b297-5971ef26e431" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../a1/.idea/a1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../a1/xbd.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Assignment1" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Assignment1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Assignment1.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Assignment1.dir/C.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Assignment1.dir/xbd.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Assignment1.dir/xbd.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexdumptest.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/xbd.c" beforeDir="false" afterPath="$PROJECT_DIR$/xbd.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -44,8 +54,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/xbd.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+            <state relative-caret-position="525">
+              <caret line="35" selection-end-line="36" selection-end-column="1" />
+              <folding>
+                <element signature="e#805#823#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,7 +77,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1200" />
   </component>
@@ -74,7 +86,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -91,6 +102,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -128,17 +140,20 @@
       <option name="presentableId" value="Default" />
       <updated>1549958312005</updated>
       <workItem from="1549958314492" duration="2264000" />
-      <workItem from="1550104042321" duration="1685000" />
+      <workItem from="1550104042321" duration="2014000" />
+      <workItem from="1550183777316" duration="1382000" />
+      <workItem from="1550279319204" duration="3619000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3949000" />
+    <option name="totallyTimeSpent" value="9279000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="0" width="960" height="1200" extended-state="0" />
+    <frame x="0" y="0" width="960" height="1200" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.03267974" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15686275" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -164,6 +179,9 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Assignment1">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -174,13 +192,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Assignment1">
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helloworld.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/xbd.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        <state relative-caret-position="525">
+          <caret line="35" selection-end-line="36" selection-end-column="1" />
+          <folding>
+            <element signature="e#805#823#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

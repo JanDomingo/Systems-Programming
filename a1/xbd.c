@@ -19,19 +19,45 @@
 #include <unistd.h>
 
 //TODO: Step 0: Figure out how to make methods in C
-//TODO: Step 1: Read in the file, don't worry about terminal input yet DONE
+//TODO: Step 1: ---DONE---Read in the file, don't worry about terminal input yet
 //TODO: Step 1.1: Figure out how to display in hex and binary
 //TODO: Step 2: Figure out how to output the file contents into both hex and binary
 //TODO: Step 3: Figure out how to run in terminal with user argument parameters
+//TODO: Step 4: When done, clean up header comments, move Assignment Instructions to README file
 //Make sure that main does not have a  lot of contents
 
+int getChar();
+
 int main () {
+    getChar();
+}
+
+int getChar() {
 
     char line[255];
+
     FILE * fp;
     fp = fopen("helloworld.txt", "r");
-    fgets(line, 255, fp);
-    printf("%s", line);
+    int ch = 0;
+    int lines = 0;
+
+    lines++;
+    while(!feof(fp)) {
+        ch = fgetc(fp);
+        if (ch == '\n')
+        {
+            lines++;
+        }
+    }
+    fclose(fp);
+    return lines;
+
+
+
 
 
 }
+
+
+
+
