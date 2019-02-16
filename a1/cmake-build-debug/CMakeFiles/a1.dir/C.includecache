@@ -11,8 +11,4 @@ stdio.h
 -
 stdlib.h
 -
-errno.h
--
-unistd.h
--
 
