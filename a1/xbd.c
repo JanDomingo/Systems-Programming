@@ -18,16 +18,19 @@
 
 //TODO: Step 0: Figure out how to make methods in C
 //TODO: Step 1: ---DONE---Read in the file, don't worry about terminal input yet
-//TODO: Step 1.1: Figure out how to display in hex and binary
+//TODO: Step 1.1: ---DONE---Figure out how to display in hex and binary
+//TODO: Step 1.2: Create a the fileOpen function
 //TODO: Step 2: Figure out how to output the file contents into both hex and binary
 //TODO: Step 3: Figure out how to run in terminal with user argument parameters
 //TODO: Step 4: When done, clean up header comments, move Assignment Instructions to README file
 //Make sure that main does not have a  lot of contents
 
 int printHex();
-
+int printBin();
 int main () {
     printHex();
+    printBin();
+
 }
 
 
@@ -47,34 +50,37 @@ int printHex() {
     //TODO: FIGURE OUT HOW TO PRINT IN BINARY
 
     //*******OPENS FILE*******
-    FILE * fp;
+    FILE *fp;
     fp = fopen("helloworld.txt", "r");
     int ch = 0; //ch holds each character of the string as it iterates through the file
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
 
     //*******PRINTS HEXADECIMAL VALUE*******
-    while(!feof(fp)) {
+    while (!feof(fp)) {
         ch = fgetc(fp);
         if (index % 16 == 0) {  //Print the address every 16 bytes, create a new line
-            printf ("\n");
+            printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hex
         }
-        printf("%x",ch);        //Prints the hexadecimal character of each character in a string
+        printf("%x", ch);        //Prints the hexadecimal character of each character in a string
         index++;
         if (index % 2 == 0) {   //After every 2 characters, print a space
-            printf (" ");
+            printf(" ");
         }
     }
+}
 
+int printBin() {
     //*******PRINTS BINARY VALUE*******
     printf("\n-------------------------------------------------");
-    fp = fopen("helloworld.txt", "r");  //TODO: DELETE THIS LINE LATER
-    ch = 0;
-    index = 0;
+    FILE *fp;
+    fp = fopen("helloworld.txt", "r");  //TODO: DELETE THIS LINE LATER AND MAKE FILEOPEN ITS OWN FUNCTION
+    int ch = 0;
+    int index = 0;
     int chInt;
-    int chBin = 0; //chBin stands for Char Binary and will convert the integer value into binary
+    int c,k;
 
-    while(!feof(fp)) {
+    while(!feof(fp)) {  //TODO: Place this and the next line into its own function
         ch = fgetc(fp);
 
         if (index % 6 == 0) {   //Prints every 6 octets
@@ -82,7 +88,14 @@ int printHex() {
             printf("%08o: ", index);    //Appends 0's in front of the address and prints in octal
         }
         chInt = (int)ch;  //chInt stands for Char Integer and will store the integer value of the character
-        printf("%i", chInt);
+        for (c = 7; c >= 0; c--)
+        {
+            k = chInt >> c;
+            if (k & 1)
+                printf("1");
+            else
+                printf("0");
+        }
         index++;
         printf(" ") ;   //After each char, print a space
 
