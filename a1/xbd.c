@@ -27,16 +27,10 @@
 
 int printHex();
 int printBin();
-int main () {
+int main (int argc,char *argv[]) {
     printHex();
     printBin();
-
 }
-
-
-
-
-
 
 
 /*************************************************************
@@ -46,9 +40,6 @@ I/O: input parameters: the file name and file mode
      output: the file pointer to the file openned
 *************************************************************/
 int printHex() {
-
-    //TODO: FIGURE OUT HOW TO PRINT IN BINARY
-
     //*******OPENS FILE*******
     FILE *fp;
     fp = fopen("helloworld.txt", "r");
@@ -82,7 +73,6 @@ int printBin() {
 
     while(!feof(fp)) {  //TODO: Place this and the next line into its own function
         ch = fgetc(fp);
-
         if (index % 6 == 0) {   //Prints every 6 octets
             printf("\n");
             printf("%08o: ", index);    //Appends 0's in front of the address and prints in octal
@@ -100,11 +90,5 @@ int printBin() {
         printf(" ") ;   //After each char, print a space
 
     }
-
-
     fclose(fp);
 }
-
-
-
-
