@@ -68,17 +68,17 @@ int printHex() {
         if (index % 16 == 0 || feof(fp)) {  //Print the address every 16 bytes, create a new line
             if (index != 0) {   //Prevents uninitialized array from being outputted in the beginning of the program
                 if (feof(fp)) {
-                    printf("%*s", index % 16 + 10, ""); //Formats the amount of space needed to properly align user string display
-                        //%16 gives the amount of leftover bytes. There are 3 spaces in a tab and 7 spaces between each
-                        //hex cluster. Combined, it is an additional 10 spaces.
+                    printf("%*s", (10 + (index % 16)), ""); //Formats the amount of space needed to properly align user string display
+                    //%16 gives the amount of leftover bytes. There are 3 spaces in a tab and 7 spaces between each
+                    //hex cluster. Combined, it is an additional 10 spaces.
                 }
                 //If the character is a non printable character, replace it with a "."
-                for (int i = 0; i < 16; i++) {
+                 for (int i = 0; i < 16; i++) {
                     if (isprint(textPrint[i]) == 0 && (textPrint[i] != 0)) {
                         textPrint[i] = 46;
                     }
                 }
-                printf("\t%s", textPrint);  //Prints the string of the user input
+                printf("\t%s", textPrint);  //Prints the string of the user input //TODO: FIGURE THIS PART OUT
             }
             printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hex
@@ -111,7 +111,10 @@ int printBin() {
         ch = fgetc(fp);
         if (index % 6 == 0 || feof(fp)) {   //Prints every 6 octets
             if (feof(fp)) {
-                printf("%*s", 8 * (index % 6) + 5, ""); //Formats the right column, text file information
+                if (index <= 6) {
+                    printf("%*s", 8 * (index % 6) + 8, "");
+                }
+                printf("%*s", 8 * (index % 6) + 8, ""); //Formats the right column, text file information
                 //index % 6 gets half of the the amount of octets left needed to display
                 //Each octet is 8 bytes long and index % 6 is multiplied by 2 to get the total amount of octets needed
                 //In this case 8 * 2 = 16 and that is multiplied by index % 6. 5 is added to offset the amount of spaces

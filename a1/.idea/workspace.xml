@@ -13,8 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1a083ed4-504a-4160-b000-1fc9cc2f1312" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/xbd.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/helloworld.txt" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xbd" beforeDir="false" afterPath="$PROJECT_DIR$/xbd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xbd.c" beforeDir="false" afterPath="$PROJECT_DIR$/xbd.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -39,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/xbd.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="129" column="13" lean-forward="true" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="13" />
+            <state relative-caret-position="421">
+              <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
               <folding>
                 <element signature="e#805#823#0" expanded="true" />
               </folding>
@@ -131,12 +129,12 @@
       <updated>1550283475697</updated>
       <workItem from="1550283477263" duration="4762000" />
       <workItem from="1550298102208" duration="8306000" />
-      <workItem from="1550448424169" duration="18935000" />
+      <workItem from="1550448424169" duration="24829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32003000" />
+    <option name="totallyTimeSpent" value="37897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
@@ -178,8 +176,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/xbd.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="129" column="13" lean-forward="true" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="13" />
+        <state relative-caret-position="421">
+          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
           <folding>
             <element signature="e#805#823#0" expanded="true" />
           </folding>
