@@ -12,17 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a083ed4-504a-4160-b000-1fc9cc2f1312" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/C.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/xbd.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/xbd.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/a1" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/a1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xbd" beforeDir="false" afterPath="$PROJECT_DIR$/xbd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xbd.c" beforeDir="false" afterPath="$PROJECT_DIR$/xbd.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xbd.h" beforeDir="false" afterPath="$PROJECT_DIR$/xbd.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/xbd.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="61" lean-forward="true" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
+            <state relative-caret-position="495">
+              <caret line="33" column="65" lean-forward="true" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
               <folding>
                 <element signature="e#957#975#0" expanded="true" />
               </folding>
@@ -149,7 +139,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.xbd">
+  <component name="RunManager" selected="Application.xbd -b">
     <configuration name="a1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="a1" TARGET_NAME="a1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="a1" RUN_TARGET_NAME="a1">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -184,12 +174,12 @@
       <workItem from="1550283477263" duration="4762000" />
       <workItem from="1550298102208" duration="8306000" />
       <workItem from="1550448424169" duration="35036000" />
-      <workItem from="1550489835972" duration="3521000" />
+      <workItem from="1550489835972" duration="3863000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51625000" />
+    <option name="totallyTimeSpent" value="51967000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1280" y="0" width="1280" height="1440" extended-state="0" />
@@ -257,8 +247,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/xbd.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="61" lean-forward="true" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
+        <state relative-caret-position="495">
+          <caret line="33" column="65" lean-forward="true" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
           <folding>
             <element signature="e#957#975#0" expanded="true" />
           </folding>
