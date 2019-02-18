@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 //TODO: Step 0: Figure out how to make methods in C
 //TODO: Step 1: ---DONE---Read in the file, don't worry about terminal input yet
@@ -30,6 +31,7 @@
 int printHex();
 int printBin();
 char filename[100];
+
 
 int main (int argc,char *argv[]) {
 
@@ -51,28 +53,37 @@ int printHex() {
     //*******OPENS FILE*******
     FILE *fp;
     fp = fopen("helloworld.txt", "r");
+
+
     int ch = 0; //ch holds each character of the string as it iterates through the file
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
-    char textPrint[16];
-    int i = 0;
+    char textPrint[16]; //Will hold the char values needed to print after displaying the hex values
+    char textPrintNPC[16]; //Same as textPrint but replaces all Non-Printable Characters with a .
+    int p = 0;  //Acts as a pointer for the textPrint array
 
 
     //*******PRINTS HEXADECIMAL VALUE*******
     while (!feof(fp)) {
         ch = fgetc(fp);
+
         if (index % 16 == 0 || feof(fp)) {  //Print the address every 16 bytes, create a new line
             if (index != 0) {   //Prevents uninitialized array from being outputted in the beginning of the program
-                printf("\t%s", textPrint);
+                if (feof(fp)) {
+                    printf("%*s", index % 16 + 10, ""); //Formats the amount of space needed to properly align user string display
+                        //%16 gives the amount of leftover bytes. There are 3 spaces in a tab and 7 spaces between each
+                        //hex cluster. Combined, it is an additional 10 spaces.
+                }
+
             }
+            printf("\t%s", textPrint);  //Prints the string of the user input
             printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hex
-            i = 0;
+            p = 0;
         }
-
-        textPrint[i] = ch;
-        printf("%x", ch);        //Prints the hexadecimal character of each character in a string
+        textPrint[p] = ch;
+        printf("%02x", ch); //Appends a zero if value is one digit. Prints the hexadecimal character of each character in a string
         index++;
-        i++;
+        p++;
         if (index % 2 == 0) {   //After every 2 characters, print a space
             printf(" ");
         }
@@ -88,17 +99,26 @@ int printBin() {
     int ch = 0;
     int index = 0;
     int chInt;
-    int c,k;
-    char textPrint[5];
-    int i = 0;
+    int c,k;    //Variables used in the bitwise shift right operation to convert integers to binary
+    char textPrint[5];  //Will hold the char values needed to print after displaying the binary values
+    int p = 0;  //Acts as a pointer for the textPrint array
 
     while(!feof(fp)) {  //TODO: Place this and the next line into its own function
         ch = fgetc(fp);
         if (index % 6 == 0 || feof(fp)) {   //Prints every 6 octets
+            if (feof(fp)) {
+               printf("%*s", 8 * (index % 6) + 5, ""); //Formats the right column, text file information
+               //index % 6 gets half of the the amount of octets left needed to display
+               //Each octet is 8 bytes long and index % 6 is multiplied by 2 to get the total amount of octets needed
+               //In this case 8 * 2 = 16 and that is multiplied by index % 6. 5 is added to offset the amount of spaces
+               //between each octet
+            }
             printf("\t%s", textPrint);
             printf("\n");
-            printf("%08x: ", index);    //Appends 0's in front of the address and prints in octal
-            i = 0;
+            printf("%08x: ", index);    //Appends 0's in front of the address and prints in hexadecimal
+            memset(textPrint, 0, sizeof textPrint); //Clears the textPrint array
+            p = 0;
+
         }
 
         //*******Converts integer value into Binary using bitwise shift*******
@@ -111,9 +131,9 @@ int printBin() {
             else
                 printf("0");
         }
-        textPrint[i] = ch;
+        textPrint[p] = ch;
         index++;
-        i++;
+        p++;
         printf(" ") ;   //After each char, print a space
 
     }
