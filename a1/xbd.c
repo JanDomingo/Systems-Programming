@@ -30,17 +30,10 @@
 
 int printHex();
 int printBin();
+char filename[100];
 
 
 int main (int argc,char *argv[]) {
-    //*******OPENS FILE*******
-    FILE *fp;
-
-    if (argc == 2) {
-        fp = fopen(argv[1], "r");
-    } else if (argc == 3 && (strcmp(argv[1], "-b") == 0)) {
-        fp = fopen(argv[2], "r'");
-    }
 
 
     //printf("Enter the filename: \n");
@@ -56,12 +49,15 @@ Notes: A sample of how to use embedded comments
 I/O: input parameters: the file name and file mode
      output: the file pointer to the file openned
 *************************************************************/
-int printHex(FILE *fp) {
+int printHex() {
+    //*******OPENS FILE*******
+    FILE *fp;
+    fp = fopen("helloworld.txt", "r");
+
 
     int ch = 0; //ch holds each character of the string as it iterates through the file
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
     char textPrint[16]; //Will hold the char values needed to print after displaying the hex values
-    char textPrintNPC[16]; //Same as textPrint but replaces all Non-Printable Characters with a .
     int p = 0;  //Acts as a pointer for the textPrint array
 
 
@@ -76,11 +72,17 @@ int printHex(FILE *fp) {
                         //%16 gives the amount of leftover bytes. There are 3 spaces in a tab and 7 spaces between each
                         //hex cluster. Combined, it is an additional 10 spaces.
                 }
-
+                //If the character is a non printable character, replace it with a "."
+                for (int i = 0; i < 16; i++) {
+                    if (isprint(textPrint[i]) == 0 && (textPrint[i] != 0)) {
+                        textPrint[i] = 46;
+                    }
+                }
+                printf("\t%s", textPrint);  //Prints the string of the user input
             }
-            printf("\t%s", textPrint);  //Prints the string of the user input
             printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hex
+            memset(textPrint, 0, sizeof textPrint); //Clears the textPrint array
             p = 0;
         }
         textPrint[p] = ch;
@@ -90,13 +92,14 @@ int printHex(FILE *fp) {
         if (index % 2 == 0) {   //After every 2 characters, print a space
             printf(" ");
         }
-
     }
 }
 
-int printBin(FILE *fp) {
+int printBin() {
     //*******PRINTS BINARY VALUE*******
     printf("\n-------------------------------------------------\n");
+    FILE *fp;
+    fp = fopen("helloworld.txt", "r");  //TODO: DELETE THIS LINE LATER AND MAKE FILEOPEN ITS OWN FUNCTION
     int ch = 0;
     int index = 0;
     int chInt;
@@ -108,11 +111,22 @@ int printBin(FILE *fp) {
         ch = fgetc(fp);
         if (index % 6 == 0 || feof(fp)) {   //Prints every 6 octets
             if (feof(fp)) {
-               printf("%*s", 8 * (index % 6) + 5, ""); //Formats the right column, text file information
-               //index % 6 gets half of the the amount of octets left needed to display
-               //Each octet is 8 bytes long and index % 6 is multiplied by 2 to get the total amount of octets needed
-               //In this case 8 * 2 = 16 and that is multiplied by index % 6. 5 is added to offset the amount of spaces
-               //between each octet
+                printf("%*s", 8 * (index % 6) + 5, ""); //Formats the right column, text file information
+                //index % 6 gets half of the the amount of octets left needed to display
+                //Each octet is 8 bytes long and index % 6 is multiplied by 2 to get the total amount of octets needed
+                //In this case 8 * 2 = 16 and that is multiplied by index % 6. 5 is added to offset the amount of spaces
+                //between each octet
+
+                //When the program ends with an odd amount of characters, an extra char of the last char is added.
+                //This removes that extra char
+                if (index % 2 == 1) {
+                textPrint[5] = 0;
+                }
+            }
+            for (int i = 0; i < 5; i++) {
+                if (isprint(textPrint[i]) == 0 && (textPrint[i] != 0)) {
+                    textPrint[i] = 46;
+                }
             }
             printf("\t%s", textPrint);
             printf("\n");
