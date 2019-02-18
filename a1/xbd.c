@@ -30,10 +30,17 @@
 
 int printHex();
 int printBin();
-char filename[100];
 
 
 int main (int argc,char *argv[]) {
+    //*******OPENS FILE*******
+    FILE *fp;
+
+    if (argc == 2) {
+        fp = fopen(argv[1], "r");
+    } else if (argc == 3 && (strcmp(argv[1], "-b") == 0)) {
+        fp = fopen(argv[2], "r'");
+    }
 
 
     //printf("Enter the filename: \n");
@@ -49,11 +56,7 @@ Notes: A sample of how to use embedded comments
 I/O: input parameters: the file name and file mode
      output: the file pointer to the file openned
 *************************************************************/
-int printHex() {
-    //*******OPENS FILE*******
-    FILE *fp;
-    fp = fopen("helloworld.txt", "r");
-
+int printHex(FILE *fp) {
 
     int ch = 0; //ch holds each character of the string as it iterates through the file
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
@@ -91,11 +94,9 @@ int printHex() {
     }
 }
 
-int printBin() {
+int printBin(FILE *fp) {
     //*******PRINTS BINARY VALUE*******
     printf("\n-------------------------------------------------\n");
-    FILE *fp;
-    fp = fopen("helloworld.txt", "r");  //TODO: DELETE THIS LINE LATER AND MAKE FILEOPEN ITS OWN FUNCTION
     int ch = 0;
     int index = 0;
     int chInt;
