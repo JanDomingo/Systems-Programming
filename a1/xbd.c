@@ -19,17 +19,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "xbd.h"
 
+int ch; //ch holds each character of the string as it iterates through the file
+int p;  //Acts as a pointer for the textPrint array
 /*************************************************************
 function: printHex
 Notes: This function prints the hexadecimal value of ascii
  characters specified in the input file
 *************************************************************/
 int printHex(FILE *fp) {
-    int ch = 0; //ch holds each character of the string as it iterates through the file
+
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
     char textPrint[16]; //Will hold the char values needed to print after displaying the hex values
-    int p = 0;  //Acts as a pointer for the textPrint array
 
     while (!feof(fp)) {
         ch = fgetc(fp);
@@ -43,7 +45,8 @@ int printHex(FILE *fp) {
                     printf("%*s", (10 + (index % 16)), "");
                 }
                 //If the character is a non printable character, replace it with a "."
-                for (int i = 0; i < 16; i++) {
+                int i = 0;
+                for (i = 0; i < 16; i++) {
                     if (isprint(textPrint[i]) == 0 && (textPrint[i] != 0)) {
                         textPrint[i] = 46;
                     }
@@ -72,14 +75,11 @@ Notes: This function prints the binary values of ascii
  characters specified in the input file
 *************************************************************/
 int printBin(FILE *fp) {
-    printf("\n-------------------------------------------------\n");
-    fp = fopen("helloworld.txt", "r");
-    int ch = 0;
-    int index = 0;
-    int chInt;
+
+    int index = 0;  //Index is the value that is displayed in the leftmost column on the output
+    int chInt;  //chInt stands for Char Integer and will store the integer value of the character
     int c,k;    //Variables used in the bitwise shift right operation to convert integers to binary
     char textPrint[5];  //Will hold the char values needed to print after displaying the binary values
-    int p = 0;  //Acts as a pointer for the textPrint array
 
     while(!feof(fp)) {
         ch = fgetc(fp);
@@ -99,7 +99,8 @@ int printBin(FILE *fp) {
                     textPrint[5] = 0;
                 }
             }
-            for (int i = 0; i < 5; i++) {
+            int i = 0;
+            for (i = 0; i < 5; i++) {
                 if (isprint(textPrint[i]) == 0 && (textPrint[i] != 0)) {
                     textPrint[i] = 46;
                 }
