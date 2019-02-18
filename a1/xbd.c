@@ -18,50 +18,27 @@
 #include <string.h>
 #include <ctype.h>
 
-//TODO: Step 0: Figure out how to make methods in C
+//TODO: Step 0: ---DONE---Figure out how to make methods in C
 //TODO: Step 1: ---DONE---Read in the file, don't worry about terminal input yet
 //TODO: Step 1.1: ---DONE---Figure out how to display in hex and binary
-//TODO: Step 1.12: Print out the actual text chars after printing out the hex or bin numbers
-//TODO: Step 1.2: Create a the fileOpen function
-//TODO: Step 2: Figure out how to output the file contents into both hex and binary
-//TODO: Step 3: Figure out how to run in terminal with user argument parameters
+//TODO: Step 1.12: ---DONE---Print out the actual text chars after printing out the hex or bin numbers
+//TODO: Step 1.2: ---DONE---Create a the fileOpen function
+//TODO: Step 2: ---DONE---Figure out how to output the file contents into both hex and binary
+//TODO: Step 3: ---DONE---Figure out how to run in terminal with user argument parameters
+//TODO: Step 3.1 Figure out how to format the output
 //TODO: Step 4: When done, clean up header comments, move Assignment Instructions to README file
-//Make sure that main does not have a  lot of contents
-
-int printHex();
-int printBin();
-char filename[100];
-
-
-int main (int argc,char *argv[]) {
-
-
-    //printf("Enter the filename: \n");
-    //scanf("%s", filename);
-    printHex();
-    printBin();
-}
-
 
 /*************************************************************
-function: FileOpen
-Notes: A sample of how to use embedded comments
-I/O: input parameters: the file name and file mode
-     output: the file pointer to the file openned
+function: printHex
+Notes: This function prints the hexadecimal value of ascii
+ characters specified in the input file
 *************************************************************/
-int printHex() {
-    //*******OPENS FILE*******
-    FILE *fp;
-    fp = fopen("helloworld.txt", "r");
-
-
+int printHex(FILE *fp) {
     int ch = 0; //ch holds each character of the string as it iterates through the file
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
     char textPrint[16]; //Will hold the char values needed to print after displaying the hex values
     int p = 0;  //Acts as a pointer for the textPrint array
 
-
-    //*******PRINTS HEXADECIMAL VALUE*******
     while (!feof(fp)) {
         ch = fgetc(fp);
 
@@ -78,7 +55,7 @@ int printHex() {
                         textPrint[i] = 46;
                     }
                 }
-                printf("\t%s", textPrint);  //Prints the string of the user input //TODO: FIGURE THIS PART OUT
+                printf("\t%s", textPrint);  //Prints the string of the user input
             }
             printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hex
@@ -93,13 +70,16 @@ int printHex() {
             printf(" ");
         }
     }
+    printf("\n");
 }
 
-int printBin() {
+/*************************************************************
+function: printBin
+Notes: This function prints the binary values of ascii
+ characters specified in the input file
+*************************************************************/
+int printBin(FILE *fp) {
     //*******PRINTS BINARY VALUE*******
-    printf("\n-------------------------------------------------\n");
-    FILE *fp;
-    fp = fopen("helloworld.txt", "r");  //TODO: DELETE THIS LINE LATER AND MAKE FILEOPEN ITS OWN FUNCTION
     int ch = 0;
     int index = 0;
     int chInt;
@@ -107,7 +87,7 @@ int printBin() {
     char textPrint[5];  //Will hold the char values needed to print after displaying the binary values
     int p = 0;  //Acts as a pointer for the textPrint array
 
-    while(!feof(fp)) {  //TODO: Place this and the next line into its own function
+    while(!feof(fp)) {
         ch = fgetc(fp);
         if (index % 6 == 0 || feof(fp)) {   //Prints every 6 octets
             if (feof(fp)) {
@@ -156,4 +136,37 @@ int printBin() {
 
     }
     fclose(fp);
+}
+
+/*************************************************************
+main
+Notes: Main holds the open file function which executes the
+ specified input
+*************************************************************/
+int main (int argc,char *argv[]) {
+
+/*************************************************************
+function: fp (file open)
+Notes: A sample of how to use embedded comments
+I/O: input parameters: Flag -b for binary output or no flag for hex
+     output: Either a hexdump in hexadecimal or in binary
+*************************************************************/
+    FILE *fp;
+
+    if (argc == 2) {
+        fp = fopen(argv[1], "r");
+        printHex(fp);
+
+    } else if (argc == 3 && (strcmp(argv[1], "-b") == 0)) {
+        fp = fopen(argv[2], "r'");
+        printBin(fp);
+
+    } else {
+        printf("Try again using either the flag -b or no flags.\n");
+    }
+
+    if (fp == NULL) {
+        printf("File not found\n");
+        exit(1);
+    }
 }

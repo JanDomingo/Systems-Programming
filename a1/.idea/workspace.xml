@@ -12,7 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a083ed4-504a-4160-b000-1fc9cc2f1312" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/a1.dir/xbd.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/helloworld.txt" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xbd" beforeDir="false" afterPath="$PROJECT_DIR$/xbd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xbd.c" beforeDir="false" afterPath="$PROJECT_DIR$/xbd.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -37,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/xbd.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            <state relative-caret-position="315">
+              <caret line="104" column="37" lean-forward="true" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
               <folding>
                 <element signature="e#805#823#0" expanded="true" />
               </folding>
@@ -67,9 +68,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="116" />
-    <option name="width" value="2560" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1280" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -129,29 +129,29 @@
       <updated>1550283475697</updated>
       <workItem from="1550283477263" duration="4762000" />
       <workItem from="1550298102208" duration="8306000" />
-      <workItem from="1550448424169" duration="24829000" />
+      <workItem from="1550448424169" duration="26444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37897000" />
+    <option name="totallyTimeSpent" value="39512000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10881652" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22132471" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2707715" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2707715" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39836794" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32789317" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32789317" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32937685" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -176,8 +176,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/xbd.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state relative-caret-position="315">
+          <caret line="104" column="37" lean-forward="true" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
           <folding>
             <element signature="e#805#823#0" expanded="true" />
           </folding>
