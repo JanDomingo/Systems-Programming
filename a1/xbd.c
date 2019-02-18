@@ -1,9 +1,11 @@
 /*************************************************************
  Name: Jan Domingo
- username: CSSC0463
+ Class Account: CSSC0463
+ Class Information: CS570, Spring 2019, Section 1
  Project: CS530 Assignment 1
- File: xbd.c
- Notes: Output should match that as the unix command "xxd <filename>"
+ Assignment Information: Assignment #1, Hexadecimal Dump File
+ File: xbd.c - Source Code
+ Notes: Output should match that as the unix command "xxd <filename> or xxd -b <filename>"
  Date Due: February 18, 2019
  Assignment Instructions:
     Develop, test and deliver a basic hexadecimal file dump 'xbd'
@@ -17,16 +19,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-//TODO: Step 0: ---DONE---Figure out how to make methods in C
-//TODO: Step 1: ---DONE---Read in the file, don't worry about terminal input yet
-//TODO: Step 1.1: ---DONE---Figure out how to display in hex and binary
-//TODO: Step 1.12: ---DONE---Print out the actual text chars after printing out the hex or bin numbers
-//TODO: Step 1.2: ---DONE---Create a the fileOpen function
-//TODO: Step 2: ---DONE---Figure out how to output the file contents into both hex and binary
-//TODO: Step 3: ---DONE---Figure out how to run in terminal with user argument parameters
-//TODO: Step 3.1 Figure out how to format the output
-//TODO: Step 4: When done, clean up header comments, move Assignment Instructions to README file
 
 /*************************************************************
 function: printHex
@@ -45,12 +37,13 @@ int printHex(FILE *fp) {
         if (index % 16 == 0 || feof(fp)) {  //Print the address every 16 bytes, create a new line
             if (index != 0) {   //Prevents uninitialized array from being outputted in the beginning of the program
                 if (feof(fp)) {
-                    printf("%*s", (10 + (index % 16)), ""); //Formats the amount of space needed to properly align user string display
-                    //%16 gives the amount of leftover bytes. There are 3 spaces in a tab and 7 spaces between each
-                    //hex cluster. Combined, it is an additional 10 spaces.
+                    /*Formats the amount of space needed to properly align user string display
+                    %16 gives the amount of leftover bytes. There are 3 spaces in a tab and 7 spaces between each
+                    hex cluster. Combined, it is an additional 10 spaces. */
+                    printf("%*s", (10 + (index % 16)), "");
                 }
                 //If the character is a non printable character, replace it with a "."
-                 for (int i = 0; i < 16; i++) {
+                for (int i = 0; i < 16; i++) {
                     if (isprint(textPrint[i]) == 0 && (textPrint[i] != 0)) {
                         textPrint[i] = 46;
                     }
@@ -133,6 +126,7 @@ int printBin(FILE *fp) {
         printf(" ") ;   //After each char, print a space
 
     }
+    printf("\n");
 }
 
 
@@ -160,11 +154,11 @@ I/O: input parameters: Flag -b for binary output or no flag for hex
         printBin(fp);
 
     } else {
-        printf("Try again using either the flag -b or no flags.\n");
+        printf("Try again. Specify either with flag -b or no flags.\n");
     }
 
     if (fp == NULL) {
-        printf("File not found\n");
+        printf("File not found, check filename.\n");
         exit(1);
     }
     fclose(fp);
