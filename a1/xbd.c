@@ -21,15 +21,14 @@
 #include <ctype.h>
 #include "xbd.h"
 
-int ch; //ch holds each character of the string as it iterates through the file
-int p;  //Acts as a pointer for the textPrint array
 /*************************************************************
 function: printHex
 Notes: This function prints the hexadecimal value of ascii
  characters specified in the input file
 *************************************************************/
 int printHex(FILE *fp) {
-
+    int ch = 0;
+    int p = 0;  //Acts as a pointer for the textPrint array
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
     char textPrint[16]; //Will hold the char values needed to print after displaying the hex values
 
@@ -75,7 +74,8 @@ Notes: This function prints the binary values of ascii
  characters specified in the input file
 *************************************************************/
 int printBin(FILE *fp) {
-
+    int ch = 0;
+    int p = 0;  //Acts as a pointer for the textPrint array
     int index = 0;  //Index is the value that is displayed in the leftmost column on the output
     int chInt;  //chInt stands for Char Integer and will store the integer value of the character
     int c,k;    //Variables used in the bitwise shift right operation to convert integers to binary

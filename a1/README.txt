@@ -30,6 +30,5 @@ List/description of all known deficiencies or bugs:
 2. A few characters may appear before printing the first address in the -b mode possibly due to printing an uninitialized textPrint array. This error was found after creating the header file. 
 3. The EOF marker prints as the last character either as ffffffff or in -b mode as 11111111. 
 
-
 Lessons Learned:
 Basics of C, how to read files, pass in arguments in command line, syntax, compiling, built in libraries, header files, and make files. 
