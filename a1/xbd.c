@@ -55,7 +55,7 @@ int printHex(FILE *fp) {
                         textPrint[i] = 46;
                     }
                 }
-                printf("\t%s", textPrint);  //Prints the string of the user input
+                printf(" %s", textPrint);  //Prints the string of the user input
             }
             printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hex
@@ -79,7 +79,8 @@ Notes: This function prints the binary values of ascii
  characters specified in the input file
 *************************************************************/
 int printBin(FILE *fp) {
-    //*******PRINTS BINARY VALUE*******
+    printf("\n-------------------------------------------------\n");
+    fp = fopen("helloworld.txt", "r");
     int ch = 0;
     int index = 0;
     int chInt;
@@ -91,19 +92,18 @@ int printBin(FILE *fp) {
         ch = fgetc(fp);
         if (index % 6 == 0 || feof(fp)) {   //Prints every 6 octets
             if (feof(fp)) {
-                if (index <= 6) {
-                    printf("%*s", 8 * (index % 6) + 8, "");
-                }
-                printf("%*s", 8 * (index % 6) + 8, ""); //Formats the right column, text file information
-                //index % 6 gets half of the the amount of octets left needed to display
-                //Each octet is 8 bytes long and index % 6 is multiplied by 2 to get the total amount of octets needed
-                //In this case 8 * 2 = 16 and that is multiplied by index % 6. 5 is added to offset the amount of spaces
-                //between each octet
+
+                /*Formats the right column, text file information
+                  index % 6 gets half of the the amount of octets left needed to display
+                  Each octet is 8 bytes long and index % 6 is multiplied by 2 to get the total amount of octets needed
+                  In this case 8 * 2 = 16 and that is multiplied by index % 6. 5 is added to offset the amount of spaces
+                  between each octet*/
+                printf("%*s", 8 * (index % 6) + 5, "");
 
                 //When the program ends with an odd amount of characters, an extra char of the last char is added.
                 //This removes that extra char
                 if (index % 2 == 1) {
-                textPrint[5] = 0;
+                    textPrint[5] = 0;
                 }
             }
             for (int i = 0; i < 5; i++) {
@@ -111,14 +111,12 @@ int printBin(FILE *fp) {
                     textPrint[i] = 46;
                 }
             }
-            printf("\t%s", textPrint);
+            printf(" %s", textPrint);
             printf("\n");
             printf("%08x: ", index);    //Appends 0's in front of the address and prints in hexadecimal
             memset(textPrint, 0, sizeof textPrint); //Clears the textPrint array
             p = 0;
-
         }
-
         //*******Converts integer value into Binary using bitwise shift*******
         chInt = (int)ch;  //chInt stands for Char Integer and will store the integer value of the character
         for (c = 7; c >= 0; c--)
@@ -135,8 +133,8 @@ int printBin(FILE *fp) {
         printf(" ") ;   //After each char, print a space
 
     }
-    fclose(fp);
 }
+
 
 /*************************************************************
 main
@@ -169,4 +167,5 @@ I/O: input parameters: Flag -b for binary output or no flag for hex
         printf("File not found\n");
         exit(1);
     }
+    fclose(fp);
 }
