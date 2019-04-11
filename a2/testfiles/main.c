@@ -3,6 +3,10 @@
 #include <memory.h>
 
 int main() {
+
+    /******************************************/
+    /************THIS IS THE OPTAB*************/
+    /******************************************/
     struct opTab {
         char instruction[7];
         int opCode;
@@ -27,6 +31,57 @@ int main() {
     printf("%d\n",opCodeTable[1].opCode);
     int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
     printf("%d\n",test);
+
+    /******************************************/
+    /*******----------------------------*******/
+    /******************************************/
+
+
+    /******************************************/
+    /************THIS IS THE SYMTAB*************/
+    /******************************************/
+
+    FILE *symfp;
+    symfp = fopen("sample.sym", "r");
+    struct symTab {
+        char label[15]; //TODO: POSSIBLY CHANGE THIS INTO A MALLOC?
+        int address;
+
+    };
+
+    int lineCtr;
+    char linePtr;
+
+    while (!(feof(symfp))) {
+        linePtr = getc(symfp);
+        if ((linePtr = '\n') && (lineCtr < 3)) {
+            lineCtr++;
+        }
+        //Copy the sample.sym contents into the symtab struct
+
+    }
+
+
+    /*struct symTab symTabTable [] = {
+
+    };*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /******************************************/
+    /******************************************/
+    /******************************************/
 
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
     char editor;
