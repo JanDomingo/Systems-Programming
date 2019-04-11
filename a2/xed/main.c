@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-fileParser(FILE*ifp);
-int main () {
 
+int main() {
     struct opTab {
         char instruction[7];
         int opCode;
         int format; //format 3 refers to format 3 or format 4
     };
-
 
     const struct opTab opCodeTable [] = {
             {"ADD", 0x18, 3},  {"ADDF", 0x58, 3},   {"ADDR", 0x90, 2},   {"AND", 0x40, 3},  {"CLEAR", 0xB4, 2},
@@ -29,31 +27,28 @@ int main () {
     int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
     printf("%d\n",test);
 
+    char editor;
+    char opCode[1];
+    char *ptr;
 
-}
-
-int fileParser(FILE *ifp) {
-    int editor;
-    int opCode[2];
-    int startAddress[6];
-    //ifp = fopen("sample.obj");
+    FILE *ifp;
+    ifp = fopen("sample.obj", "r");
     while (!(feof(ifp))) {
         editor = getc(ifp);
         //TODO: An if Statement that reads the header 'H'
-        if (editor = 'T') {
-            for (int i = 0;i < 9; i++) {
-                getc(ifp);
+        if (editor == 'T') {
+            for (int i = 0; i < 9; i++) {
+                editor = getc(ifp);
             }
+            opCode[0] = editor;
+            editor = getc(ifp);
+            opCode[1] = editor;
 
-            opCode[0] = getc(ifp);
-            opCode[1] = getc(ifp);
-            char sizeB[1];
-            sizeB[0] = opCode[0] + opCode[1];
-            printf(sizeB[0]);
-            //Skip the next 8 bits to set the pointer at the start of the object code
-            //
+
+            //This converts hex strings to hex values
+            int ret = strtol(opCode, &ptr, 16);
+            printf("%d", ret);
 
         }
     }
 }
-
