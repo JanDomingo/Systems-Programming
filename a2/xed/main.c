@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+fileParser(FILE*ifp);
 int main () {
 
     struct opTab {
@@ -27,21 +28,32 @@ int main () {
     printf("%d\n",opCodeTable[1].opCode);
     int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
     printf("%d\n",test);
+
+
 }
 
 int fileParser(FILE *ifp) {
     int editor;
     int opCode[2];
     int startAddress[6];
-    ifp = fopen("sample.obj");
+    //ifp = fopen("sample.obj");
     while (!(feof(ifp))) {
         editor = getc(ifp);
         //TODO: An if Statement that reads the header 'H'
         if (editor = 'T') {
+            for (int i = 0;i < 9; i++) {
+                getc(ifp);
+            }
+
+            opCode[0] = getc(ifp);
+            opCode[1] = getc(ifp);
+            char sizeB[1];
+            sizeB[0] = opCode[0] + opCode[1];
+            printf(sizeB[0]);
             //Skip the next 8 bits to set the pointer at the start of the object code
             //
 
-        } else
+        }
     }
 }
 

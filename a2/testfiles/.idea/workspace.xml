@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="xed" targetName="xed" />
+      <config projectName="testfiles" targetName="testfiles" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -11,19 +11,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54bbffa7-dd58-4842-85f5-14c27edb2e99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../testfiles/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/.idea/testfiles.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../testfiles/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/xed.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/xed.dir/main.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/xed" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/xed" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    <list default="true" id="9eca4557-bd57-4254-8d84-081dd3384a19" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/testfiles.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xed/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../xed/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xed/cmake-build-debug/CMakeFiles/xed.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/../xed/cmake-build-debug/CMakeFiles/xed.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xed/cmake-build-debug/xed" beforeDir="false" afterPath="$PROJECT_DIR$/../xed/cmake-build-debug/xed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xed/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../xed/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,31 +36,18 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="39" selection-start-line="39" selection-end-line="45" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sample.obj">
+        <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sample.sym">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="330">
+              <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,12 +60,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/optab.c" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="720" />
     <option name="width" value="720" />
     <option name="height" value="900" />
   </component>
@@ -90,24 +77,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="xed" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xed" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -122,7 +100,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="xed" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xed" TARGET_NAME="xed" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xed" RUN_TARGET_NAME="xed">
+    <configuration name="testfiles" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="testfiles" TARGET_NAME="testfiles" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="testfiles" RUN_TARGET_NAME="testfiles">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -133,24 +111,24 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="54bbffa7-dd58-4842-85f5-14c27edb2e99" name="Default Changelist" comment="" />
-      <created>1555010101478</created>
+      <changelist id="9eca4557-bd57-4254-8d84-081dd3384a19" name="Default Changelist" comment="" />
+      <created>1555013049339</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1555010101478</updated>
-      <workItem from="1555010103914" duration="3926000" />
+      <updated>1555013049339</updated>
+      <workItem from="1555013050750" duration="2178000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3926000" />
+    <option name="totallyTimeSpent" value="2178000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="720" height="900" extended-state="0" />
+    <frame x="720" y="0" width="720" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3141593" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09439528" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="CMake" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -160,8 +138,8 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.45173267" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39975247" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32920793" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39975247" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -179,30 +157,13 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample.sym">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/optab.c">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="39" selection-start-line="39" selection-end-line="45" selection-end-column="13" />
+        <state relative-caret-position="330">
+          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample.obj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
         </state>
       </provider>
     </entry>
