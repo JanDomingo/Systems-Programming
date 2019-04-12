@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <memory.h>
 
+struct symTab {
+    char label[15];
+    int address;
+};
+
+struct opTab {
+    char instruction[7];
+    int opCode;
+    int format; //format 3 refers to format 3 or format 4
+};
+
 int main() {
 
     //TODO: CLEAN UP THE PROGRAM INTO FUNCTIONS
@@ -13,11 +24,7 @@ int main() {
     /******************************************/
     /************THIS IS THE OPTAB*************/
     /******************************************/
-    struct opTab {
-        char instruction[7];
-        int opCode;
-        int format; //format 3 refers to format 3 or format 4
-    };
+
 
     const struct opTab opCodeTable [] = {
             {"ADD", 0x18, 3},  {"ADDF", 0x58, 3},   {"ADDR", 0x90, 2},   {"AND", 0x40, 3},  {"CLEAR", 0xB4, 2},
@@ -39,101 +46,90 @@ int main() {
     printf("%d\n",test);
 
     /******************************************/
+    /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
+    /******************************************/
+
+    char ch;
+    char opCode[1];
+    char *ptr;
+    FILE *ifp;	//input file pointer
+    ifp = fopen("sample.obj", "r");
+    while (!(feof(ifp))) {
+        ch = getc(ifp);
+        //TODO: An if Statement that reads the header 'H'
+        if (ch == 'T') {
+            for (int i = 0; i < 9; i++) {
+                ch = getc(ifp);
+            }
+            opCode[0] = ch;
+            ch = getc(ifp);
+            opCode[1] = ch;
+            opCode[2] = '\0';
+
+
+            //This converts hex strings to hex values
+            int ret = strtol(opCode, &ptr, 16);
+            printf("ret: %d\n", ret);
+
+            char toPrintInstruction[7];
+            int opcod4 = opCodeTable[4].opCode;
+
+            //This section interates through the obtab and copies the instruction to print
+            for (int j = 0; j < 59; j++) {
+                if (ret == opCodeTable[j].opCode) {
+                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
+                    printf("%s\n", toPrintInstruction);
+                    break;
+                }
+            }
+        }
+    }
+
+    /******************************************/
     /************THIS IS THE SYMTAB************/
     /******************************************/
 
-    struct symTab {
-        char label[15];
-        int address;
-    };
 
-    struct symTab symTable [50];
+    struct symTab symTable[10];	//creates array of symTab objects
 
-    void symTabBuilder(char* filename) {
-        FILE *symfp;
-        symfp = fopen(filename, "r");
-        //TODO: CREATE THE TABLE FOR THE SYMTAB
+    //TODO: BUILD THE SYMTAB HERE
+    //TODO: STEP 1: READ IN THE NAME OF THE LABEL USING GETC
+    //TODO: STEP 1.1: READ IN THE VALUE OF THE LABEL
+    //TODO: STEP 2: PUT THE LABEL IN SYMTABLE[I].LABEL
+    //TODO: STEP 2.2: PUT THE ADDRESS IN SYMTABLE[I].ADDRESS
 
+    FILE *symfp;
+    symfp = fopen("sample.sym", "r");
+    //TODO: CREATE THE TABLE FOR THE SYMTAB
 
+    int lineCtr;
+    char linePtr;
 
-        int lineCtr;
-        char linePtr;
-
-        while (!(feof(symfp))) {
-            linePtr = getc(symfp);
-            //TODO: Search until the line character then do a new line
-            char buffer[100];
-            for (int i = 0; i < 2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
-                fgets(buffer, 100, symfp);
-            }
-
-            char editor2;
-            char temp[20];  //TODO: FIX THIS ARRAY DECLARATION OF GARBAGE
-            int i = 0;
-            while(editor2 != ' '){
-                editor2 = getc(symfp);
-                temp[i] = editor2;
-                i++;
-            }
-
-            char toDebug[20];
-            memcpy(symTable[1].label, temp, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
-            printf(symTable[1].label);
-
-            printf(" ");
-
-            //TODO: Copy the sample.sym contents into the symtab struct
+    while (!(feof(symfp))) {
+        linePtr = getc(symfp);
+        //TODO: Search until the line character then do a new line
+        char buffer[100];
+        for (int i = 0; i < 2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
+            fgets(buffer, 100, symfp);
         }
 
-
-
-
-    }
-    void readTextRecord(char* filename) {
+        //This section starts copying the label and addresses into arrays
+        //TODO: DO THIS SECTION NEXT!!!!!!!!!!!!
         char ch;
-        char opCode[1];
-        char *ptr;
-        *ifp;	//input file pointer
-        ifp = fopen(filename, "r");
-        while (!(feof(ifp))) {
-            ch = getc(ifp);
-            //TODO: An if Statement that reads the header 'H'
-            if (ch == 'T') {
-                for (int i = 0; i < 9; i++) {
-                    ch = getc(ifp);
-                }
-                opCode[0] = ch;
-                ch = getc(ifp);
-                opCode[1] = ch;
-                opCode[2] = '\0';
-
-
-                //This converts hex strings to hex values
-                int ret = strtol(opCode, &ptr, 16);
-                printf("ret: %d\n", ret);
-
-                char toPrint[7];
-                int opcod4 = opCodeTable[4].opCode;
-
-                //This section interates through the obtab and copies the instruction to print
-                for (int j = 0; j < 59; j++) {
-                    if (ret == opCodeTable[j].opCode) {
-                        strncpy(toPrint, opCodeTable[j].instruction, 7);
-                        printf(toPrint);
-                        break;
-                    }
-                }
-            }
+        char symbolName[20];  //TODO: FIX THIS ARRAY DECLARATION OF GARBAGE
+        int i = 0;
+        while(ch != ' '){
+            ch = getc(symfp);
+            symbolName[i] = ch;
+            i++;
         }
+
+        char toDebug[20];
+        memcpy(symTable[1].label, symbolName, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
+        printf(symTable[1].label);
+
+        printf(" ");
+
+        //TODO: Copy the sample.sym contents into the symtab struct
     }
 }
-
-
-
-/******************************************/
-/**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
-/******************************************/
-
-
-
-
