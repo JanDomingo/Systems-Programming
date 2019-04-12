@@ -32,33 +32,48 @@ int main() {
     int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
     printf("%d\n",test);
 
-    /******************************************/
-    /*******----------------------------*******/
-    /******************************************/
-
 
     /******************************************/
-    /************THIS IS THE SYMTAB*************/
+    /************THIS IS THE SYMTAB************/
     /******************************************/
-
     FILE *symfp;
     symfp = fopen("sample.sym", "r");
     struct symTab {
-        char label[15]; //TODO: POSSIBLY CHANGE THIS INTO A MALLOC?
+        char label[15];
         int address;
-
     };
+
+    struct symTab symTabb [50];
+
+
 
     int lineCtr;
     char linePtr;
 
     while (!(feof(symfp))) {
         linePtr = getc(symfp);
-        if ((linePtr = '\n') && (lineCtr < 3)) {
-            lineCtr++;
+        //TODO: Search until the line character then do a new line
+        char buffer[100];
+        for (int i = 0; i < 2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
+            fgets(buffer, 100, symfp);
         }
-        //Copy the sample.sym contents into the symtab struct
 
+        char editor2;
+        char temp[20];  //TODO: FIX THIS ARRAY DECLARATION OF GARBAGE
+        int i = 0;
+        while(editor2 != ' '){
+            editor2 = getc(symfp);
+            temp[i] = editor2;
+            i++;
+        }
+
+        char toDebug[20];
+        memcpy(symTabb[1].label, temp, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABB STRUCT
+        printf(symTabb[1].label);
+
+        printf(" ");
+
+        //TODO: Copy the sample.sym contents into the symtab struct
     }
 
 
@@ -67,23 +82,9 @@ int main() {
     };*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     /******************************************/
-    /******************************************/
-    /******************************************/
-
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
+    /******************************************/
     char editor;
     char opCode[1];
     char *ptr;
@@ -119,11 +120,6 @@ int main() {
             }
         }
     }
-
-
-
-    /***********************************/
-
-        }
+}
 
 
