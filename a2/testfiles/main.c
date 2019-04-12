@@ -116,17 +116,19 @@ int main() {
         //This section starts copying the label and addresses into arrays
         //TODO: DO THIS SECTION NEXT!!!!!!!!!!!!
         char ch;
-        char symbolName[20];  //TODO: FIX THIS ARRAY DECLARATION OF GARBAGE
+        char labelStr[20];  //TODO: FIX THIS ARRAY DECLARATION OF GARBAGE //Gets a single label name from the symTab with a maximum label name of 20 chars
+        char valueStr[20];
         int i = 0;
         while(ch != ' '){
             ch = getc(symfp);
-            symbolName[i] = ch;
+            labelStr[i] = ch;
             i++;
         }
 
-        char toDebug[20];
-        memcpy(symTable[1].label, symbolName, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
-        printf(symTable[1].label);
+        for (int i = 0; i < 50; i++) { //TODO: MAYBE CHANGE SIZE OF THE '50'
+            memcpy(symTable[1].label, labelStr, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
+            printf(symTable[1].label);
+        }
 
         printf(" ");
 
