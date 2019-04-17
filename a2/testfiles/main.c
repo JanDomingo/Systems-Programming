@@ -40,10 +40,10 @@ int main() {
             {"SUB", 0x1C, 3},  {"SUBF", 0x5C, 3},   {"SUBR", 0x94, 2},   {"SVC", 0xB0, 2},  {"TD", 0xE0, 3},
             {"TIO", 0xF8, 1},  {"TIX", 0x2C, 3},    {"TIXR", 0xB8, 2},   {"WD", 0xDC, 3}
     };
-    //printf("%s\n",opCodeTable[1].instruction);
-    //printf("%d\n",opCodeTable[1].opCode);
-    //int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
-    //printf("%d\n",test);
+    printf("%s\n",opCodeTable[1].instruction);
+    printf("%d\n",opCodeTable[1].opCode);
+    int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
+    printf("%d\n",test);
 
     /******************************************/
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
@@ -57,6 +57,7 @@ int main() {
     while (!(feof(ifp))) {
         ch = getc(ifp);
 
+
         /**This section reads in the Header Line**/
         char programName[20]; //TODO: Check if 20 is enough size to allocate
         if (ch == 'H') {
@@ -68,23 +69,42 @@ int main() {
                 i++;
             }
             printf("Program Name: %s\n", programName);
-        }
 
-        char startingAddress[6];
-        char endingAddress[6];
-        int programLength;
 
-        if (ch >= 48 && ch <= 57) { //If ch is an integer
-            for (int i = 0; i < 6; i++) {   //Gets the starting address
-                startingAddress[i] = ch;
+            while (ch == ' ') { //Skips through the spaces between the file name and starting address in the header line
                 ch = getc(ifp);
             }
 
-            for (int i = 0; i < 6; i++) {
-                endingAddress[i] = ch;   //Gets the ending address
-                ch = getc(ifp);
+            char startingAddress[6];
+            char endingAddress[6];
+            int programLength;
+
+            if (ch >= 48 && ch <= 57) { //If ch is an integer
+                for (int i = 0; i < 6; i++) {   //Gets the starting address
+                    startingAddress[i] = ch;
+                    ch = getc(ifp);
+                }
+
+                startingAddress[6] = '\0';
+
+                for (int i = 0; i < 6; i++) {
+                    endingAddress[i] = ch;   //Gets the ending address
+                    ch = getc(ifp);
+                }
+
+                endingAddress[6] = '\0';
+
             }
-        }
+
+            int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
+            int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
+            int addressDifference = (charEndingAddrToHex - charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
+            printf("Starting Address: %d\n", charStartingAddrToHex);
+            printf("Ending Address: %d\n", charEndingAddrToHex);
+            printf("Program Length: %d\n", addressDifference);
+    }
+
+
 
 
 
