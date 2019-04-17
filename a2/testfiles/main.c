@@ -40,10 +40,10 @@ int main() {
             {"SUB", 0x1C, 3},  {"SUBF", 0x5C, 3},   {"SUBR", 0x94, 2},   {"SVC", 0xB0, 2},  {"TD", 0xE0, 3},
             {"TIO", 0xF8, 1},  {"TIX", 0x2C, 3},    {"TIXR", 0xB8, 2},   {"WD", 0xDC, 3}
     };
-    printf("%s\n",opCodeTable[1].instruction);
-    printf("%d\n",opCodeTable[1].opCode);
-    int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
-    printf("%d\n",test);
+    //printf("%s\n",opCodeTable[1].instruction);
+    //printf("%d\n",opCodeTable[1].opCode);
+    //int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
+    //printf("%d\n",test);
 
     /******************************************/
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
@@ -56,11 +56,51 @@ int main() {
     ifp = fopen("sample.obj", "r");
     while (!(feof(ifp))) {
         ch = getc(ifp);
-        //TODO: An if Statement that reads the header 'H'
-        if (ch == 'T') {
-            for (int i = 0; i < 9; i++) {
+
+        /**This section reads in the Header Line**/
+        char programName[20]; //TODO: Check if 20 is enough size to allocate
+        if (ch == 'H') {
+            int i = 0;
+            ch = getc(ifp);
+            while (ch >= 65 && ch <= 90) { //While ch is a capital letter
+                programName[i] = ch;
+                ch = getc(ifp);
+                i++;
+            }
+            printf("Program Name: %s\n", programName);
+        }
+
+        char startingAddress[6];
+        char endingAddress[6];
+        int programLength;
+
+        if (ch >= 48 && ch <= 57) { //If ch is an integer
+            for (int i = 0; i < 6; i++) {   //Gets the starting address
+                startingAddress[i] = ch;
                 ch = getc(ifp);
             }
+
+            for (int i = 0; i < 6; i++) {
+                endingAddress[i] = ch;   //Gets the ending address
+                ch = getc(ifp);
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /**This section reads in the Text record**/
+        if (ch == 'T') {
+            for (int i = 0; i < 9; i++) {   //Moves the file pointer over the address value and length
+                ch = getc(ifp);
+            }
+
+            //This section grabs the next two characters of the text records which are the opcode instructions
             opCode[0] = ch;
             ch = getc(ifp);
             opCode[1] = ch;
@@ -68,14 +108,13 @@ int main() {
 
 
             //This converts hex strings to hex values
-            int ret = strtol(opCode, &ptr, 16);
+            int ret = strtol(opCode, &ptr, 16); //ret is the opcode value
             printf("ret: %d\n", ret);
 
             char toPrintInstruction[7];
-            int opcod4 = opCodeTable[4].opCode;
 
             //This section interates through the obtab and copies the instruction to print
-            for (int j = 0; j < 59; j++) {
+            for (int j = 0; j < 59; j++) {  //59 is the amount of obtab instructions
                 if (ret == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     printf("%s\n", toPrintInstruction);
@@ -126,8 +165,8 @@ int main() {
         }
 
         for (int i = 0; i < 50; i++) { //TODO: MAYBE CHANGE SIZE OF THE '50'
-            memcpy(symTable[1].label, labelStr, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
-            printf(symTable[1].label);
+            memcpy(symTable[i].label, labelStr, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
+            printf(symTable[i].label);
         }
 
         printf(" ");

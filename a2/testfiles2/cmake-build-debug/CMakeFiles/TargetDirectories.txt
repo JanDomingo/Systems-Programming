@@ -1,0 +1,3 @@
+/Users/jandomingo/Dev/CS530/a2/testfiles2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/jandomingo/Dev/CS530/a2/testfiles2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/jandomingo/Dev/CS530/a2/testfiles2/cmake-build-debug/CMakeFiles/testfiles2.dir
