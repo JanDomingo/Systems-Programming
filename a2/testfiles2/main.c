@@ -124,46 +124,6 @@ void symTabBuilder(struct symTab symTable[60]) {
 
 
 }
-void readTextRecord(char* filename) {
-    struct opTab opCodeTable[60];
-    char ch;
-    char opCode[1];
-    char *ptr;
-    FILE *ifp;	//input file pointer
-    ifp = fopen(filename, "r");
-    int i=0;
-    while (!(feof(ifp))) {
-        ch = getc(ifp);
-        //TODO: An if Statement that reads the header 'H'
-        if (ch == 'T') {
-            for ( i = 0; i < 9; i++) {
-                ch = getc(ifp);
-            }
-            opCode[0] = ch;
-            ch = getc(ifp);
-            opCode[1] = ch;
-            opCode[2] = '\0';
-
-
-            //This converts hex strings to hex values
-            int ret = strtol(opCode, &ptr, 16);
-            printf("ret: %d\n", ret);
-
-            char toPrint[7];
-            int opcod4 = opCodeTable[4].opCode;
-            int j=0;
-
-            //This section interates through the obtab and copies the instruction to print
-            for (j = 0; j < 59; j++) {
-                if (ret == opCodeTable[j].opCode) {
-                    strncpy(toPrint, opCodeTable[j].instruction, 7);
-                    printf(toPrint);
-                    break;
-                }
-            }
-        }
-    }
-}
 
 
 

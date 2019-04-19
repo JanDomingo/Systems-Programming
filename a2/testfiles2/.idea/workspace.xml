@@ -14,10 +14,13 @@
     <list default="true" id="54f1ec1a-b5e1-46b2-8ab2-0c52b794021d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../testfiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/CMakeFiles/testfiles.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/CMakeFiles/testfiles.dir/main.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.sym" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.sym" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/testfiles" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/testfiles" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/testfiles2.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/testfiles2.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/testfiles2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/testfiles2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1083">
-              <caret line="120" column="22" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
+            <state relative-caret-position="-707">
+              <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="26" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -65,8 +68,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="640" />
-    <option name="width" value="1280" />
+    <option name="x" value="960" />
+    <option name="width" value="960" />
     <option name="height" value="1200" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -126,29 +129,29 @@
       <updated>1555131417512</updated>
       <workItem from="1555131418858" duration="3341000" />
       <workItem from="1555536974641" duration="599000" />
-      <workItem from="1555633290847" duration="598000" />
+      <workItem from="1555633290847" duration="1996000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4538000" />
+    <option name="totallyTimeSpent" value="5936000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="640" y="0" width="1280" height="1200" extended-state="0" />
+    <frame x="960" y="0" width="960" height="1200" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13974153" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18845315" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40072203" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.16516246" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39985162" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32937685" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.32851985" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -168,11 +171,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>148</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
           <line>101</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
@@ -185,8 +183,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1083">
-          <caret line="120" column="22" selection-start-line="120" selection-start-column="22" selection-end-line="120" selection-end-column="22" />
+        <state relative-caret-position="-707">
+          <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="26" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

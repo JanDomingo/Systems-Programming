@@ -3,9 +3,9 @@
 #include <memory.h>
 
 struct symTab {
-    char label[15];
-    int address;
-};
+    char label[17];
+    char address[8];
+}; typedef struct symTab symTable;
 
 struct opTab {
     char instruction[7];
@@ -15,7 +15,10 @@ struct opTab {
 
 void format3();
 int locctr;
+symTable symmie[60];
+
 int main() {
+
 
     //TODO: CLEAN UP THE PROGRAM INTO FUNCTIONS
     //TODO: CLEAN UP THE VARIABLES NAMES
@@ -48,10 +51,68 @@ int main() {
     //printf("%d\n",test);
 
     /******************************************/
-    /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
+    /************THIS IS THE SYMTAB************/
     /******************************************/
 
+    FILE *symfp;
 
+    symfp = fopen("sample.sym", "r");
+
+    //TODO: CREATE THE TABLE FOR THE SYMTAB
+
+    char tempp[9];
+    int i=0;
+    int c=0;
+    char *convert;
+    int g=0;
+    char buffer[80];
+    char address[7];
+    int z=0;
+    char buffer2[50];
+
+    for (i = 0; i < 2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
+        fgets(buffer, 80, symfp);
+    }
+    while (!(feof(symfp))) {
+
+        for(g=0;g<8;++g) {
+            tempp[g]=fgetc(symfp);
+
+
+        }
+        if(tempp[0]=='\n') {
+            break;
+        }
+        tempp[8]='\0';
+
+        memcpy(symmie[z].label, tempp,9);
+        printf(symmie[z].label);
+        for(c=0;c<7;++c) {
+            address[c]=fgetc(symfp);
+        }
+
+        address[7]='\0';
+        memcpy(symmie[z].address, address, 7);
+        printf(symmie[z].address);
+
+        while(getc(symfp)!='\n') {
+            getc(symfp);
+        }
+        ++z;
+        g=0;
+        c=0;
+        printf("\n"); //TODO: Copy the sample.sym contents into the symtab struct
+    }
+
+
+
+    int retr = strtol(symmie[4].address, &convert, 16);
+    printf("%s", symmie[4].label);
+    printf("%d",retr);
+
+    /******************************************/
+    /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
+    /******************************************/
     char ch;
     char opCode[1];
     char *ptr;
@@ -165,7 +226,7 @@ int main() {
             }
 
 
-            printf("%07x\n", locctr); //Displays the location counter
+            printf("\n%07x\n", locctr); //Displays the location counter
 
 
             if (trueFormat == 3) {
@@ -179,62 +240,12 @@ int main() {
             }
             }
         }
-
-
-
-    /******************************************/
-    /************THIS IS THE SYMTAB************/
-    /******************************************/
-
-
-    struct symTab symTable[10];	//creates array of symTab objects
-
-    //TODO: BUILD THE SYMTAB HERE
-    //TODO: STEP 1: READ IN THE NAME OF THE LABEL USING GETC
-    //TODO: STEP 1.1: READ IN THE VALUE OF THE LABEL
-    //TODO: STEP 2: PUT THE LABEL IN SYMTABLE[I].LABEL
-    //TODO: STEP 2.2: PUT THE ADDRESS IN SYMTABLE[I].ADDRESS
-
-    FILE *symfp;
-    symfp = fopen("sample.sym", "r");
-    //TODO: CREATE THE TABLE FOR THE SYMTAB
-
-    int lineCtr;
-    char linePtr;
-
-    while (!(feof(symfp))) {
-        linePtr = getc(symfp);
-        //TODO: Search until the line character then do a new line
-        char buffer[100];
-        for (int i = 0; i < 2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
-            fgets(buffer, 100, symfp);
-        }
-
-        //This section starts copying the label and addresses into arrays
-        //TODO: DO THIS SECTION NEXT!!!!!!!!!!!!
-        char ch;
-        char labelStr[20];  //TODO: FIX THIS ARRAY DECLARATION OF GARBAGE //Gets a single label name from the symTab with a maximum label name of 20 chars
-        char valueStr[20];
-        int i = 0;
-        while(ch != ' '){
-            ch = getc(symfp);
-            labelStr[i] = ch;
-            i++;
-        }
-
-        for (int i = 0; i < 50; i++) { //TODO: MAYBE CHANGE SIZE OF THE '50'
-            memcpy(symTable[i].label, labelStr, 15); //TODO: FOR LOOP TO PLACE THE LABEL INTO SYMTABLE STRUCT
-            printf(symTable[i].label);
-        }
-
-        printf(" ");
-
-        //TODO: Copy the sample.sym contents into the symtab struct
-    }
 }
+
 
 void format3(toPrintInstruction, niBit, contents) {
     int a = locctr;
+    printf("%s", symmie[4].label);
 }
 
 
