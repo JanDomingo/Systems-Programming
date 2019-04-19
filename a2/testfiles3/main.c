@@ -169,98 +169,103 @@ int main() {
 
             int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
             int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
-            int addressDifference = (charEndingAddrToHex - charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
+            int addressDifference = (charEndingAddrToHex -
+                                     charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
             //printf("Starting Address: %d\n", charStartingAddrToHex);
             //printf("Ending Address: %d\n", charEndingAddrToHex);
             //printf("Program Length: %d\n", addressDifference);
-    }
+        }
 
 
         /**This section reads in the Text record**/
         if (ch == 'T') {
+
             for (int i = 0; i < 9; i++) {   //Moves the file pointer over the address value and length
                 ch = getc(ifp);
             }
 
             //This section grabs the next two characters of the text records which are the opcode instructions
+            while (ch >= 48 && ch <= 57) {
             opCode[0] = ch;
             ch = getc(ifp);
-            opCode[1] = ch;
-            opCode[2] = '\0';
+
+                opCode[1] = ch;
+                opCode[2] = '\0';
 
 
-            //This converts hex strings to hex values
-            int opVal = strtol(opCode, &ptr, 16); //ret is the opcode value
-            //printf("ret: %d\n", opVal);
+                //This converts the object code hex strings to hex values
+                int opVal = strtol(opCode, &ptr, 16);
+                //printf("ret: %d\n", opVal);
 
-            char toPrintInstruction[7];
-            char niBit[1];
-            int trueOpval;
-            int trueFormat;
+                char toPrintInstruction[7];
+                char niBit[1];
+                int trueOpval;
+                int trueFormat;
 
-            //This section iterates through the optab and copies the instruction to print
-            for (int j = 0; j < 59; j++) {  //59 is the amount of optab instructions
+                //This section iterates through the optab and copies the instruction to print
+                for (int j = 0; j < 59; j++) {  //59 is the amount of optab instructions
 
-                if ((opVal - 1) == opCodeTable[j].opCode) {
-                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-                    niBit[0] = '#';
-                    //pcctr += opCodeTable[j].format;
-                    trueFormat = opCodeTable[j].format;
-
-
-                } else if ((opVal - 2) == opCodeTable[j].opCode) {
-                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-                    niBit[0] = '@';
-                    //pcctr+=opCodeTable[j].format;
-                    trueFormat = opCodeTable[j].format;
-
-                } else if ((opVal - 3) == opCodeTable[j].opCode) {
-                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-                    niBit[0] = '\0';
-                    //pcctr+=opCodeTable[j].format;
-                    trueFormat = opCodeTable[j].format;
-                }
-                if (opVal == opCodeTable[j].opCode) {
-                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-                    niBit[0] = '\0';
-                    if (opCodeTable[j].format == 1 || opCodeTable[j].format == 2){
+                    if ((opVal - 1) == opCodeTable[j].opCode) {
+                        strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
+                        niBit[0] = '#';
                         //pcctr += opCodeTable[j].format;
                         trueFormat = opCodeTable[j].format;
-                    } else {
+
+
+                    } else if ((opVal - 2) == opCodeTable[j].opCode) {
+                        strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
+                        niBit[0] = '@';
+                        //pcctr+=opCodeTable[j].format;
+                        trueFormat = opCodeTable[j].format;
+
+                    } else if ((opVal - 3) == opCodeTable[j].opCode) {
+                        strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
+                        niBit[0] = '\0';
                         //pcctr+=opCodeTable[j].format;
                         trueFormat = opCodeTable[j].format;
                     }
-                }
-            }
-
-
-            //printf("\n%04x", locctr); //Displays the location counter
-
-            if (trueFormat == 3) {
-                char contents[4];
-
-                for (int i = 0; i < 4; i++) {
-                    ch = getc(ifp);
-                    contents[i] = ch;
-                }
-                contents[4] = '\0';
-
-
-                //This converts the contents from char to int
-                char* eBitPointer;
-                char firstBit[1];
-                firstBit[0] = contents[0];
-                int eBit = strtol(firstBit, &eBitPointer, 16);
-                if (eBit == 1 || eBit == 9) {
-                    //TODO: Work on format 4
-                    printf("format4\n");
-                    format4();
+                    if (opVal == opCodeTable[j].opCode) {
+                        strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
+                        niBit[0] = '\0';
+                        if (opCodeTable[j].format == 1 || opCodeTable[j].format == 2) {
+                            //pcctr += opCodeTable[j].format;
+                            trueFormat = opCodeTable[j].format;
+                        } else {
+                            //pcctr+=opCodeTable[j].format;
+                            trueFormat = opCodeTable[j].format;
+                        }
+                    }
                 }
 
-                format3(toPrintInstruction, niBit, contents);
-            }
+
+                printf("\n%04x  ", locctr); //Displays the location counter
+
+                if (trueFormat == 3) {
+                    char contents[4];
+
+                    for (int i = 0; i < 4; i++) {
+                        ch = getc(ifp);
+                        contents[i] = ch;
+                    }
+                    contents[4] = '\0';
+
+
+                    //This converts the contents from char to int
+                    char *eBitPointer;
+                    char firstBit[1];
+                    firstBit[0] = contents[0];
+                    int eBit = strtol(firstBit, &eBitPointer, 16);
+                    if (eBit == 1 || eBit == 9) {
+                        //TODO: Work on format 4
+                        printf("format4\n");
+                        format4();
+                    }
+
+                    format3(toPrintInstruction, niBit, contents);
+                }
             }
         }
+    }
 }
 
 /**THIS IS THE FUNCTION FOR FORMAT3**/
@@ -286,13 +291,12 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
     //This function loads the X register
     if(strcmp(toPrintInstruction, "LDX") == 0) {
-        tempctr = locctr;
         if (niBit[0] == '#') {
             xRegister = displacementValue;
         }
         //if (niBit[0] == '@') **OPTIONAL: ADD IN A CASE IF THERE IS AN IMMEDIATE LDX SYMBOL
         if (niBit[0] == '\0') {
-            symTabLookup = displacementValue + tempctr;
+            symTabLookup = displacementValue + pcctr;
             for (int i = 0; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
@@ -311,9 +315,8 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
     //2, 4, 10, 12
     if (contents[0] == '2') { //PC Relative
-        tempctr = locctr;
         //displacementValue = strtol(displacement, &displacementPointer, 16);
-        displacementValue2 = displacementValue + tempctr;
+        displacementValue2 = displacementValue + pcctr;
         printf(" ");
 
         for (int i = 0; i < symTabSize; i++) {
