@@ -15,9 +15,9 @@
       <change beforePath="$PROJECT_DIR$/../testfiles/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/CMakeFiles/testfiles.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/CMakeFiles/testfiles.dir/main.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.sym" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/sample.sym" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/cmake-build-debug/testfiles" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/cmake-build-debug/testfiles" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

@@ -13,6 +13,8 @@ struct opTab {
     int format; //format 3 refers to format 3 or format 4
 };
 
+void format3();
+int locctr;
 int main() {
 
     //TODO: CLEAN UP THE PROGRAM INTO FUNCTIONS
@@ -49,7 +51,7 @@ int main() {
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
     /******************************************/
 
-    int locctr;
+
     char ch;
     char opCode[1];
     char *ptr;
@@ -106,15 +108,6 @@ int main() {
     }
 
 
-
-
-
-
-
-
-
-
-
         /**This section reads in the Text record**/
         if (ch == 'T') {
             for (int i = 0; i < 9; i++) {   //Moves the file pointer over the address value and length
@@ -135,37 +128,58 @@ int main() {
             char toPrintInstruction[7];
             char niBit[1];
             int trueOpval;
+            int trueFormat;
 
             //This section interates through the obtab and copies the instruction to print
             for (int j = 0; j < 59; j++) {  //59 is the amount of obtab instructions
+
                 if ((opVal - 1) == opCodeTable[j].opCode) {
+                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     niBit[0] = '#';
                     locctr += opCodeTable[j].format;
+                    trueFormat = opCodeTable[j].format;
 
                 } else if ((opVal - 2) == opCodeTable[j].opCode) {
+                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     niBit[0] = '@';
                     locctr+=opCodeTable[j].format;
+                    trueFormat = opCodeTable[j].format;
 
                 } else if ((opVal - 3) == opCodeTable[j].opCode) {
+                    strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     niBit[0] = ' ';
                     locctr+=opCodeTable[j].format;
+                    trueFormat = opCodeTable[j].format;
                 }
                 if (opVal == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
 
                     if (opCodeTable[j].format == 1 || opCodeTable[j].format == 2){
                         locctr += opCodeTable[j].format;
+                        trueFormat = opCodeTable[j].format;
                     } else {
                         locctr+=opCodeTable[j].format;
+                        trueFormat = opCodeTable[j].format;
                     }
                 }
-                    printf("here%s\n", toPrintInstruction);
+            }
 
-                    //TODO: NIXPBE here
 
+            printf("%07x\n", locctr); //Displays the location counter
+
+
+            if (trueFormat == 3) {
+                char contents[4];
+                for (int i = 0; i < 4; i++) {
+                    ch = getc(ifp);
+                    contents[i] = ch;
                 }
+                contents[4] = '\0';
+                format3(toPrintInstruction[7], niBit[1], contents[4]);
+            }
             }
         }
+
 
 
     /******************************************/
@@ -216,4 +230,12 @@ int main() {
         printf(" ");
 
         //TODO: Copy the sample.sym contents into the symtab struct
-    }}
+    }
+}
+
+void format3(toPrintInstruction, niBit, contents) {
+    int a = locctr;
+}
+
+
+

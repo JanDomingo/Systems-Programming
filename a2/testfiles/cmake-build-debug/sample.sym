@@ -1,12 +1,15 @@
 Symbol  Value   Flags:
 -----------------------
+COPY    000000  R
 FIRST   000000  R
-LOOP    00000B  R
-COUNT   00001E  R
-TABLE   000021  R
-TABLE2  001791  R
-TOTAL   002F01  R
+CLOOP   000003  R
+ENDFIL	000017	R
+RETADR	00002A	R
+LENGTH	00002D	R
+BUFFER	000033	R
+BUFEND	001033	R
+MAXLEN	001000	R
 
 Name    Literal  Length Address:
 ------------------------------
-        =X'3F'     2    000003    
+	=C'EOF'     2    000030
