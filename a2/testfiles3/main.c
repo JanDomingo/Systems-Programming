@@ -15,7 +15,7 @@ struct opTab {
 
 void format3();
 void format4();
-int locctr;
+int locctr = 0;
 int pcctr;
 int symTabSize;
 int xRegister = 0;
@@ -204,37 +204,37 @@ int main() {
                 if ((opVal - 1) == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     niBit[0] = '#';
-                    locctr += opCodeTable[j].format;
+                    //pcctr += opCodeTable[j].format;
                     trueFormat = opCodeTable[j].format;
 
 
                 } else if ((opVal - 2) == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     niBit[0] = '@';
-                    locctr+=opCodeTable[j].format;
+                    //pcctr+=opCodeTable[j].format;
                     trueFormat = opCodeTable[j].format;
 
                 } else if ((opVal - 3) == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-                    niBit[0] = ' ';
-                    locctr+=opCodeTable[j].format;
+                    niBit[0] = '\0';
+                    //pcctr+=opCodeTable[j].format;
                     trueFormat = opCodeTable[j].format;
                 }
                 if (opVal == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-
+                    niBit[0] = '\0';
                     if (opCodeTable[j].format == 1 || opCodeTable[j].format == 2){
-                        locctr += opCodeTable[j].format;
+                        //pcctr += opCodeTable[j].format;
                         trueFormat = opCodeTable[j].format;
                     } else {
-                        locctr+=opCodeTable[j].format;
+                        //pcctr+=opCodeTable[j].format;
                         trueFormat = opCodeTable[j].format;
                     }
                 }
             }
 
 
-            printf("\n%04x", locctr); //Displays the location counter
+            //printf("\n%04x", locctr); //Displays the location counter
 
             if (trueFormat == 3) {
                 char contents[4];
@@ -244,14 +244,6 @@ int main() {
                     contents[i] = ch;
                 }
                 contents[4] = '\0';
-
-
-
-
-
-
-
-
 
 
                 //This converts the contents from char to int
@@ -273,15 +265,17 @@ int main() {
 
 /**THIS IS THE FUNCTION FOR FORMAT3**/
 void format3(char toPrintInstruction[], char niBit[], char contents[]) {
-    int tempctr;
+    int tempctr;    //temporary pc counter
+    int symTabLookup;
     int a = locctr;
     char displacement[3];
     char* displacementPointer;
     char* symmiePointer;
     int displacementValue;
     int displacementValue2;
+    int symTabAddressToInt; //Holds the int value of the sym tab address
 
-    int temp;
+    pcctr += 3;
 
     //Copies the displacement value and puts it into the displacement char array
     for (int i = 0; i < 4; i++) {
@@ -292,12 +286,24 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
     //This function loads the X register
     if(strcmp(toPrintInstruction, "LDX") == 0) {
-        xRegister + 1;
-        printf("here");
+        tempctr = locctr;
         if (niBit[0] == '#') {
             xRegister = displacementValue;
         }
+        //if (niBit[0] == '@') **OPTIONAL: ADD IN A CASE IF THERE IS AN IMMEDIATE LDX SYMBOL
+        if (niBit[0] == '\0') {
+            symTabLookup = displacementValue + tempctr;
+            for (int i = 0; i < symTabSize; i++) {
+                symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+                if (symTabLookup == symTabAddressToInt) {
+                    printf(symmie[i].label);
+                    xRegister = symTabAddressToInt;
+                }
+            }
+        }
     }
+
+
 
 
 
@@ -311,14 +317,13 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         printf(" ");
 
         for (int i = 0; i < symTabSize; i++) {
-            temp = strtol(symmie[i].address, &symmiePointer, 16);
-            if (displacementValue2 == temp) {
+            symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+            if (displacementValue2 == symTabAddressToInt) {
                 printf(symmie[i].label);
                 printf(toPrintInstruction);
 
             }
         }
-
     }
 
     if (contents[0] == 4) { //Base Relative
@@ -332,6 +337,8 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     if (contents[0] == 12) { //Base Relative with index
 
     }
+
+    locctr = pcctr;
 
 }
 
