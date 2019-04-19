@@ -40,15 +40,16 @@ int main() {
             {"SUB", 0x1C, 3},  {"SUBF", 0x5C, 3},   {"SUBR", 0x94, 2},   {"SVC", 0xB0, 2},  {"TD", 0xE0, 3},
             {"TIO", 0xF8, 1},  {"TIX", 0x2C, 3},    {"TIXR", 0xB8, 2},   {"WD", 0xDC, 3}
     };
-    printf("%s\n",opCodeTable[1].instruction);
-    printf("%d\n",opCodeTable[1].opCode);
-    int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
-    printf("%d\n",test);
+    //printf("%s\n",opCodeTable[1].instruction);
+    //printf("%d\n",opCodeTable[1].opCode);
+    //int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
+    //printf("%d\n",test);
 
     /******************************************/
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
     /******************************************/
 
+    int locctr;
     char ch;
     char opCode[1];
     char *ptr;
@@ -68,7 +69,7 @@ int main() {
                 ch = getc(ifp);
                 i++;
             }
-            printf("Program Name: %s\n", programName);
+            //printf("Program Name: %s\n", programName);
 
 
             while (ch == ' ') { //Skips through the spaces between the file name and starting address in the header line
@@ -99,9 +100,9 @@ int main() {
             int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
             int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
             int addressDifference = (charEndingAddrToHex - charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
-            printf("Starting Address: %d\n", charStartingAddrToHex);
-            printf("Ending Address: %d\n", charEndingAddrToHex);
-            printf("Program Length: %d\n", addressDifference);
+            //printf("Starting Address: %d\n", charStartingAddrToHex);
+            //printf("Ending Address: %d\n", charEndingAddrToHex);
+            //printf("Program Length: %d\n", addressDifference);
     }
 
 
@@ -128,21 +129,44 @@ int main() {
 
 
             //This converts hex strings to hex values
-            int ret = strtol(opCode, &ptr, 16); //ret is the opcode value
-            printf("ret: %d\n", ret);
+            int opVal = strtol(opCode, &ptr, 16); //ret is the opcode value
+            //printf("ret: %d\n", opVal);
 
             char toPrintInstruction[7];
+            char niBit[1];
+            int trueOpval;
 
             //This section interates through the obtab and copies the instruction to print
             for (int j = 0; j < 59; j++) {  //59 is the amount of obtab instructions
-                if (ret == opCodeTable[j].opCode) {
+                if ((opVal - 1) == opCodeTable[j].opCode) {
+                    niBit[0] = '#';
+                    locctr += opCodeTable[j].format;
+
+                } else if ((opVal - 2) == opCodeTable[j].opCode) {
+                    niBit[0] = '@';
+                    locctr+=opCodeTable[j].format;
+
+                } else if ((opVal - 3) == opCodeTable[j].opCode) {
+                    niBit[0] = ' ';
+                    locctr+=opCodeTable[j].format;
+                }
+                if (opVal == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
-                    printf("%s\n", toPrintInstruction);
-                    break;
+
+                    if (opCodeTable[j].format == 1 || opCodeTable[j].format == 2){
+                        locctr += opCodeTable[j].format;
+                    } else {
+                        locctr+=opCodeTable[j].format;
+                    }
+                }
+                    printf("here%s\n", toPrintInstruction);
+
+                    //TODO: NIXPBE here
+
                 }
             }
         }
-    }
+
 
     /******************************************/
     /************THIS IS THE SYMTAB************/
@@ -192,5 +216,4 @@ int main() {
         printf(" ");
 
         //TODO: Copy the sample.sym contents into the symtab struct
-    }
-}
+    }}
