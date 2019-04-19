@@ -18,6 +18,7 @@ void format4();
 int locctr;
 int pcctr;
 int symTabSize;
+int xRegister = 0;
 symTable symmie[60];
 
 int main() {
@@ -56,63 +57,65 @@ int main() {
     /******************************************/
     /************THIS IS THE SYMTAB************/
     /******************************************/
+        struct symTab *items = malloc(sizeof(struct symTab));
+        FILE *symfp;
 
-    FILE *symfp;
+        symfp = fopen("sample.sym", "r");
 
-    symfp = fopen("sample.sym", "r");
+        //TODO: CREATE THE TABLE FOR THE SYMTAB
 
-    //TODO: CREATE THE TABLE FOR THE SYMTAB
+        char tempp[9];
+        int i = 0;
+        int c = 0;
+        char *convert;
+        int g = 0;
+        char buffer[80];
+        char address[7];
+        int z = 0;
+        char buffer2[50];
 
-    char tempp[9];
-    int i=0;
-    int c=0;
-    char *convert;
-    int g=0;
-    char buffer[80];
-    char address[7];
-    int z=0;
-    char buffer2[50];
-
-    for (i = 0; i < 2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
-        fgets(buffer, 80, symfp);
-    }
-    while (!(feof(symfp))) {
-
-        for(g=0;g<8;++g) {
-            tempp[g]=fgetc(symfp);
-
-
+        for (i = 0; i <
+                    2; i++) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
+            fgets(buffer, 80, symfp);
         }
-        if(tempp[0]=='\n') {
-            break;
+        while (!(feof(symfp))) {
+
+            for (g = 0; g < 8; ++g) {
+                tempp[g] = fgetc(symfp);
+
+
+            }
+            if (tempp[0] == '\n') {
+                break;
+            }
+            tempp[8] = '\0';
+
+            memcpy(symmie[z].label, tempp, 9);
+            printf(symmie[z].label);
+            for (c = 0; c < 7; ++c) {
+                address[c] = fgetc(symfp);
+            }
+
+            address[7] = '\0';
+            memcpy(symmie[z].address, address, 7);
+            printf(symmie[z].address);
+
+            while (getc(symfp) != '\n') {
+                getc(symfp);
+            }
+            symTabSize++;
+            ++z;
+            g = 0;
+            c = 0;
+            printf("\n"); //TODO: Copy the sample.sym contents into the symtab struct
         }
-        tempp[8]='\0';
-
-        memcpy(symmie[z].label, tempp,9);
-        printf(symmie[z].label);
-        for(c=0;c<7;++c) {
-            address[c]=fgetc(symfp);
-        }
-
-        address[7]='\0';
-        memcpy(symmie[z].address, address, 7);
-        printf(symmie[z].address);
-
-        while(getc(symfp)!='\n') {
-            getc(symfp);
-        }
-        symTabSize++;
-        ++z;
-        g=0;
-        c=0;
-        printf("\n"); //TODO: Copy the sample.sym contents into the symtab struct
-    }
 
 
 
-    //int retr = strtol(symmie[4].address, &convert, 16);
-    //printf("%s", symmie[4].label);
-    //printf("%d",retr);
+        //int retr = strtol(symmie[4].address, &convert, 16);
+        //printf("%s", symmie[4].label);
+        //printf("%d",retr);
+
 
     /******************************************/
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
@@ -195,14 +198,15 @@ int main() {
             int trueOpval;
             int trueFormat;
 
-            //This section interates through the obtab and copies the instruction to print
-            for (int j = 0; j < 59; j++) {  //59 is the amount of obtab instructions
+            //This section iterates through the optab and copies the instruction to print
+            for (int j = 0; j < 59; j++) {  //59 is the amount of optab instructions
 
                 if ((opVal - 1) == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                     niBit[0] = '#';
                     locctr += opCodeTable[j].format;
                     trueFormat = opCodeTable[j].format;
+
 
                 } else if ((opVal - 2) == opCodeTable[j].opCode) {
                     strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
@@ -230,7 +234,7 @@ int main() {
             }
 
 
-            printf("\n%07x\n", locctr); //Displays the location counter
+            printf("\n%04x", locctr); //Displays the location counter
 
             if (trueFormat == 3) {
                 char contents[4];
@@ -267,9 +271,9 @@ int main() {
         }
 }
 
-
+/**THIS IS THE FUNCTION FOR FORMAT3**/
 void format3(char toPrintInstruction[], char niBit[], char contents[]) {
-    int tempcter;
+    int tempctr;
     int a = locctr;
     char displacement[3];
     char* displacementPointer;
@@ -277,22 +281,34 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     int displacementValue;
     int displacementValue2;
 
-
     int temp;
 
+    //Copies the displacement value and puts it into the displacement char array
     for (int i = 0; i < 4; i++) {
         displacement[i] = contents[i+1];
     }
+
+    displacementValue = strtol(displacement, &displacementPointer, 16); //Converts the displacement value from char to int
+
+    //This function loads the X register
+    if(strcmp(toPrintInstruction, "LDX") == 0) {
+        xRegister + 1;
+        printf("here");
+        if (niBit[0] == '#') {
+            xRegister = displacementValue;
+        }
+    }
+
+
 
 
 
     //2, 4, 10, 12
     if (contents[0] == '2') { //PC Relative
-        tempcter = locctr;
-        displacementValue = strtol(displacement, &displacementPointer, 16);
-        displacementValue2 = displacementValue + tempcter;
+        tempctr = locctr;
+        //displacementValue = strtol(displacement, &displacementPointer, 16);
+        displacementValue2 = displacementValue + tempctr;
         printf(" ");
-
 
         for (int i = 0; i < symTabSize; i++) {
             temp = strtol(symmie[i].address, &symmiePointer, 16);
