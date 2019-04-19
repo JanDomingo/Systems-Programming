@@ -241,28 +241,41 @@ int main() {
                 printf("\n%04x  ", locctr); //Displays the location counter
 
                 if (trueFormat == 3) {
-                    char contents[4];
+                    char format3Contents[4];
 
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < 4; i++) { //Gets the xbpe bit and the displacement and saves it into contents
                         ch = getc(ifp);
-                        contents[i] = ch;
+                        format3Contents[i] = ch;
                     }
-                    contents[4] = '\0';
+                    format3Contents[4] = '\0';
 
 
                     //This converts the contents from char to int
                     char *eBitPointer;
                     char firstBit[1];
-                    firstBit[0] = contents[0];
+                    firstBit[0] = format3Contents[0];
                     int eBit = strtol(firstBit, &eBitPointer, 16);
+
+                    //This section goes into the format4 function
                     if (eBit == 1 || eBit == 9) {
-                        //TODO: Work on format 4
+                        char format4Contents[6];
+                        memcpy(format4Contents, format3Contents, 4);
+                        for (int i = 0; i < 2; i++) {
+                            ch = getc(ifp);
+                            format4Contents[i+4] = ch;
+                        }
+                        format4Contents[6]='\0';
+
+
+
+
                         printf("format4\n");
                         format4();
                     }
 
-                    format3(toPrintInstruction, niBit, contents);
+                    format3(toPrintInstruction, niBit, format3Contents);
                 }
+                ch = getc(ifp);
             }
         }
     }
@@ -306,12 +319,6 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
             }
         }
     }
-
-
-
-
-
-
 
     //2, 4, 10, 12
     if (contents[0] == '2') { //PC Relative
