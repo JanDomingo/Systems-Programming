@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+#include <stdbool.h>
 
 struct symTab {
     char label[17];
@@ -108,8 +109,6 @@ int main() {
         c = 0;
         printf("\n"); //TODO: Copy the sample.sym contents into the symtab struct
     }
-
-
 
     //int retr = strtol(symmie[4].address, &convert, 16);
     //printf("%s", symmie[4].label);
@@ -242,6 +241,27 @@ int main() {
 
                 printf("\n%04X  ", locctr); //Displays the location counter
 
+                if(trueFormat==1) {
+                    pcctr += 1;
+                    locctr = pcctr;
+                    char *format1Pointer;
+                    int opCodeF1=strtol(opCode, &format1Pointer, 16);
+                    for(int z=0;z<59;++z) {
+                        if(opCodeF1==opCodeTable[z].opCode) {
+                            printf("%s",opCodeTable[z].instruction);
+                        }
+                    }
+
+                }
+
+                if(trueFormat==2) {//copy toPrint instruction
+                    char format2Contents[3];
+                    format2Contents[0]= getc(ifp);
+                    format2Contents[1]=getc(ifp);
+                    format2Contents[2]='\0';
+                    format2(toPrintInstruction,format2Contents);
+                }
+
                 if (trueFormat == 3) {
                     char format3Contents[4];
 
@@ -272,30 +292,10 @@ int main() {
                         format3(toPrintInstruction, niBit, format3Contents);
                     }
 
-
                 }
-                if(trueFormat==1) {
 
-                    char *format1Pointer;
-                    int opCodeF1=strtol(opCode, &format1Pointer, 16);
-                    for(int z=0;z<59;++z) {
-                        if(opCodeF1==opCodeTable[z].opCode) {
-                            printf("%s",opCodeTable[z].instruction);
-                        }
-                    }
+                //if (locctr == symT)
 
-
-
-                }
-                if(trueFormat==2) {//copy toPrint instruction
-                    char format2Contents[3];
-                    format2Contents[0]= getc(ifp);
-                    format2Contents[1]=getc(ifp);
-                    format2Contents[2]='\0';
-                    format2(toPrintInstruction,format2Contents);
-
-
-                }
                 ch = getc(ifp);
             }
         }
@@ -314,6 +314,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     int displacementValue2;
     char displacementValue2Arr;
     int symTabAddressToInt; //Holds the int value of the sym tab address
+    bool immediateFlag = false;
 
     pcctr += 3;
 
@@ -323,6 +324,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     }
 
     displacementValue = strtol(displacement, &displacementPointer, 16); //Converts the displacement value from char to int
+    displacementValue2 = displacementValue + pcctr; //Displacement Value added with pcctr
 
     //This function loads the X register
     if(strcmp(toPrintInstruction, "LDX") == 0) {
@@ -342,31 +344,48 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         }
     }
 
+    /*
+    if (niBit[0] == '#') {
+        for (int k = 1; k < symTabSize; k++) {
+            if (displacementValue2 == symTabAddressToInt) {
+                immediateFlag = true;
+            }
+        }
+    } */
+
+
     //2, 4, 10, 12
     if (contents[0] == '2') { //PC Relative
-        displacementValue = strtol(displacement, &displacementPointer, 16);
-        displacementValue2 = displacementValue + pcctr; //Displacement Value added with pcctr
         //displacementValue2Hex = strtol(displacementValue2, &displacementValue2Pointer, 16);
         printf(" ");
-
         for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (displacementValue2 == symTabAddressToInt) {
                 printf("%-05s", toPrintInstruction);
+                printf("%s", niBit);
                 printf(symmie[i].label);
             }
         }
-    }
-
-    if (contents[0] == 4) { //Base Relative
 
     }
+    if (contents[0] == '0') { //COMP instruction
+        printf(" ");
+        printf("%-05s",toPrintInstruction);
+        printf("%s", niBit);
+        printf("%d", displacementValue);
+    }
 
-    if (contents[0] == 10) { //PC Relative with index
+
+    if (contents[0] == '4') { //Base Relative
+
 
     }
 
-    if (contents[0] == 12) { //Base Relative with index
+    if (contents[0] == '10') { //PC Relative with index
+
+    }
+
+    if (contents[0] == '12') { //Base Relative with index
 
     }
 
@@ -406,7 +425,8 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
     void format2(char toPrintInstruction[], char format2Contents[]) {
 
 //r1,r2 r2 stores the result
-
+    pcctr += 2;
+    locctr = pcctr;
         char register1;
         char register2;
         register1 = format2Contents[0];
