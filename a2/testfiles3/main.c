@@ -185,7 +185,7 @@ int main() {
             }
 
             //This section grabs the next two characters of the text records which are the opcode instructions
-            while (ch >= 48 && ch <= 57) {
+            while ((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90)) {
             opCode[0] = ch;
             ch = getc(ifp);
 
@@ -238,7 +238,8 @@ int main() {
                 }
 
 
-                printf("\n%04x  ", locctr); //Displays the location counter
+
+                printf("\n%04X  ", locctr); //Displays the location counter
 
                 if (trueFormat == 3) {
                     char format3Contents[4];
@@ -269,11 +270,13 @@ int main() {
 
 
 
-                        printf("format4\n");
+                        printf("format4");
                         format4();
+                    } else {
+                        format3(toPrintInstruction, niBit, format3Contents);
                     }
 
-                    format3(toPrintInstruction, niBit, format3Contents);
+
                 }
                 ch = getc(ifp);
             }
@@ -288,9 +291,11 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     int a = locctr;
     char displacement[3];
     char* displacementPointer;
+    char* displacementValue2Pointer;
     char* symmiePointer;
     int displacementValue;
     int displacementValue2;
+    char displacementValue2Arr;
     int symTabAddressToInt; //Holds the int value of the sym tab address
 
     pcctr += 3;
@@ -322,8 +327,9 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
     //2, 4, 10, 12
     if (contents[0] == '2') { //PC Relative
-        //displacementValue = strtol(displacement, &displacementPointer, 16);
-        displacementValue2 = displacementValue + pcctr;
+        displacementValue = strtol(displacement, &displacementPointer, 16);
+        displacementValue2 = displacementValue + pcctr; //Displacement Value added with pcctr
+        //displacementValue2Hex = strtol(displacementValue2, &displacementValue2Pointer, 16);
         printf(" ");
 
         for (int i = 0; i < symTabSize; i++) {
@@ -353,7 +359,8 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 }
 
 void format4() {
-
+    pcctr += 4;
+    locctr = pcctr;
 }
 
 
