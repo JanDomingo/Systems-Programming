@@ -74,8 +74,7 @@ int main() {
     int z = 0;
     char buffer2[50];
 
-    for (i = 0; i <
-                2; ++i) {   //This skips two line of the symbol table to skip the header labels and start directly at the body to copy symbols
+    for (i = 0; i < 3; i++) {   //This skips three lines of the symbol table to skip the header labels and the name address and start directly at the body to copy symbols
         fgets(buffer, 80, symfp);
     }
     while (!(feof(symfp))) {
@@ -151,14 +150,14 @@ int main() {
             int programLength;
 
             if (ch >= 48 && ch <= 57) { //If ch is an integer
-                for (int i = 0; i < 6; ++i) {   //Gets the starting address
+                for (int i = 0; i < 6; i++) {   //Gets the starting address
                     startingAddress[i] = ch;
                     ch = getc(ifp);
                 }
 
                 startingAddress[6] = '\0';
 
-                for (int i = 0; i < 6; ++i) {
+                for (int i = 0; i < 6; i++) {
                     endingAddress[i] = ch;   //Gets the ending address
                     ch = getc(ifp);
                 }
@@ -180,7 +179,7 @@ int main() {
         /**This section reads in the Text record**/
         if (ch == 'T') {
 
-            for (int i = 0; i < 9; ++i) {   //Moves the file pointer over the address value and length
+            for (int i = 0; i < 9; i++) {   //Moves the file pointer over the address value and length
                 ch = getc(ifp);
             }
 
@@ -198,16 +197,17 @@ int main() {
                 //printf("ret: %d\n", opVal);
 
                 char toPrintInstruction[7];
-                char niBit[1];
+                char niBit[2];
                 int trueOpval;
                 int trueFormat;
 
                 //This section iterates through the optab and copies the instruction to print
-                for (int j = 0; j < 59; ++j) {  //59 is the amount of optab instructions
+                for (int j = 0; j < 59; j++) {  //59 is the amount of optab instructions
 
                     if ((opVal - 1) == opCodeTable[j].opCode) {
                         strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                         niBit[0] = '#';
+                        niBit[1] = '\0';
                         //pcctr += opCodeTable[j].format;
                         trueFormat = opCodeTable[j].format;
 
@@ -215,6 +215,7 @@ int main() {
                     } else if ((opVal - 2) == opCodeTable[j].opCode) {
                         strncpy(toPrintInstruction, opCodeTable[j].instruction, 7);
                         niBit[0] = '@';
+                        niBit[1] = '\0';
                         //pcctr+=opCodeTable[j].format;
                         trueFormat = opCodeTable[j].format;
 
@@ -244,12 +245,11 @@ int main() {
                 if (trueFormat == 3) {
                     char format3Contents[4];
 
-                    for (int i = 0; i < 4; ++i) { //Gets the xbpe bit and the displacement and saves it into contents
+                    for (int i = 0; i < 4; i++) { //Gets the xbpe bit and the displacement and saves it into contents
                         ch = getc(ifp);
                         format3Contents[i] = ch;
                     }
                     format3Contents[4] = '\0';
-
 
                     //This converts the contents from char to int
                     char *eBitPointer;
@@ -259,19 +259,15 @@ int main() {
 
                     //This section goes into the format4 function
                     if (eBit == 1 || eBit == 9) {
-                        char format4Contents[6];
+                        char format4Contents[6];    //Puts the dispalcement field in address into an array
                         memcpy(format4Contents, format3Contents, 4);
-                        for (int i = 0; i < 2; ++i) {
+                        for (int i = 0; i < 2; i++) {   //Skips over the opcode
                             ch = getc(ifp);
                             format4Contents[i+4] = ch;
                         }
+
                         format4Contents[6]='\0';
-
-
-
-
-                        printf("format4");
-                        format4();
+                        format4(toPrintInstruction, niBit, format4Contents);
                     } else {
                         format3(toPrintInstruction, niBit, format3Contents);
                     }
@@ -299,11 +295,6 @@ int main() {
                     format2(toPrintInstruction,format2Contents);
 
 
-
-
-
-
-
                 }
                 ch = getc(ifp);
             }
@@ -327,7 +318,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     pcctr += 3;
 
     //Copies the displacement value and puts it into the displacement char array
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 4; i++) {
         displacement[i] = contents[i+1];
     }
 
@@ -341,7 +332,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         //if (niBit[0] == '@') **OPTIONAL: ADD IN A CASE IF THERE IS AN IMMEDIATE LDX SYMBOL
         if (niBit[0] == '\0') {
             symTabLookup = displacementValue + pcctr;
-            for (int i = 0; i < symTabSize; ++i) {
+            for (int i = 0; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
                     printf(symmie[i].label);
@@ -358,13 +349,11 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         //displacementValue2Hex = strtol(displacementValue2, &displacementValue2Pointer, 16);
         printf(" ");
 
-        for (int i = 0; i < symTabSize; ++i) {
+        for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (displacementValue2 == symTabAddressToInt) {
                 printf("%-05s", toPrintInstruction);
                 printf(symmie[i].label);
-
-
             }
         }
     }
@@ -385,75 +374,86 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
 }
 
-void format4() {
+void format4(char toPrintInstruction[], char niBit[], char contents[]) {
     pcctr += 4;
     locctr = pcctr;
+    char addressField[5];
+    int addressFieldInt;
+    int symTabAddressToInt;
+    char toPrintAddress[7];
+    char *symmiePointer;
+
+
+    char *addressFieldPointer;
+
+    //This copies the contents array, exlcuding the first bit to make a new array of only the address field
+    for (int i = 0; i < 5; i++) {
+        addressField[i] = contents[i + 1];
+    }
+
+    addressFieldInt = strtol(addressField, &addressFieldPointer, 16);
+
+    for (int i = 0; i < symTabSize; i++) {
+        symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+        if (addressFieldInt == symTabAddressToInt) {
+            printf("+%s ", toPrintInstruction);
+            printf("%s", niBit);
+            printf("%s", symmie[i].label);
+        }
+    }
 }
 //TODO: ADD X REGISTER SCENARIO
-void format2(char toPrintInstruction [], char format2Contents[]) {
+    void format2(char toPrintInstruction[], char format2Contents[]) {
 
 //r1,r2 r2 stores the result
 
-    char register1;
-    char register2;
-    register1=format2Contents[0];
-    printf("%-05s", toPrintInstruction);
-    char register1Integer=register1;
-    if(register1Integer=='0') {
-        printf("A,");
+        char register1;
+        char register2;
+        register1 = format2Contents[0];
+        printf("%-05s", toPrintInstruction);
+        char register1Integer = register1;
+        if (register1Integer == '0') {
+            printf("A,");
+        }
+        if (register1Integer == '1') {
+            printf("X,");
+        }
+        if (register1Integer == '2') {
+            printf("L,");
+        }
+        if (register1Integer == '3') {
+            printf("B,");
+        }
+        if (register1Integer == '4') {
+            printf("S,");
+        }
+        if (register1Integer == '5') {
+            printf("T,");
+        }
+        if (register1Integer == '6') {
+            printf("F,");
+        }
+        char register2Integer = format2Contents[1];
+        if (register2Integer == '0') {
+            printf("A");
+        }
+        if (register2Integer == '1') {
+            printf("X");
+        }
+        if (register2Integer == '2') {
+            printf("L");
+        }
+        if (register2Integer == '3') {
+            printf("B");
+        }
+        if (register2Integer == '4') {
+            printf("S");
+        }
+        if (register2Integer == '5') {
+            printf("T");
+        }
+        if (register2Integer == '6') {
+            printf("F");
+        }
     }
-    if(register1Integer=='1') {
-        printf("X,");
-    }
-    if(register1Integer=='2') {
-        printf("L,");
-    }
-    if(register1Integer=='3') {
-        printf("B,");
-    }
-    if(register1Integer=='4') {
-        printf("S,");
-    }
-    if(register1Integer=='5') {
-        printf("T,");
-    }
-    if(register1Integer=='6') {
-        printf("F,");
-    }
-    char register2Integer=format2Contents[1];
-    if(register2Integer=='0') {
-        printf("A");
-    }
-    if(register2Integer=='1') {
-        printf("X");
-    }
-    if(register2Integer=='2') {
-        printf("L");
-    }
-    if(register2Integer=='3') {
-        printf("B");
-    }
-    if(register2Integer=='4') {
-        printf("S");
-    }
-    if(register2Integer=='5') {
-        printf("T");
-    }
-    if(register2Integer=='6') {
-        printf("F");
-    }
-
-
-
-
-
-
-
-
-
-}
-
-
-
-
 

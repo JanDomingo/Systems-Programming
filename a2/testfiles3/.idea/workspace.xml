@@ -13,6 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="678fcec0-f12e-4a64-b826-ff9f4ba023e7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/testfiles3.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/testfiles3.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/sample.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/sample.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/testfiles3" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/testfiles3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -30,14 +33,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="373" column="5" lean-forward="true" selection-start-line="373" selection-start-column="5" selection-end-line="373" selection-end-column="5" />
-              <folding>
-                <element signature="e#2#20#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="312">
+              <caret line="76" column="127" selection-start-line="76" selection-start-column="127" selection-end-line="76" selection-end-column="127" />
             </state>
           </provider>
         </entry>
@@ -45,17 +45,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.sym">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
-              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+              <caret line="1" column="87" selection-start-line="1" selection-start-column="87" selection-end-line="1" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -68,7 +68,6 @@
       <find>ldx</find>
       <find>format3</find>
       <find>temp</find>
-      <find>niBit</find>
       <find>%04</find>
       <find>STL</find>
       <find>displacementValue</find>
@@ -80,7 +79,15 @@
       <find>locctr</find>
       <find>displacementValue2Hex</find>
       <find>LOCCTR</find>
+      <find>format1</find>
+      <find>%-</find>
+      <find>eBit</find>
+      <find>niBit</find>
+      <find>buffer</find>
     </findStrings>
+    <replaceStrings>
+      <replace>j++</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -88,14 +95,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cmake-build-debug/sample.obj" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/sample.obj" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="960" />
+    <option name="width" value="1920" />
     <option name="height" value="1177" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -160,24 +167,25 @@
       <updated>1555704314946</updated>
       <workItem from="1555704316996" duration="11153000" />
       <workItem from="1555716097590" duration="5391000" />
-      <workItem from="1555792046588" duration="351000" />
+      <workItem from="1555792046588" duration="2177000" />
+      <workItem from="1555794414626" duration="363000" />
+      <workItem from="1555794917290" duration="997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16895000" />
+    <option name="totallyTimeSpent" value="20081000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="960" height="1177" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1920" height="1177" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25381264" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12619808" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25437787" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.40737328" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27281106" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4654378" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -198,24 +206,48 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>269</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>398</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="ch" language="ObjectiveC" />
-        <watch expression="opCodeTable[j].instruction" language="ObjectiveC" />
-        <watch expression="opCodeTable[j].opCode" language="ObjectiveC" />
-        <watch expression="j" language="ObjectiveC" />
-        <watch expression="format3Contents" language="ObjectiveC" />
-        <watch expression="format4contents" language="ObjectiveC" />
         <watch expression="pcctr" language="ObjectiveC" />
         <watch expression="locctr" language="ObjectiveC" />
-        <watch expression="symmie[i].address" language="ObjectiveC" />
-        <watch expression="symmie[i].label" language="ObjectiveC" />
         <watch expression="symTabAddressToInt" language="ObjectiveC" />
+        <watch expression="addressField" language="ObjectiveC" />
+        <watch expression="contents" language="ObjectiveC" />
+        <watch expression="contents[i]" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>contents[i]</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>contents</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>addressField</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>symTabAddressToInt</expression-string>
         <language-id>ObjectiveC</language-id>
@@ -251,21 +283,6 @@
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>j</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>jrand48()</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>opCodeTable[j].opCode</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -274,25 +291,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.sym">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="76" column="127" selection-start-line="76" selection-start-column="127" selection-end-line="76" selection-end-column="127" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="373" column="5" lean-forward="true" selection-start-line="373" selection-start-column="5" selection-end-line="373" selection-end-column="5" />
-          <folding>
-            <element signature="e#2#20#0" expanded="true" />
-          </folding>
+          <caret line="1" column="87" selection-start-line="1" selection-start-column="87" selection-end-line="1" selection-end-column="87" />
         </state>
       </provider>
     </entry>
