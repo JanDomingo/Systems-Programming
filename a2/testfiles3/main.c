@@ -288,7 +288,6 @@ int main() {
 void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     int tempctr;    //temporary pc counter
     int symTabLookup;
-    int a = locctr;
     char displacement[3];
     char* displacementPointer;
     char* displacementValue2Pointer;
@@ -335,8 +334,9 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (displacementValue2 == symTabAddressToInt) {
+                printf("%-05s", toPrintInstruction);
                 printf(symmie[i].label);
-                printf(toPrintInstruction);
+
 
             }
         }
