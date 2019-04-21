@@ -305,44 +305,51 @@ int main() {
 
     }
 
-    int toPrint;
+
+
+
+    /**THIS SECTION MANAGES THE RESB AND RESW PRINT STATEMENTS**/
+    int idxCtr;
     char *nextLabel;
-    int nextToPrint;
+    int afterNextAddress;
     int symTabAddy;
     char* symmieAddy;
-    int symmieAddy2;
+    int saveSymmieAddy;
+    int nextAddress;
     char *symmiePointer2;
-    long int length;
+    int length;
     int thirds;
 
     for (int x = 1; x < symTabSize; x++) {
         symTabAddy = strtol(symmie[x].address, &symmieAddy, 16);
         if (locctr == symTabAddy) {
 
-            toPrint=x;
+            idxCtr=x;
+            saveSymmieAddy = symTabAddy;
         }
     }
-    printf("%04s ",symmie[toPrint].address);
-    printf("%s RESW ",symmie[toPrint].label);
+    printf("%04s ",symmie[idxCtr].address);
+    printf("%s RESW ",symmie[idxCtr].label);
     printf("\n");
-    toPrint=toPrint+1;
-    symmieAddy2 = strtol(symmie[toPrint].address, &symmiePointer2, 16);
-    for(toPrint;toPrint<symTabSize-1;++toPrint) {
-        nextToPrint= strtol(symmie[toPrint+1].label, &nextLabel, 16);
-        length=nextToPrint-symTabAddy;
+    idxCtr=idxCtr+1;  //Index Counter
+
+    nextAddress = strtol(symmie[idxCtr].address, &symmiePointer2, 16); //LENGTH ADDRESS (Original Address + 1)
+    for(idxCtr; idxCtr<symTabSize - 1; idxCtr++) {
+        afterNextAddress= strtol(symmie[idxCtr+1].address, &nextLabel, 16); //BUFFER ADDRESS (Original Address + 2)
+        length = afterNextAddress - nextAddress;
         if(length%3==0) {
             thirds=length/3;
-            printf("%s",symmie[toPrint].address);
-            printf(" %s RESW",symmie[toPrint].label);
+            printf("%s",symmie[idxCtr].address);
+            printf(" %s RESW",symmie[idxCtr].label);
             printf(" %d",thirds);
             printf("\n");
 
         }
         else {
 
-            printf("%s",symmie[toPrint].address);
-            printf(" %s RESB",symmie[toPrint].label);
-            printf(" %ld",length);
+            printf("%s",symmie[idxCtr].address);
+            printf(" %s RESB",symmie[idxCtr].label);
+            printf(" %d",length);
             printf("\n");
         }
     }
