@@ -33,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+            <state relative-caret-position="373">
+              <caret line="353" column="52" selection-start-line="353" selection-start-column="52" selection-end-line="353" selection-end-column="52" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -54,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="1" column="37" lean-forward="true" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="38" />
+            <state relative-caret-position="18">
+              <caret line="1" column="55" lean-forward="true" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -90,6 +90,7 @@
       <find>#</find>
       <find>Comp</find>
       <find>32026</find>
+      <find>90</find>
     </findStrings>
     <replaceStrings>
       <replace>j++</replace>
@@ -101,15 +102,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cmake-build-debug/sample.sym" />
         <option value="$PROJECT_DIR$/cmake-build-debug/sample.obj" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/sample.sym" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="341" />
     <option name="y" value="23" />
-    <option name="width" value="960" />
+    <option name="width" value="1920" />
     <option name="height" value="1177" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -176,12 +178,12 @@
       <workItem from="1555716097590" duration="5391000" />
       <workItem from="1555792046588" duration="2177000" />
       <workItem from="1555794414626" duration="363000" />
-      <workItem from="1555794917290" duration="8428000" />
+      <workItem from="1555794917290" duration="14384000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27512000" />
+    <option name="totallyTimeSpent" value="33468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -192,8 +194,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33917052" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4359447" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26728112" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2921659" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -218,8 +220,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>291</line>
-          <option name="timeStamp" value="15" />
+          <line>347</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -227,11 +229,23 @@
       <configuration name="CMakeRunConfiguration">
         <watch expression="pcctr" language="ObjectiveC" />
         <watch expression="locctr" language="ObjectiveC" />
+        <watch expression="displacementValue" language="ObjectiveC" />
+        <watch expression="symmie[i].address" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>symmie[i].address</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>displacementValue</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>contents[i]</expression-string>
         <language-id>ObjectiveC</language-id>
@@ -258,27 +272,12 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>symmie[i].address</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>locctr</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
         <expression-string>pcctr</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>format4contents</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>format3Contents</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -290,8 +289,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="1" column="37" lean-forward="true" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="38" />
+        <state relative-caret-position="18">
+          <caret line="1" column="55" lean-forward="true" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -304,8 +303,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+        <state relative-caret-position="373">
+          <caret line="353" column="52" selection-start-line="353" selection-start-column="52" selection-end-line="353" selection-end-column="52" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

@@ -20,6 +20,7 @@ int locctr = 0;
 int pcctr;
 int symTabSize;
 int xRegister = 0;
+int bRegister = 0;
 symTable symmie[60];
 
 int main() {
@@ -167,8 +168,7 @@ int main() {
 
             int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
             int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
-            int addressDifference = (charEndingAddrToHex -
-                                     charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
+            int addressDifference = (charEndingAddrToHex -charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
             //printf("Starting Address: %d\n", charStartingAddrToHex);
             //printf("Ending Address: %d\n", charEndingAddrToHex);
             //printf("Program Length: %d\n", addressDifference);
@@ -314,6 +314,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     int displacementValue2;
     char displacementValue2Arr;
     int symTabAddressToInt; //Holds the int value of the sym tab address
+    int targetAddress;
     bool immediateFlag = false;
 
     pcctr += 3;
@@ -344,6 +345,19 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         }
     }
 
+    targetAddress = pcctr + displacementValue;
+    if (targetAddress > 4096) {
+        targetAddress = targetAddress - 4096;
+        for (int i = 1; i < symTabSize; i++) {
+            symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+            if (targetAddress == symTabAddressToInt) {
+                printf("%-05s", toPrintInstruction);
+                printf("%s", symmie[i].label);
+            }
+        }
+    }
+
+
     /*
     if (niBit[0] == '#') {
         for (int k = 1; k < symTabSize; k++) {
@@ -355,6 +369,27 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
 
     //2, 4, 10, 12
+
+
+    /*
+    if (displacement[0] = 'F') { //If statement when backreferencing
+        symTabLookup = 0xFFF - displacementValue;
+        for (int i = 0; i < symTabSize; i++) {
+            if (symTabLookup == symmie[i].address) {
+                printf("%-05s", toPrintInstruction);
+                printf("%s", symmie[i].label);
+            }
+        }
+    } */
+
+
+    if (contents[0] == '0') { //COMP instruction
+        printf(" ");
+        printf("%-05s",toPrintInstruction);
+        printf("%s", niBit);
+        printf("%d", displacementValue);
+    }
+
     if (contents[0] == '2') { //PC Relative
         //displacementValue2Hex = strtol(displacementValue2, &displacementValue2Pointer, 16);
         printf(" ");
@@ -367,12 +402,6 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
             }
         }
 
-    }
-    if (contents[0] == '0') { //COMP instruction
-        printf(" ");
-        printf("%-05s",toPrintInstruction);
-        printf("%s", niBit);
-        printf("%d", displacementValue);
     }
 
 
