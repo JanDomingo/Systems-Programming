@@ -310,6 +310,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     char* displacementPointer;
     char* displacementValue2Pointer;
     char* symmiePointer;
+    char* xbpeBitPointer;
     int displacementValue;
     int displacementValue2;
     char displacementValue2Arr;
@@ -318,6 +319,16 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     bool immediateFlag = false;
 
     pcctr += 3;
+
+    //Prints the non-instrudtional label
+    for (int i = 1; i < symTabSize; i++) {
+        symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+        if (locctr == symTabAddressToInt) {
+            printf("%s", symmie[i].label);
+        }
+    }
+
+
 
     //Copies the displacement value and puts it into the displacement char array
     for (int i = 0; i < 4; i++) {
@@ -345,54 +356,51 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         }
     }
 
-    targetAddress = pcctr + displacementValue;
-    if (targetAddress > 4096) {
-        targetAddress = targetAddress - 4096;
-        for (int i = 1; i < symTabSize; i++) {
-            symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
-            if (targetAddress == symTabAddressToInt) {
-                printf("%-05s", toPrintInstruction);
-                printf("%s", symmie[i].label);
+    if(strcmp(toPrintInstruction, "LDB") == 0) {
+        if (niBit[0] == '#') {
+            bRegister = displacementValue2;
+        }
+        //if (niBit[0] == '@') **OPTIONAL: ADD IN A CASE IF THERE IS AN IMMEDIATE LDX SYMBOL
+        //If simple addressing, get the target address as the base
+        if (niBit[0] == '\0') {
+            symTabLookup = displacementValue + pcctr;   //TODO: CHECK IF PCCTR IS OK HERE
+            for (int i = 0; i < symTabSize; i++) {
+                symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+                if (symTabLookup == symTabAddressToInt) {
+                    printf(symmie[i].label);
+                    bRegister = symTabAddressToInt;
+                }
             }
         }
     }
 
 
-    /*
-    if (niBit[0] == '#') {
-        for (int k = 1; k < symTabSize; k++) {
-            if (displacementValue2 == symTabAddressToInt) {
-                immediateFlag = true;
-            }
-        }
-    } */
-
-
-    //2, 4, 10, 12
-
-
-    /*
-    if (displacement[0] = 'F') { //If statement when backreferencing
-        symTabLookup = 0xFFF - displacementValue;
-        for (int i = 0; i < symTabSize; i++) {
-            if (symTabLookup == symmie[i].address) {
-                printf("%-05s", toPrintInstruction);
-                printf("%s", symmie[i].label);
-            }
-        }
-    } */
-
 
     if (contents[0] == '0') { //COMP instruction
-        printf(" ");
+        printf(" ");    //TODO: Figure out what this empty space does
         printf("%-05s",toPrintInstruction);
         printf("%s", niBit);
         printf("%d", displacementValue);
     }
 
-    if (contents[0] == '2') { //PC Relative
-        //displacementValue2Hex = strtol(displacementValue2, &displacementValue2Pointer, 16);
+    if (contents[0] == '2' || contents[0] == 'A') { //PC Relative or PC relative with index
         printf(" ");
+        targetAddress = pcctr + displacementValue;
+        if (targetAddress > 4096) {
+            targetAddress = targetAddress - 4096;
+            for (int i = 1; i < symTabSize; i++) {
+                symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+                if (targetAddress == symTabAddressToInt) {
+                    printf("%-05s", toPrintInstruction);
+                    printf("%s", symmie[i].label);
+                    if (contents[0] == 'A') {
+                        printf(",X");
+                    }
+                }
+            }
+        }
+
+        //TODO: FIGURE OUT WHAT THIS DOES
         for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (displacementValue2 == symTabAddressToInt) {
@@ -404,18 +412,18 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
     }
 
-
-    if (contents[0] == '4') { //Base Relative
-
-
-    }
-
-    if (contents[0] == '10') { //PC Relative with index
-
-    }
-
-    if (contents[0] == '12') { //Base Relative with index
-
+    if (contents[0] == '4' || (contents[0] == 'C')) { //Base Relative or base relative with index
+        targetAddress = bRegister + displacementValue;
+        for (int i = 1; i < symTabSize; i++) {
+            symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+            if (targetAddress == symTabAddressToInt) {
+                printf("%-05s", toPrintInstruction);
+                printf("%s", symmie[i].label);
+                if (contents[0] == 'C') {
+                    printf(",X");
+                }
+            }
+        }
     }
 
     locctr = pcctr;
@@ -424,7 +432,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
 void format4(char toPrintInstruction[], char niBit[], char contents[]) {
     pcctr += 4;
-    locctr = pcctr;
+
     char addressField[5];
     int addressFieldInt;
     int symTabAddressToInt;
@@ -433,6 +441,14 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
 
 
     char *addressFieldPointer;
+
+    //Prints the non-instrudtional label
+    for (int i = 1; i < symTabSize; i++) {
+        symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+        if (locctr == symTabAddressToInt) {
+            printf("%s", symmie[i].label);
+        }
+    }
 
     //This copies the contents array, exlcuding the first bit to make a new array of only the address field
     for (int i = 0; i < 5; i++) {
@@ -448,6 +464,7 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
             printf("%s", niBit);
             printf("%s", symmie[i].label);
         }
+        locctr = pcctr;
     }
 }
 //TODO: ADD X REGISTER SCENARIO
@@ -482,6 +499,7 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
         if (register1Integer == '6') {
             printf("F,");
         }
+
         char register2Integer = format2Contents[1];
         if (register2Integer == '0') {
             printf("A");

@@ -8,6 +8,8 @@ RETADR  000030  R
 LENGTH  000033  R
 BUFFER  000036  R
 BUFEND  000836  R
+ANYLABL 000230  R
+WRREC   00105D  R
 
 Name    Literal  Length Address:
 ------------------------------
