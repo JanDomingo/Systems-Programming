@@ -298,6 +298,52 @@ int main() {
 
                 ch = getc(ifp);
             }
+            printf("\n");
+
+        }
+
+
+    }
+
+    int toPrint;
+    char *nextLabel;
+    int nextToPrint;
+    int symTabAddy;
+    char* symmieAddy;
+    int symmieAddy2;
+    char *symmiePointer2;
+    long int length;
+    int thirds;
+
+    for (int x = 1; x < symTabSize; x++) {
+        symTabAddy = strtol(symmie[x].address, &symmieAddy, 16);
+        if (locctr == symTabAddy) {
+
+            toPrint=x;
+        }
+    }
+    printf("%04s ",symmie[toPrint].address);
+    printf("%s RESW ",symmie[toPrint].label);
+    printf("\n");
+    toPrint=toPrint+1;
+    symmieAddy2 = strtol(symmie[toPrint].address, &symmiePointer2, 16);
+    for(toPrint;toPrint<symTabSize-1;++toPrint) {
+        nextToPrint= strtol(symmie[toPrint+1].label, &nextLabel, 16);
+        length=nextToPrint-symTabAddy;
+        if(length%3==0) {
+            thirds=length/3;
+            printf("%s",symmie[toPrint].address);
+            printf(" %s RESW",symmie[toPrint].label);
+            printf(" %d",thirds);
+            printf("\n");
+
+        }
+        else {
+
+            printf("%s",symmie[toPrint].address);
+            printf(" %s RESB",symmie[toPrint].label);
+            printf(" %ld",length);
+            printf("\n");
         }
     }
 }
@@ -468,59 +514,58 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
     }
 }
 //TODO: ADD X REGISTER SCENARIO
-    void format2(char toPrintInstruction[], char format2Contents[]) {
+void format2(char toPrintInstruction[], char format2Contents[]) {
 
 //r1,r2 r2 stores the result
     pcctr += 2;
     locctr = pcctr;
-        char register1;
-        char register2;
-        register1 = format2Contents[0];
-        printf("%-05s", toPrintInstruction);
-        char register1Integer = register1;
-        if (register1Integer == '0') {
-            printf("A,");
-        }
-        if (register1Integer == '1') {
-            printf("X,");
-        }
-        if (register1Integer == '2') {
-            printf("L,");
-        }
-        if (register1Integer == '3') {
-            printf("B,");
-        }
-        if (register1Integer == '4') {
-            printf("S,");
-        }
-        if (register1Integer == '5') {
-            printf("T,");
-        }
-        if (register1Integer == '6') {
-            printf("F,");
-        }
-
-        char register2Integer = format2Contents[1];
-        if (register2Integer == '0') {
-            printf("A");
-        }
-        if (register2Integer == '1') {
-            printf("X");
-        }
-        if (register2Integer == '2') {
-            printf("L");
-        }
-        if (register2Integer == '3') {
-            printf("B");
-        }
-        if (register2Integer == '4') {
-            printf("S");
-        }
-        if (register2Integer == '5') {
-            printf("T");
-        }
-        if (register2Integer == '6') {
-            printf("F");
-        }
+    char register1;
+    char register2;
+    register1 = format2Contents[0];
+    printf("%-05s", toPrintInstruction);
+    char register1Integer = register1;
+    if (register1Integer == '0') {
+        printf("A,");
+    }
+    if (register1Integer == '1') {
+        printf("X,");
+    }
+    if (register1Integer == '2') {
+        printf("L,");
+    }
+    if (register1Integer == '3') {
+        printf("B,");
+    }
+    if (register1Integer == '4') {
+        printf("S,");
+    }
+    if (register1Integer == '5') {
+        printf("T,");
+    }
+    if (register1Integer == '6') {
+        printf("F,");
     }
 
+    char register2Integer = format2Contents[1];
+    if (register2Integer == '0') {
+        printf("A");
+    }
+    if (register2Integer == '1') {
+        printf("X");
+    }
+    if (register2Integer == '2') {
+        printf("L");
+    }
+    if (register2Integer == '3') {
+        printf("B");
+    }
+    if (register2Integer == '4') {
+        printf("S");
+    }
+    if (register2Integer == '5') {
+        printf("T");
+    }
+    if (register2Integer == '6') {
+        printf("F");
+    }
+}

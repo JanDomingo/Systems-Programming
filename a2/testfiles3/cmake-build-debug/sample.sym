@@ -7,13 +7,10 @@ ENDFIL  00001A  R
 RETADR  000030  R
 LENGTH  000033  R
 BUFFER  000036  R
-BUFEND  000836  R
+RDREC   001036  R
 ANYLABL 000230  R
 WRREC   00105D  R
 
 Name    Literal  Length Address:
 ------------------------------
 	=C'EOF'     2    000030
-
-
-
