@@ -13,8 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="64473352-44d9-402e-9057-dd7a6727e595" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../testfiles3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testfiles3/cmake-build-debug/testfiles3" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles3/cmake-build-debug/testfiles3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testfiles3/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles3/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -79,11 +77,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2560" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="960" />
     <option name="y" value="23" />
-    <option name="width" value="2560" />
-    <option name="height" value="1417" />
+    <option name="width" value="960" />
+    <option name="height" value="1177" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -150,18 +148,18 @@
       <workItem from="1555909868994" duration="766000" />
       <workItem from="1555916536195" duration="346000" />
       <workItem from="1555919352981" duration="1182000" />
-      <workItem from="1555920705401" duration="137000" />
+      <workItem from="1555920705401" duration="554000" />
+      <workItem from="1555951487855" duration="5000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4384000" />
+    <option name="totallyTimeSpent" value="4806000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2560" y="23" width="2560" height="1417" extended-state="6" />
-    <editor active="true" />
+    <frame x="960" y="23" width="960" height="1177" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19221604" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.03267974" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

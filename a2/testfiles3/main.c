@@ -38,7 +38,12 @@ int textRecordFieldsBuilderCounter=0;
 FILE *symfp;
 FILE *ifp;  //input file pointer
 FILE *ofp;
+FILE *sfp;
 char fileName[50];
+char sic[5];
+char lis [5];
+char fileNameSIC[50];
+char fileNameLIS[50];
 
 /******************************************/
 /************THIS IS THE OPTAB*************/
@@ -119,7 +124,7 @@ int main(int argc, char * argv[]) {
     char fileNames[50][50];
 
     if (argc < 3) {
-        fprintf(ofp, "Error, check arguments");
+        printf("Error, check arguments");
     }
 
     if (argc == 3) {
@@ -132,9 +137,29 @@ int main(int argc, char * argv[]) {
         for (int i = 0; i < 50; i++) {
             if (fileNames[0][i] != '.') {
                 fileName[i] = fileNames[0][i];
+                fileNameLIS[i] = fileNames[0][i];
+                fileNameSIC[i] = fileNames[0][i];
             }
         }
+
+        lis[0] = '.';
+        lis[1] = 'l';
+        lis[2] = 'i';
+        lis[3] = 's';
+        lis[4] = '\0';
+
+        sic[0] = '.';
+        sic[1] = 's';
+        sic[2] = 'i';
+        sic[3] = 'c';
+        sic[4] = '\0';
+
+        strcat(fileNameLIS, lis);
+        strcat(fileNameSIC, sic);
+
+
         ofp=fopen(fileName,"w");
+        sfp=fopen(fileName,"w");
     }
 
     mainFileParser();
@@ -193,6 +218,7 @@ int main(int argc, char * argv[]) {
         g = 0;
         c = 0;
         fprintf(ofp, "\n"); //TODO: Copy the sample.sym contents into the symtab struct
+        //fprintf(sfp, "\n.sic", fileName);
     }
 
     int v=z;
