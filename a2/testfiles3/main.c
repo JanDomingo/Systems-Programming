@@ -201,14 +201,14 @@ int main(int argc, char * argv[]) {
         tempp[8] = '\0';
 
         memcpy(symmie[z].label, tempp, 9);
-        fprintf(ofp, symmie[z].label);
+        //fprintf(ofp, symmie[z].label);
         for (c = 0; c < 7; ++c) {
             address[c] = fgetc(symfp);
         }
 
         address[7] = '\0';
         memcpy(symmie[z].address, address, 7);
-        fprintf(ofp, symmie[z].address);
+        //fprintf(ofp, symmie[z].address);
 
         while (getc(symfp) != '\n') {
             getc(symfp);
@@ -217,7 +217,7 @@ int main(int argc, char * argv[]) {
         ++z;
         g = 0;
         c = 0;
-        fprintf(ofp, "\n"); //TODO: Copy the sample.sym contents into the symtab struct
+        //fprintf(ofp, "\n"); //TODO: Copy the sample.sym contents into the symtab struct
         //fprintf(sfp, "\n.sic", fileName);
     }
 
@@ -258,10 +258,10 @@ int main(int argc, char * argv[]) {
         ++v;
         ++symTabSize;
     }
-    fprintf(ofp, "%s",symmie[v-1].label);
+    //fprintf(ofp, "%s",symmie[v-1].label);
     int retr = strtol(symmie[v-1].address, &cnv, 16);
 
-    fprintf(ofp, "%d",retr);
+    //fprintf(ofp, "%d",retr);
 
 
     //int retr = strtol(symmie[4].address, &convert, 16);
@@ -282,6 +282,8 @@ int main(int argc, char * argv[]) {
 
         /**This section reads in the Header Line**/
         char programName[20]; //TODO: Check if 20 is enough size to allocate
+        int symmieAddressToInt;
+        int symmieAddressToIntPtr;
         if (ch == 'H') {
             int i = 0;
             ch = getc(ifp);
@@ -317,6 +319,24 @@ int main(int argc, char * argv[]) {
                 endingAddress[6] = '\0';
 
             }
+
+            fprintf(ofp, "%04x", locctr);
+            symmieAddressToInt = strtol(symmie[0].address, symmieAddressToIntPtr, 16);
+            if (locctr == symmieAddressToInt) {
+                fprintf(ofp, symmie[0].label);
+            }
+            fprintf(ofp, "%s", programName);
+            fprintf(ofp, "%x", locctr);
+
+
+
+
+            fprintf(sfp, "%04x", locctr);
+            if (locctr == symmie[0].address) {
+                fprintf(sfp, symmie[0].label);
+            }
+            fprintf(sfp, "%s", programName);
+            fprintf(sfp, "%x", locctr);
 
             int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
             int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
@@ -477,66 +497,6 @@ int main(int argc, char * argv[]) {
 
         }
     }
-
-
-
-    int textRecordAddressInt;
-    int nextTextRecordAddressInt;
-    char * textRecordAddressIntPointer;
-    char * symmieAddressToIntPointer;
-    int currentAddressPlusLength;
-    int addressDif;
-    int startingAddress;
-    int textRecordLocctr;
-    int instructionSize;
-    int symmieAddressToInt;
-    char instructionName[17];
-    int nextSymmieAddressToInt;
-
-    for (int i = 0; i < textRecordSize; i++) {
-
-        //TODO: WHAT HAPPENS IF THE NEXT TEXTRECORD FIELDS IS NULL?
-        textRecordAddressInt = strtol(textRecordFields[i].address, textRecordAddressIntPointer, 16);
-        nextTextRecordAddressInt = strtol(textRecordFields[i+1].address, textRecordAddressIntPointer, 16);
-
-        currentAddressPlusLength = textRecordAddressInt + textRecordFields[i].length;
-
-        addressDif = nextTextRecordAddressInt - currentAddressPlusLength;
-
-
-        //currentAddressPlusLength != nextTextRecordAddressInt
-
-        if (currentAddressPlusLength != nextTextRecordAddressInt) {    //If the current address + current length != next address, then there is a storage declaration
-
-            textRecordLocctr = currentAddressPlusLength;
-
-            for (int k = 0; k < symTabSize; k++) {  //Checks the address and compares if it matches an address in the symtab
-                symmieAddressToInt = strtol(symmie[k].address, &symmieAddressToIntPointer, 16);
-                nextSymmieAddressToInt = strtol(symmie[k+1].address, &symmieAddressToIntPointer, 16);
-
-                if (symmieAddressToInt < nextTextRecordAddressInt) {
-                    break;
-                }
-
-                if (textRecordLocctr == symmieAddressToInt) {
-                    memcpy(instructionName, symmie[k].label, 17);
-                    fprintf(ofp, "%s", instructionName);
-                    //Find how many bytes reservation
-                    instructionSize = nextSymmieAddressToInt - textRecordLocctr;
-                        if (instructionSize % 3 == 0) {
-                            fprintf(ofp, "RESW %d", instructionSize / 3);
-                        } else {
-                            fprintf(ofp, "RESB %d", instructionSize);
-                        }
-                        textRecordLocctr += instructionSize;    //Increase the location counter to look at the next address if there is a symtab label
-                        fprintf(ofp, "\n");
-                }
-            }
-        }
-            //Get the label from the symtab of the current adddress
-
-            // fprintf(ofp, "%05s", textRecordFields.)
-        }
     }
 
 
@@ -621,13 +581,14 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
 
     pcctr += 3;
 
-    //Prints the non-instrudtional label
+    //Prints the non-instructional label
     for (int i = 1; i < symTabSize; i++) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
             fprintf(ofp, "%s", symmie[i].label);
             fprintf(sfp, "%s", symmie[i].label);
-            fprintf(ofp, "%s", contents);
+
+            //fprintf(ofp, "%s", contents);
         }
     }
 
@@ -678,7 +639,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
                     fprintf(sfp, symmie[i].label);
                     fprintf(ofp, opCode);
                     fprintf(ofp, contents);
-\
+
                     bRegister = symTabAddressToInt;
                 }
             }
@@ -691,7 +652,9 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
         fprintf(ofp, " ");    //TODO: Figure out what this empty space does
         fprintf(ofp, "%-05s",toPrintInstruction);
         fprintf(ofp, "%s", niBit);
-        fprintf(ofp, "%d", displacementValue);
+        fprintf(ofp, "%d", displacementValue);  //TODO: FIX PADDING
+        fprintf(ofp, " ", opCode);
+        fprintf(ofp, "%s", opCode);
         fprintf(ofp, "%s", contents);
 
         fprintf(sfp, " ");    //TODO: Figure out what this empty space does
@@ -775,6 +738,7 @@ void format4(char toPrintInstruction[], char niBit[], char contents[], char opCo
     int symTabAddressToInt;
     char toPrintAddress[7];
     char *symmiePointer;
+    char *addressFieldIntPointer;
 
 
     char *addressFieldPointer;
@@ -785,14 +749,35 @@ void format4(char toPrintInstruction[], char niBit[], char contents[], char opCo
         if (locctr == symTabAddressToInt) {
             fprintf(ofp, "%s", symmie[i].label);
             fprintf(sfp, symmie[i].label);
-            fprintf(ofp, opCode);
-            fprintf(ofp, contents);
+            //fprintf(ofp, opCode);
+            //fprintf(ofp, contents);
         }
     }
+
+
 
     //This copies the contents array, exlcuding the first bit to make a new array of only the address field
     for (int i = 0; i < 5; i++) {
         addressField[i] = contents[i + 1];
+    }
+    //addressField[5] = '\0';
+
+    addressFieldInt = strtol(addressField, addressFieldIntPointer, 16);
+
+    if (contents[0] == '1') { //COMP instruction
+        fprintf(ofp, " ");    //TODO: Figure out what this empty space does
+        fprintf(ofp, "+%-05s",toPrintInstruction);
+        fprintf(ofp, "%s", niBit);
+        fprintf(ofp, "%d", addressFieldInt);  //TODO: FIX PADDING
+        fprintf(ofp, " ");
+        fprintf(ofp, "%s", opCode);
+        fprintf(ofp, "%s", contents);
+
+        fprintf(sfp, " ");    //TODO: Figure out what this empty space does
+        fprintf(sfp, "%-05s",toPrintInstruction);
+        fprintf(sfp, "%s", niBit);
+        fprintf(sfp, "%d", addressFieldInt);
+
     }
 
     addressFieldInt = strtol(addressField, &addressFieldPointer, 16);
