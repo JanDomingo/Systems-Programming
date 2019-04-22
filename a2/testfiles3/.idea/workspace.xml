@@ -12,13 +12,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678fcec0-f12e-4a64-b826-ff9f4ba023e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../testfiles4/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/testfiles3.dir/main.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/sample.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/sample.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/sample.sym" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/sample.sym" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/sample" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/sample" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/testfiles3" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/testfiles3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../testfiles4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../testfiles4/cmake-build-debug/CMakeFiles/testfiles4.dir/main.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../testfiles4/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles4/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="737" column="45" lean-forward="true" selection-start-line="737" selection-start-column="45" selection-end-line="737" selection-end-column="45" />
+            <state relative-caret-position="611">
+              <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -69,10 +71,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>displacementValue2Hex</find>
-      <find>%-</find>
-      <find>eBit</find>
-      <find>niBit</find>
       <find>buffer</find>
       <find>LDB</find>
       <find>format1</find>
@@ -95,14 +93,19 @@
       <find>textRecordFields</find>
       <find>addressDif</find>
       <find>ffprint</find>
-      <find>fprintf</find>
-      <find>printf</find>
-      <find>symfp</find>
       <find>454F46</find>
+      <find>listingFile</find>
+      <find>fprintf</find>
+      <find>ofp</find>
+      <find>symfp</find>
+      <find>printf</find>
+      <find>fprintf(ofp,</find>
+      <find>textRecordFieldsBuilderCounter</find>
     </findStrings>
     <replaceStrings>
       <replace>j++</replace>
       <replace>fprintf(ofp,</replace>
+      <replace>printf(</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -118,10 +121,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2" />
     <option name="y" value="23" />
-    <option name="width" value="1866" />
-    <option name="height" value="1177" />
+    <option name="width" value="2560" />
+    <option name="height" value="1417" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -129,7 +131,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -146,6 +147,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -168,7 +170,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="testfiles3" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="sample.sym sample.obj" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="testfiles3" TARGET_NAME="testfiles3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="testfiles3" RUN_TARGET_NAME="testfiles3">
+    <configuration name="testfiles3" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="testfiles3" TARGET_NAME="testfiles3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="testfiles3" RUN_TARGET_NAME="testfiles3">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -194,32 +196,35 @@
       <workItem from="1555896323875" duration="4072000" />
       <workItem from="1555900494263" duration="2054000" />
       <workItem from="1555902841627" duration="240000" />
-      <workItem from="1555903199345" duration="5187000" />
+      <workItem from="1555903199345" duration="6523000" />
+      <workItem from="1555909868801" duration="847000" />
+      <workItem from="1555916536176" duration="1335000" />
+      <workItem from="1555919150075" duration="884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69187000" />
+    <option name="totallyTimeSpent" value="73589000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
+    <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13258786" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10127085" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.15576036" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37886792" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.40552995" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.10875576" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.40679246" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.20645161" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.24905661" />
       <window_info anchor="bottom" id="CMake" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -242,15 +247,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.c</url>
-          <line>235</line>
-          <option name="timeStamp" value="73" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="textRecordFields" language="ObjectiveC" />
@@ -321,13 +317,6 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.sym">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -335,10 +324,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="737" column="45" lean-forward="true" selection-start-line="737" selection-start-column="45" selection-end-line="737" selection-end-column="45" />
+        <state relative-caret-position="611">
+          <caret line="231" lean-forward="true" selection-start-line="231" selection-end-line="231" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

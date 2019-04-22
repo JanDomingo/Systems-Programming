@@ -29,7 +29,7 @@ symTable symmie[60];
 LitTable itslit[50];
 bool makeStorageDeclaration;
 int textRecordLengthInt;
-
+i
 
 int main() {
 
@@ -437,49 +437,65 @@ int main() {
         }
 
     }
-    int idxCtr;
-    char *nextLabel;
-    int afterNextAddress;
-    int symTabAddy;
-    char *symmieAddy;
-    int saveSymmieAddy;
-    int nextAddress;
-    char *symmiePointer2;
-    int length;
-    int thirds;
 
-    for (int x = 1; x < symTabSize; x++) {
-        symTabAddy = strtol(symmie[x].address, &symmieAddy, 16);
-        if (locctr == symTabAddy) {
+    int textRecordAddressInt;
+    int nextTextRecordAddressInt;
+    char *textRecordAddressIntPointer;
+    char *symmieAddressToIntPointer;
+    int currentAddressPlusLength;
+    int addressDif;
+    int startingAddress;
+    int textRecordLocctr;
+    int instructionSize;
+    int symmieAddressToInt;
+    char instructionName[17];
+    int nextSymmieAddressToInt;
 
-            idxCtr = x;
-            saveSymmieAddy = symTabAddy;
+    for (int i = 0; i < textRecordSize; i++) {
+
+        //TODO: WHAT HAPPENS IF THE NEXT TEXTRECORD FIELDS IS NULL?
+        textRecordAddressInt = strtol(textRecordFields[i].address, textRecordAddressIntPointer, 16);
+        nextTextRecordAddressInt = strtol(textRecordFields[i + 1].address, textRecordAddressIntPointer, 16);
+
+        currentAddressPlusLength = textRecordAddressInt + textRecordFields[i].length;
+
+        addressDif = nextTextRecordAddressInt - currentAddressPlusLength;
+
+
+        //currentAddressPlusLength != nextTextRecordAddressInt
+
+        if (currentAddressPlusLength !=
+            nextTextRecordAddressInt) {    //If the current address + current length != next address, then there is a storage declaration
+
+            textRecordLocctr = currentAddressPlusLength;
+
+            for (int k = 0;
+                 k < symTabSize; k++) {  //Checks the address and compares if it matches an address in the symtab
+                symmieAddressToInt = strtol(symmie[k].address, &symmieAddressToIntPointer, 16);
+                nextSymmieAddressToInt = strtol(symmie[k + 1].address, &symmieAddressToIntPointer, 16);
+
+                if (symmieAddressToInt < nextTextRecordAddressInt) {
+                    break;
+                }
+
+                if (textRecordLocctr == symmieAddressToInt) {
+                    memcpy(instructionName, symmie[k].label, 17);
+                    fprintf(ofp, "%s", instructionName);
+                    //Find how many bytes reservation
+                    instructionSize = nextSymmieAddressToInt - textRecordLocctr;
+                    if (instructionSize % 3 == 0) {
+                        fprintf(ofp, "RESW %d", instructionSize / 3);
+                    } else {
+                        fprintf(ofp, "RESB %d", instructionSize);
+                    }
+                    textRecordLocctr += instructionSize;    //Increase the location counter to look at the next address if there is a symtab label
+                    fprintf(ofp, "\n");
+                }
+            }
         }
-    }
-    printf("%04s ", symmie[idxCtr].address);
-    printf("%s RESW ", symmie[idxCtr].label);
-    printf("\n");
-    idxCtr += 1;
+        //Get the label from the symtab of the current adddress
 
-    for (idxCtr; idxCtr < symTabSize - 1; idxCtr++) {
-        nextAddress = strtol(symmie[idxCtr].address, &symmiePointer2, 16); //LENGTH ADDRESS (Original Address + 1)
-        afterNextAddress = strtol(symmie[idxCtr + 1].address, &nextLabel,
-                                  16); //BUFFER ADDRESS (Original Address + 2)
-        length = afterNextAddress - nextAddress;
-        if (length % 3 == 0) {
-            thirds = length / 3;
-            printf("%s", symmie[idxCtr].address);
-            printf(" %s RESW", symmie[idxCtr].label);
-            printf(" %d", thirds);
-            printf("\n");
-
-        } else {
-
-            printf("%s", symmie[idxCtr].address);
-            printf(" %s RESB", symmie[idxCtr].label);
-            printf(" %d", length);
-            printf("\n");
-        }
+        // fprintf(ofp, "%05s", textRecordFields.)
     }
 
 
