@@ -158,8 +158,8 @@ int main(int argc, char * argv[]) {
         strcat(fileNameSIC, sic);
 
 
-        ofp=fopen(fileName,"w");
-        sfp=fopen(fileName,"w");
+        ofp=fopen(fileNameLIS,"w");
+        sfp=fopen(fileNameSIC,"w");
     }
 
     mainFileParser();
@@ -414,6 +414,7 @@ int main(int argc, char * argv[]) {
 
 
                 fprintf(ofp, "\n%04X  ", locctr); //Displays the location counter
+                fprintf(sfp, "\n%04X ", locctr);
 
                 if (trueFormat == 1) {
                     pcctr += 1;
@@ -433,7 +434,7 @@ int main(int argc, char * argv[]) {
                     format2Contents[0] = getc(ifp);
                     format2Contents[1] = getc(ifp);
                     format2Contents[2] = '\0';
-                    format2(toPrintInstruction, format2Contents);
+                    format2(toPrintInstruction, format2Contents, opCode);
                 }
 
                 if (trueFormat == 3) {
@@ -461,9 +462,9 @@ int main(int argc, char * argv[]) {
                         }
 
                         format4Contents[6] = '\0';
-                        format4(toPrintInstruction, niBit, format4Contents);
+                        format4(toPrintInstruction, niBit, format4Contents, opCode);
                     } else {
-                        format3(toPrintInstruction, niBit, format3Contents);
+                        format3(toPrintInstruction, niBit, format3Contents, opCode);
                     }
 
                 }
@@ -472,7 +473,7 @@ int main(int argc, char * argv[]) {
 
                 ch = getc(ifp);
             }
-            fprintf(ofp, "\n"); //This prints a new line when there is a new text record
+            //fprintf(ofp, "\n"); //This prints a new line when there is a new text record
 
         }
     }
@@ -603,7 +604,7 @@ int main(int argc, char * argv[]) {
 
 
 /**THIS IS THE FUNCTION FOR FORMAT3**/
-void format3(char toPrintInstruction[], char niBit[], char contents[]) {
+void format3(char toPrintInstruction[], char niBit[], char contents[], char opCode[]) {
     int tempctr;    //temporary pc counter
     int symTabLookup;
     char displacement[3];
@@ -625,6 +626,8 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
             fprintf(ofp, "%s", symmie[i].label);
+            fprintf(sfp, "%s", symmie[i].label);
+            fprintf(ofp, "%s", contents);
         }
     }
 
@@ -650,6 +653,10 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
                     fprintf(ofp, symmie[i].label);
+                    fprintf(sfp, symmie[i].label);
+                    fprintf(ofp, opCode);
+                    fprintf(ofp, contents);
+
                     xRegister = symTabAddressToInt;
                 }
             }
@@ -668,6 +675,10 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
                     fprintf(ofp, symmie[i].label);
+                    fprintf(sfp, symmie[i].label);
+                    fprintf(ofp, opCode);
+                    fprintf(ofp, contents);
+\
                     bRegister = symTabAddressToInt;
                 }
             }
@@ -681,6 +692,13 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         fprintf(ofp, "%-05s",toPrintInstruction);
         fprintf(ofp, "%s", niBit);
         fprintf(ofp, "%d", displacementValue);
+        fprintf(ofp, "%s", contents);
+
+        fprintf(sfp, " ");    //TODO: Figure out what this empty space does
+        fprintf(sfp, "%-05s",toPrintInstruction);
+        fprintf(sfp, "%s", niBit);
+        fprintf(sfp, "%d", displacementValue);
+
     }
 
     if (contents[0] == '2' || contents[0] == 'A') { //PC Relative or PC relative with index
@@ -693,8 +711,13 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
                 if (targetAddress == symTabAddressToInt) {
                     fprintf(ofp, "%-05s", toPrintInstruction);
                     fprintf(ofp, "%s", symmie[i].label);
+                    fprintf(sfp, "%-05s", toPrintInstruction);
+                    fprintf(sfp, "%s", symmie[i].label);
                     if (contents[0] == 'A') {
                         fprintf(ofp, ",X");
+                        fprintf(ofp, opCode);
+                        fprintf(ofp, contents);
+
                     }
                 }
             }
@@ -707,6 +730,13 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
                 fprintf(ofp, "%-05s", toPrintInstruction);
                 fprintf(ofp, "%s", niBit);
                 fprintf(ofp, symmie[i].label);
+                fprintf(ofp, opCode);
+                fprintf(ofp, contents);
+
+                fprintf(sfp, "%-05s", toPrintInstruction);
+                fprintf(sfp, "%s", niBit);
+                fprintf(sfp, symmie[i].label);
+
             }
         }
 
@@ -719,8 +749,15 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
             if (targetAddress == symTabAddressToInt) {
                 fprintf(ofp, "%-05s", toPrintInstruction);
                 fprintf(ofp, "%s", symmie[i].label);
+
+                fprintf(sfp, "%-05s", toPrintInstruction);
+                fprintf(sfp, symmie[i].label);
+
                 if (contents[0] == 'C') {
                     fprintf(ofp, ",X");
+                    fprintf(sfp, ",X");
+                    fprintf(ofp, opCode);
+                    fprintf(ofp, contents);
                 }
             }
         }
@@ -730,7 +767,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
 }
 
-void format4(char toPrintInstruction[], char niBit[], char contents[]) {
+void format4(char toPrintInstruction[], char niBit[], char contents[], char opCode[]) {
     pcctr += 4;
 
     char addressField[5];
@@ -747,6 +784,9 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
             fprintf(ofp, "%s", symmie[i].label);
+            fprintf(sfp, symmie[i].label);
+            fprintf(ofp, opCode);
+            fprintf(ofp, contents);
         }
     }
 
@@ -763,63 +803,115 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
             fprintf(ofp, "+%s ", toPrintInstruction);
             fprintf(ofp, "%s", niBit);
             fprintf(ofp, "%s", symmie[i].label);
+            fprintf(ofp, opCode);
+            fprintf(ofp, contents);
+
+            fprintf(sfp, "+%s ", toPrintInstruction);
+            fprintf(sfp, "%s", niBit);
+            fprintf(sfp, symmie[i].label);
+
         }
         locctr = pcctr;
     }
 }
 //TODO: ADD X REGISTER SCENARIO
-void format2(char toPrintInstruction[], char format2Contents[]) {
+void format2(char toPrintInstruction[], char contents[], char opCode[]) {
 
 //r1,r2 r2 stores the result
     pcctr += 2;
     locctr = pcctr;
     char register1;
     char register2;
-    register1 = format2Contents[0];
+    register1 = contents[0];
     fprintf(ofp, "%-05s", toPrintInstruction);
+    fprintf(sfp, "+%s ", toPrintInstruction);
     char register1Integer = register1;
     if (register1Integer == '0') {
         fprintf(ofp, "A,");
+        fprintf(sfp, "A,");
+
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
+
     }
     if (register1Integer == '1') {
         fprintf(ofp, "X,");
+        fprintf(sfp, "X,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register1Integer == '2') {
         fprintf(ofp, "L,");
+        fprintf(sfp, "L,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register1Integer == '3') {
         fprintf(ofp, "B,");
+        fprintf(sfp, "B,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register1Integer == '4') {
         fprintf(ofp, "S,");
+        fprintf(sfp, "S,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register1Integer == '5') {
         fprintf(ofp, "T,");
+        fprintf(sfp, "T,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register1Integer == '6') {
         fprintf(ofp, "F,");
+        fprintf(sfp, "F,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
 
-    char register2Integer = format2Contents[1];
+    char register2Integer = contents[1];
     if (register2Integer == '0') {
         fprintf(ofp, "A");
+        fprintf(sfp, "A,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register2Integer == '1') {
         fprintf(ofp, "X");
+        fprintf(sfp, "X,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register2Integer == '2') {
         fprintf(ofp, "L");
+        fprintf(sfp, "L,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register2Integer == '3') {
         fprintf(ofp, "B");
+        fprintf(sfp, "B,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register2Integer == '4') {
         fprintf(ofp, "S");
+        fprintf(sfp, "S,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register2Integer == '5') {
         fprintf(ofp, "T");
+        fprintf(sfp, "T,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
     if (register2Integer == '6') {
         fprintf(ofp, "F");
+        fprintf(sfp, "F,");
+        fprintf(ofp, opCode);
+        fprintf(ofp, contents);
     }
 }
