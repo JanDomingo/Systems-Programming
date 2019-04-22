@@ -1,16 +1,5 @@
-0000FIRST      COPY      0
-0000 FIRST              STL       RETADR  
-0003     LDB      #LENGTH  
-0006 CLOOP   +JSUB        RDREC   
-000A     LDA       LENGTH  
-000D COMP#0
-0010     JEQ       ENDFIL  
-0013 +JSUB        WRREC   
-0017       JCLOOP   
-001A ENDFIL  
-001D     STA       BUFFER  
-0020 LDA#3
-0023     STAENDFIL  
-0026 +JSUB        WRREC   
-002A       J      @RETADR  
-002D 
+0000    SUM      0
+0000     LDA       TEST1   
+0003     LDT       TEST1   
+0006 +LDT        TEST2   
+000A     LDXTEST3   
