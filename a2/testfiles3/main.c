@@ -24,6 +24,7 @@ void format3();
 void format4();
 void mainFileParser();
 void storageDeclaration();
+
 int locctr = 0;
 int pcctr;
 int symTabSize;
@@ -44,6 +45,7 @@ char sic[5];
 char lis [5];
 char fileNameSIC[50];
 char fileNameLIS[50];
+int width = 7;
 
 /******************************************/
 /************THIS IS THE OPTAB*************/
@@ -275,6 +277,7 @@ int main(int argc, char * argv[]) {
     char ch;
     char opCode[3];
     char *ptr;
+    char start[5];
     ifp = fopen("sample.obj", "r");
     while (!(feof(ifp))) {
         ch = getc(ifp);
@@ -320,24 +323,25 @@ int main(int argc, char * argv[]) {
 
             }
 
+
+            start[0] = 'S'; start[1] = 'T'; start[2] = 'A'; start[3] = 'R'; start[4] = 'T';
             /*This is the print statements for the first line*/
             fprintf(ofp, "%04x", locctr);
             symmieAddressToInt = strtol(symmie[0].address, &symmieAddressToIntPtr, 16);
             if (locctr == symmieAddressToInt) {
-                fprintf(ofp, symmie[0].label);
+                fprintf(ofp, "%*s", width, programName);
             }
-            fprintf(ofp, "%s", programName);
-            fprintf(ofp, "%x", locctr);
+            fprintf(ofp, "%*s", width, start);
+            fprintf(ofp, "%*x", width, locctr);
 
 
 
-
-            fprintf(sfp, "%04x", locctr);
+            fprintf(sfp, "%*04x", width, locctr);
             if (locctr == symmieAddressToInt) {
                 fprintf(sfp, symmie[0].label);
             }
-            fprintf(sfp, "%s", programName);
-            fprintf(sfp, "%x", locctr);
+            fprintf(sfp, "%*s", width, programName);
+            fprintf(sfp, "%*x", width, locctr);
 
             int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
             int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
@@ -443,7 +447,7 @@ int main(int argc, char * argv[]) {
                     int opCodeF1 = strtol(opCode, &format1Pointer, 16);
                     for (int z = 0; z < 59; ++z) {
                         if (opCodeF1 == opCodeTable[z].opCode) {
-                            fprintf(ofp, "%s", opCodeTable[z].instruction);
+                            fprintf(ofp, "%*s", width, opCodeTable[z].instruction);
                         }
                     }
 
@@ -582,11 +586,11 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
     pcctr += 3;
 
     //Prints the non-instructional label
-    for (int i = 1; i < symTabSize; i++) {
+    for (int i = 0; i < symTabSize; i++) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
-            fprintf(ofp, "%s", symmie[i].label);
-            fprintf(sfp, "%s", symmie[i].label);
+            fprintf(ofp, "%*s", width, symmie[i].label);
+            fprintf(sfp, "%*s", width, symmie[i].label);
 
             //fprintf(ofp, "%s", contents);
         }
@@ -613,10 +617,10 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
             for (int i = 0; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
-                    fprintf(ofp, symmie[i].label);
-                    fprintf(sfp, symmie[i].label);
-                    fprintf(ofp, opCode);
-                    fprintf(ofp, contents);
+                    fprintf(ofp, "%*s", width, symmie[i].label);
+                    fprintf(sfp, "%*s", width, symmie[i].label);
+                    fprintf(ofp, "%*s", width, opCode);
+                    fprintf(ofp, "%*s", width, contents);
 
                     xRegister = symTabAddressToInt;
                 }
@@ -635,10 +639,10 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
             for (int i = 0; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
-                    fprintf(ofp, symmie[i].label);
-                    fprintf(sfp, symmie[i].label);
-                    fprintf(ofp, opCode);
-                    fprintf(ofp, contents);
+                    fprintf(ofp, "%*s", width, symmie[i].label);
+                    fprintf(sfp, "%*s", width, symmie[i].label);
+                    fprintf(ofp, "%*s", width, opCode);
+                    fprintf(ofp, "%s", contents);
 
                     bRegister = symTabAddressToInt;
                 }
@@ -649,36 +653,34 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
 
 
     if (contents[0] == '0') { //COMP instruction
-        fprintf(ofp, " ");    //TODO: Figure out what this empty space does
-        fprintf(ofp, "%-05s",toPrintInstruction);
-        fprintf(ofp, "%s", niBit);
+
+        fprintf(ofp, "%*s", width, toPrintInstruction);
+        fprintf(ofp, "%*s", width,niBit);
         fprintf(ofp, "%d", displacementValue);  //TODO: FIX PADDING
-        fprintf(ofp, " ", opCode);
-        fprintf(ofp, "%s", opCode);
+        fprintf(ofp, "%*s", width, opCode);
         fprintf(ofp, "%s", contents);
 
-        fprintf(sfp, " ");    //TODO: Figure out what this empty space does
-        fprintf(sfp, "%-05s",toPrintInstruction);
+
+        fprintf(sfp, "%s", toPrintInstruction);
         fprintf(sfp, "%s", niBit);
         fprintf(sfp, "%d", displacementValue);
 
     }
 
     if (contents[0] == '2' || contents[0] == 'A') { //PC Relative or PC relative with index
-        fprintf(ofp, " ");
         targetAddress = pcctr + displacementValue;
         if (targetAddress > 4096) {
             targetAddress = targetAddress - 4096;
             for (int i = 1; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (targetAddress == symTabAddressToInt) {
-                    fprintf(ofp, "%-05s", toPrintInstruction);
+                    fprintf(ofp, "%*s", width, toPrintInstruction);
                     fprintf(ofp, "%s", symmie[i].label);
-                    fprintf(sfp, "%-05s", toPrintInstruction);
-                    fprintf(sfp, "%s", symmie[i].label);
+                    fprintf(sfp, "%*s", width, toPrintInstruction);
+                    fprintf(sfp, "%*s", width, symmie[i].label);
                     if (contents[0] == 'A') {
                         fprintf(ofp, ",X");
-                        fprintf(ofp, opCode);
+                        fprintf(ofp, "%*s", width, opCode);
                         fprintf(ofp, contents);
 
                     }
@@ -686,18 +688,19 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
             }
         }
 
+        //If not PC relative go here
         //TODO: FIGURE OUT WHAT THIS DOES
         for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (displacementValue2 == symTabAddressToInt) {
-                fprintf(ofp, "%-05s", toPrintInstruction);
+                fprintf(ofp, "%s",  toPrintInstruction);
                 fprintf(ofp, "%s", niBit);
                 fprintf(ofp, symmie[i].label);
-                fprintf(ofp, opCode);
+                fprintf(ofp, "%*s" ,width, opCode);
                 fprintf(ofp, contents);
 
-                fprintf(sfp, "%-05s", toPrintInstruction);
-                fprintf(sfp, "%s", niBit);
+                fprintf(sfp, "%*s",width,  toPrintInstruction);
+                fprintf(sfp, "%*s", width, niBit);
                 fprintf(sfp, symmie[i].label);
 
             }
@@ -710,17 +713,17 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
         for (int i = 1; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (targetAddress == symTabAddressToInt) {
-                fprintf(ofp, "%-05s", toPrintInstruction);
-                fprintf(ofp, "%s", symmie[i].label);
+                fprintf(ofp, "%*s", width, toPrintInstruction);
+                fprintf(ofp, "%*s", width, symmie[i].label);
 
-                fprintf(sfp, "%-05s", toPrintInstruction);
-                fprintf(sfp, symmie[i].label);
+                fprintf(sfp, "%*s", width, toPrintInstruction);
+                fprintf(sfp, "%*s", width, symmie[i].label);
 
                 if (contents[0] == 'C') {
                     fprintf(ofp, ",X");
                     fprintf(sfp, ",X");
-                    fprintf(ofp, opCode);
-                    fprintf(ofp, contents);
+                    fprintf(ofp, "%*s", width, opCode);
+                    fprintf(ofp, "%*s", contents);
                 }
             }
         }
@@ -747,8 +750,8 @@ void format4(char toPrintInstruction[], char niBit[], char contents[], char opCo
     for (int i = 1; i < symTabSize; i++) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
-            fprintf(ofp, "%s", symmie[i].label);    //PRINTS CLOOP
-            fprintf(sfp, "%s", symmie[i].label);
+            fprintf(ofp, "%*s", width,  symmie[i].label);    //PRINTS CLOOP
+            fprintf(sfp, "%*s", width,  symmie[i].label);
 
         }
     }
@@ -765,30 +768,29 @@ void format4(char toPrintInstruction[], char niBit[], char contents[], char opCo
 
     if (contents[0] == '1' && niBit[0] == '#') { //COMP instruction
         fprintf(ofp, " ");    //TODO: Figure out what this empty space does
-        fprintf(ofp, "+%-05s", toPrintInstruction);
-        fprintf(ofp, "%s", niBit);
-        fprintf(ofp, "%d", addressFieldInt);  //TODO: FIX PADDING
-        fprintf(ofp, " ");
-        fprintf(ofp, "%s", opCode);
+        fprintf(ofp, "+%s", toPrintInstruction);
+        fprintf(ofp, "%*s", width,  niBit);
+        fprintf(ofp, "%*d", width, addressFieldInt);  //TODO: FIX PADDING
+        fprintf(ofp, "%*s", width, opCode);
         fprintf(ofp, "%s", contents);
 
         fprintf(sfp, " ");    //TODO: Figure out what this empty space does
-        fprintf(sfp, "%-05s", toPrintInstruction);
-        fprintf(sfp, "%s", niBit);
+        fprintf(sfp, "%*s", width, toPrintInstruction);
+        fprintf(sfp, "%*s", width, niBit);
         fprintf(sfp, "%d", addressFieldInt);
 
     } else {
         for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (addressFieldInt == symTabAddressToInt) {
-                fprintf(ofp, "+%s ", toPrintInstruction);
-                fprintf(ofp, "%s", niBit);
+                fprintf(ofp, "+%s ",  toPrintInstruction);
+                fprintf(ofp, "%*s", width, niBit);
                 fprintf(ofp, "%s", symmie[i].label);
-                fprintf(ofp, opCode);
+                fprintf(ofp, "%*s", width, opCode);
                 fprintf(ofp, contents);
 
                 fprintf(sfp, "+%s ", toPrintInstruction);
-                fprintf(sfp, "%s", niBit);
+                fprintf(sfp, "%*s", width, niBit);
                 fprintf(sfp, symmie[i].label);
 
             }
