@@ -273,7 +273,7 @@ int main(int argc, char * argv[]) {
     /**THIS SECTION READS IN THE OPCODE AND FINDS THE CORRESPONDING STRING FROM THE OPCODETABLE**/
     /******************************************/
     char ch;
-    char opCode[1];
+    char opCode[3];
     char *ptr;
     ifp = fopen("sample.obj", "r");
     while (!(feof(ifp))) {
