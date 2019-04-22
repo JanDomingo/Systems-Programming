@@ -635,6 +635,21 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
     else if(strcmp(toPrintInstruction, "LDB") == 0) {
         if (niBit[0] == '#') {
             bRegister = displacementValue2;
+            symTabLookup = displacementValue + pcctr;
+            for (int i = 0; i < symTabSize; i++) {
+                symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
+                if (symTabLookup == symTabAddressToInt) {
+                    fprintf(ofp, "%s", toPrintInstruction);
+                    fprintf(sfp, "%s", toPrintInstruction);
+                    fprintf(ofp, " ");
+                    fprintf(sfp, " ");
+                    fprintf(ofp, "#%s", symmie[i].label);
+                    fprintf(sfp, "#%s", symmie[i].label);
+                    fprintf(ofp, "%s", opCode);
+                    fprintf(ofp, "%s", contents);
+                }
+
+            }
         }
         if (niBit[0] == '\0') {
             symTabLookup = displacementValue + pcctr;   //TODO: CHECK IF PCCTR IS OK HERE
