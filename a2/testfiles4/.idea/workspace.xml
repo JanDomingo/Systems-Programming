@@ -13,9 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64473352-44d9-402e-9057-dd7a6727e595" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../testfiles3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testfiles3/cmake-build-debug/CMakeFiles/testfiles3.dir/main.c.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles3/cmake-build-debug/testfiles3" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles3/cmake-build-debug/testfiles3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testfiles3/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../testfiles3/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="409">
-              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+              <caret line="141" selection-start-line="141" selection-end-line="141" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -149,18 +149,19 @@
       <workItem from="1555905951347" duration="1953000" />
       <workItem from="1555909868994" duration="766000" />
       <workItem from="1555916536195" duration="346000" />
-      <workItem from="1555919352981" duration="1091000" />
+      <workItem from="1555919352981" duration="1182000" />
+      <workItem from="1555920705401" duration="137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4156000" />
+    <option name="totallyTimeSpent" value="4384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2560" y="23" width="2560" height="1417" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19062749" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19221604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -243,7 +244,7 @@
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
-          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
