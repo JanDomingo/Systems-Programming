@@ -1,8 +1,22 @@
+/****************************************************************************
+Class:		CS 530, Spring 2019
+Project: 	Assignment #2
+Disassembler Program for XE variant of the SIC/XE family
+Names:	Andrew Botros, 819505044, cssc0457
+        Jan Domingo, 820092657, cssc0463
+        Anthony Huynh, 819367270, cssc0458
+Filename: main.c
+*****************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
 #include <stdbool.h>
 
+
+/******************************************/
+/************GLOBAL VARIABLES**************/
+/******************************************/
 struct symTab {
     char label[17];
     char address[8];
@@ -23,7 +37,6 @@ void format2();
 void format3();
 void format4();
 void mainFileParser();
-void storageDeclaration();
 
 int locctr = 0;
 int pcctr;
@@ -45,12 +58,13 @@ char sic[5];
 char lis [5];
 char fileNameSIC[50];
 char fileNameLIS[50];
-int width = 7;
+
+
+
 
 /******************************************/
 /************THIS IS THE OPTAB*************/
 /******************************************/
-
 const struct opTab opCodeTable[] = {
         {"ADD",    0x18, 3},
         {"ADDF",   0x58, 3},
@@ -113,14 +127,10 @@ const struct opTab opCodeTable[] = {
         {"WD",     0xDC, 3}
 };
 
-//fprintf(ofp, "%s\n",opCodeTable[1].instruction);
-//fprintf(ofp, "%d\n",opCodeTable[1].opCode);
-//int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
-//fprintf(ofp, "%d\n",test);
 
-
-
-
+/******************************************/
+/******************MAIN********************/
+/******************************************/
 int main(int argc, char * argv[]) {
 
     char fileNames[50][50];
@@ -217,8 +227,6 @@ int main(int argc, char * argv[]) {
         ++z;
         g = 0;
         c = 0;
-        //fprintf(ofp, "\n"); //TODO: Copy the sample.sym contents into the symtab struct
-        //fprintf(sfp, "\n.sic", fileName);
     }
 
 
@@ -259,15 +267,6 @@ int main(int argc, char * argv[]) {
         ++v;
         ++symTabSize;
     }
-    //fprintf(ofp, "%s",symmie[v-1].label);
-
-
-    //fprintf(ofp, "%d",retr);
-
-
-    //int retr = strtol(symmie[4].address, &convert, 16);
-    //fprintf(ofp, "%s", symmie[4].label);
-    //fprintf(ofp, "%d",retr);
 
 
     /******************************************/
@@ -294,7 +293,7 @@ int main(int argc, char * argv[]) {
                 ch = getc(ifp);
                 i++;
             }
-            //fprintf(ofp, "Program Name: %s\n", programName);
+
 
 
             while (ch == ' ') { //Skips through the spaces between the file name and starting address in the header line
@@ -341,21 +340,6 @@ int main(int argc, char * argv[]) {
             fprintf(sfp, " ");
             fprintf(sfp, "%x" , locctr);
 
-
-
-            //fprintf(ofp, "%04x" , locctr);
-            //if (locctr == symmieAddressToInt) {
-            //    fprintf(sfp, symmie[0].label);
-            //}
-            //fprintf(ofp, "%s" , programName);
-            //fprintf(ofp, "%x" , locctr);
-
-            int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
-            int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
-            int addressDifference = (charEndingAddrToHex - charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
-            //fprintf(ofp, "Starting Address: %d\n", charStartingAddrToHex);
-            //fprintf(ofp, "Ending Address: %d\n", charEndingAddrToHex);
-            //fprintf(ofp, "Program Length: %d\n", addressDifference);
         }
 
         /*****************************************/
@@ -505,11 +489,80 @@ int main(int argc, char * argv[]) {
 
                 ch = getc(ifp);
             }
-            //fprintf(ofp, "\n"); //This prints a new line when there is a new text record
+
 
         }
     }
-}
+
+        /*******************************************/
+        /*****THIS PRINTS THE STORAGE DECLARATION***/
+        /******************************************/
+        int idxCtr;
+        char *nextLabel;
+        int afterNextAddress;
+        int symTabAddy;
+        char *symmieAddy;
+        int saveSymmieAddy;
+        int nextAddress;
+        char *symmiePointer2;
+        int length;
+        int thirds;
+        int stopSym;
+        printf("\n");
+        for (int x = 1; x < symTabSize; x++) {
+            symTabAddy = strtol(symmie[x].address, &symmieAddy, 16);
+            if (locctr == symTabAddy) {
+
+                idxCtr = x;
+                saveSymmieAddy = symTabAddy;
+            }
+        }
+        fprintf(ofp, "\n");
+        fprintf(sfp, "\n");
+        fprintf(ofp, "%04s ", symmie[idxCtr].address);
+        fprintf(ofp,"%s RESW ", symmie[idxCtr].label);
+        fprintf(ofp, "\n");
+
+        fprintf(sfp, "%04s ", symmie[idxCtr].address);
+        fprintf(sfp,"%s RESW ", symmie[idxCtr].label);
+        fprintf(sfp, "\n");
+
+
+        idxCtr += 1;
+
+        for (idxCtr; idxCtr < symTabSize - 1; idxCtr++) {
+
+            nextAddress = strtol(symmie[idxCtr].address, &symmiePointer2, 16); //LENGTH ADDRESS (Original Address + 1)
+            afterNextAddress = strtol(symmie[idxCtr + 1].address, &nextLabel,
+                                      16); //BUFFER ADDRESS (Original Address + 2)
+            length = afterNextAddress - nextAddress;
+            if (length % 3 == 0) {
+                thirds = length / 3;
+
+                fprintf(ofp, "%s", symmie[idxCtr].address);
+                fprintf(ofp, " %s RESW", symmie[idxCtr].label);
+                fprintf(ofp, " %d", thirds);
+                fprintf(ofp, "\n");
+
+                fprintf(sfp, "%s", symmie[idxCtr].address);
+                fprintf(sfp, " %s RESW", symmie[idxCtr].label);
+                fprintf(sfp, " %d", thirds);
+                fprintf(sfp, "\n");
+
+            } else {
+
+                fprintf(ofp, "%s", symmie[idxCtr].address);
+                fprintf(ofp, " %s RESB", symmie[idxCtr].label);
+                fprintf(ofp, " %d", length);
+                fprintf(ofp, "\n");
+                fprintf(sfp, "%s", symmie[idxCtr].address);
+                fprintf(sfp, " %s RESB", symmie[idxCtr].label);
+                fprintf(sfp, " %d", length);
+                fprintf(sfp, "\n");
+            }
+        }
+
+    }
 
 
 /**THIS IS THE FUNCTION FOR FORMAT3**/
@@ -539,7 +592,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
             fprintf(ofp, " ");
             fprintf(sfp, " ");
 
-            //fprintf(ofp, "%s", contents);
+
         }
     }
 
@@ -583,8 +636,6 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
         if (niBit[0] == '#') {
             bRegister = displacementValue2;
         }
-        //if (niBit[0] == '@') **OPTIONAL: ADD IN A CASE IF THERE IS AN IMMEDIATE LDX SYMBOL
-        //If simple addressing, get the target address as the base
         if (niBit[0] == '\0') {
             symTabLookup = displacementValue + pcctr;   //TODO: CHECK IF PCCTR IS OK HERE
             for (int i = 0; i < symTabSize; i++) {
@@ -729,20 +780,20 @@ void format4(char toPrintInstruction[], char niBit[], char contents[], char opCo
     for (int i = 0; i < 5; i++) {
         addressField[i] = contents[i + 1];
     }
-    //addressField[5] = '\0';
+
 
     addressFieldInt = strtol(addressField, &addressFieldIntPointer, 16);
 
     if (contents[0] == '1' && niBit[0] == '#') { //COMP instruction
-        //fprintf(ofp, " ");    //TODO: Figure out what this empty space does
+
         fprintf(ofp, "+%s", toPrintInstruction);
         fprintf(ofp, " ");
         fprintf(ofp, "%s" ,  niBit);
-        fprintf(ofp, "%d" , addressFieldInt);  //TODO: FIX PADDING
+        fprintf(ofp, "%d" , addressFieldInt);
         fprintf(ofp, "%s" , opCode);
         fprintf(ofp, "%s", contents);
 
-        //fprintf(sfp, " ");    //TODO: Figure out what this empty space does
+
         fprintf(sfp, "%s" , toPrintInstruction);
         fprintf(sfp, " ");
         fprintf(sfp, "%s" , niBit);
