@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jandomingo/Dev/CS530/a2/testfiles4/main.c
+stdio.h
+-
+stdlib.h
+-
+memory.h
+-
+stdbool.h
+-
+

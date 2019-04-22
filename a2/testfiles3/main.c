@@ -37,6 +37,9 @@ int textRecordLengthInt;
 int textRecordFieldsBuilderCounter=0;
 FILE *symfp;
 FILE *ifp;    //input file pointer
+char fileName[50];
+
+FILE *ofp;
 
 const struct opTab opCodeTable[] = {
         {"ADD",    0x18, 3},
@@ -106,7 +109,7 @@ int main(int argc, char * argv[]) {
     char fileNames[50][50];
 
     if (argc < 3) {
-        printf("Error");
+        fprintf(ofp, "Error");
     }
 
     if (argc == 3) {
@@ -117,6 +120,15 @@ int main(int argc, char * argv[]) {
         strncpy(fileNames[1], argv[2], 50);
         //strncpy(objFileName, argv[1])
     }
+
+    for (int i = 0; i < 50; i++) {
+        if (fileNames[0][i] != '.') {
+            fileName[i] = fileNames[0][i];
+        }
+    }
+    ofp=fopen(fileName,"w");
+
+
 
 
 
@@ -134,69 +146,114 @@ int main(int argc, char * argv[]) {
 
 
 
-    //printf("%s\n",opCodeTable[1].instruction);
-    //printf("%d\n",opCodeTable[1].opCode);
+    //fprintf(ofp, "%s\n",opCodeTable[1].instruction);
+    //fprintf(ofp, "%d\n",opCodeTable[1].opCode);
     //int test=opCodeTable[1].opCode-1;   //Subtracts 1 from the hex to check for n, i flags of the opcode
-    //printf("%d\n",test);
+    //fprintf(ofp, "%d\n",test);
 
-    mainFileParser();
+    bool listingFileFlag = true;
+
+    mainFileParser(true);
+    mainFileParser(false);
 }
-    /******************************************/
-    /************THIS IS THE SYMTAB************/
-    /******************************************/
-    void mainFileParser() {
-        struct symTab *items = malloc(sizeof(struct symTab));
-        //TODO: CREATE THE TABLE FOR THE SYMTAB
 
-        char tempp[9];
-        int i = 0;
-        int c = 0;
-        char *convert;
-        int g = 0;
-        char buffer[80];
-        char address[7];
-        int z = 0;
-        char buffer2[50];
+/******************************************/
+/************THIS IS THE SYMTAB************/
+/******************************************/
+void mainFileParser(bool listingFileFlag) {
+    struct symTab *items = malloc(sizeof(struct symTab));
 
-        for (i = 0; i <
-                    3; i++) {   //This skips three lines of the symbol table to skip the header labels and the name address and start directly at the body to copy symbols
-            fgets(buffer, 80, symfp);
-        }
+    //TODO: CREATE THE TABLE FOR THE SYMTAB
+
+    char tempp[9];
+    int i = 0;
+    int c = 0;
+    char *convert;
+    int g = 0;
+    char buffer[80];
+    char address[7];
+    int z = 0;
+    char buffer2[50];
+
+    for (i = 0; i <
+    3; i++) {   //This skips three lines of the symbol table to skip the header labels and the name address and start directly at the body to copy symbols
+    fgets(buffer, 80, symfp);
+    }
+    while (1) {
+
+    for (g = 0; g < 8; ++g) {
+    tempp[g] = fgetc(symfp);
+
+
+    }
+    if (tempp[0] == '\n') {
+
+    break;
+    }
+    tempp[8] = '\0';
+
+    memcpy(symmie[z].label, tempp, 9);
+    fprintf(ofp,symmie[z].label);
+    for (c = 0; c < 7; ++c) {
+    address[c] = fgetc(symfp);
+    }
+
+    address[7] = '\0';
+    memcpy(symmie[z].address, address, 7);
+    fprintf(ofp, symmie[z].address);
+
+    while (getc(symfp) != '\n') {
+    getc(symfp);
+    }
+    symTabSize++;
+    ++z;
+    g = 0;
+    c = 0;
+    fprintf(ofp, "\n"); //TODO: Copy the sample.sym contents into the symtab struct
+    }
+
+        /**This section prints the literals**/
+        int v=z;
+        char litValue [7];
+        int s=0;
+        char litAddress[9];
+        char sh;
+        char * cnv;
         while (!(feof(symfp))) {
-
-            for (g = 0; g < 8; ++g) {
-                tempp[g] = fgetc(symfp);
-
-
+            for (i = 0; i <2; i++) {   //This skips three lines of the symbol table to skip the header labels and the name address and start directly at the body to copy symbols
+                fgets(buffer, 80, symfp);
             }
-            if (tempp[0] == '\n') {
-                break;
-            }
-            tempp[8] = '\0';
-
-            memcpy(symmie[z].label, tempp, 9);
-            printf(symmie[z].label);
-            for (c = 0; c < 7; ++c) {
-                address[c] = fgetc(symfp);
-            }
-
-            address[7] = '\0';
-            memcpy(symmie[z].address, address, 7);
-            printf(symmie[z].address);
-
-            while (getc(symfp) != '\n') {
+            for(int f=0;f<8;++f) {
                 getc(symfp);
             }
-            symTabSize++;
-            ++z;
-            g = 0;
-            c = 0;
-            printf("\n"); //TODO: Copy the sample.sym contents into the symtab struct
+            while(sh!=' ') {
+                sh= getc(symfp);
+                litValue[s]=sh;
+                ++s;
+            }
+
+
+            memcpy(symmie[v].label, litValue, 7);
+
+
+
+            for(int r=0;r<10;++r) {
+                getc(symfp);
+            }
+
+
+            for(int o=0;o<8;++o) {
+                litAddress[o]= getc(symfp);
+            }
+            memcpy(symmie[v].address, litAddress, 8);
+            //printf("%s",itslit[v].litaddress);
+            ++v;
+            ++symTabSize;
         }
 
         //int retr = strtol(symmie[4].address, &convert, 16);
-        //printf("%s", symmie[4].label);
-        //printf("%d",retr);
+        //fprintf(ofp, "%s", symmie[4].label);
+        //fprintf(ofp, "%d",retr);
 
 
         /******************************************/
@@ -220,7 +277,7 @@ int main(int argc, char * argv[]) {
                     ch = getc(ifp);
                     i++;
                 }
-                //printf("Program Name: %s\n", programName);
+                //fprintf(ofp, "Program Name: %s\n", programName);
 
 
                 while (ch ==
@@ -253,9 +310,9 @@ int main(int argc, char * argv[]) {
                 int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
                 int addressDifference = (charEndingAddrToHex -
                                          charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
-                //printf("Starting Address: %d\n", charStartingAddrToHex);
-                //printf("Ending Address: %d\n", charEndingAddrToHex);
-                //printf("Program Length: %d\n", addressDifference);
+                //fprintf(ofp, "Starting Address: %d\n", charStartingAddrToHex);
+                //fprintf(ofp, "Ending Address: %d\n", charEndingAddrToHex);
+                //fprintf(ofp, "Program Length: %d\n", addressDifference);
             }
 
             /*****************************************/
@@ -299,7 +356,7 @@ int main(int argc, char * argv[]) {
 
                     //This converts the object code hex strings to hex values
                     int opVal = strtol(opCode, &ptr, 16);
-                    //printf("ret: %d\n", opVal);
+                    //fprintf(ofp, "ret: %d\n", opVal);
 
                     char toPrintInstruction[7];
                     char niBit[2];
@@ -344,7 +401,7 @@ int main(int argc, char * argv[]) {
                     }
 
 
-                    printf("\n%04X  ", locctr); //Displays the location counter
+                    fprintf(ofp, "\n%04X  ", locctr); //Displays the location counter
 
                     if (trueFormat == 1) {
                         pcctr += 1;
@@ -353,7 +410,7 @@ int main(int argc, char * argv[]) {
                         int opCodeF1 = strtol(opCode, &format1Pointer, 16);
                         for (int z = 0; z < 59; ++z) {
                             if (opCodeF1 == opCodeTable[z].opCode) {
-                                printf("%s", opCodeTable[z].instruction);
+                                fprintf(ofp, "%s", opCodeTable[z].instruction);
                             }
                         }
 
@@ -404,7 +461,7 @@ int main(int argc, char * argv[]) {
 
                     ch = getc(ifp);
                 }
-                printf("\n"); //This prints a new line when there is a new text record
+                //fprintf(ofp, "\n"); //This prints a new line when there is a new text record
                 //if (textRecordLengthInt < 30) {
                 //    storageDeclaration(textRecordLengthInt);
             }
@@ -461,7 +518,7 @@ int main(int argc, char * argv[]) {
 
 
         }*/
-
+/*
         int textRecordAddressInt;
         int nextTextRecordAddressInt;
         char *textRecordAddressIntPointer;
@@ -504,23 +561,23 @@ int main(int argc, char * argv[]) {
 
                     if (textRecordLocctr == symmieAddressToInt) {
                         memcpy(instructionName, symmie[k].label, 17);
-                        printf("%s", instructionName);
+                        fprintf(ofp, "%s", instructionName);
                         //Find how many bytes reservation
                         instructionSize = nextSymmieAddressToInt - textRecordLocctr;
                         if (instructionSize % 3 == 0) {
-                            printf("RESW %d", instructionSize / 3);
+                            fprintf(ofp, "RESW %d", instructionSize / 3);
                         } else {
-                            printf("RESB %d", instructionSize);
+                            fprintf(ofp, "RESB %d", instructionSize);
                         }
                         textRecordLocctr += instructionSize;    //Increase the location counter to look at the next address if there is a symtab label
-                        printf("\n");
+                        fprintf(ofp, "\n");
                     }
                 }
             }
             //Get the label from the symtab of the current adddress
 
-            // printf("%05s", textRecordFields.)
-        }
+            // fprintf(ofp, "%05s", textRecordFields.)
+        }*/
     }
 
 
@@ -557,9 +614,9 @@ int main(int argc, char * argv[]) {
             saveSymmieAddy = symTabAddy;
         }
     }
-    printf("%04s ", symmie[idxCtr].address);
-    printf("%s RESW ", symmie[idxCtr].label);
-    printf("\n");
+    fprintf(ofp, "%04s ", symmie[idxCtr].address);
+    fprintf(ofp, "%s RESW ", symmie[idxCtr].label);
+    fprintf(ofp, "\n");
     idxCtr += 1;
 
     for (idxCtr; idxCtr < symTabSize - 1; idxCtr++) {
@@ -568,17 +625,17 @@ int main(int argc, char * argv[]) {
         length = afterNextAddress - nextAddress;
         if (length % 3 == 0) {
             thirds = length / 3;
-            printf("%s", symmie[idxCtr].address);
-            printf(" %s RESW", symmie[idxCtr].label);
-            printf(" %d", thirds);
-            printf("\n");
+            fprintf(ofp, "%s", symmie[idxCtr].address);
+            fprintf(ofp, " %s RESW", symmie[idxCtr].label);
+            fprintf(ofp, " %d", thirds);
+            fprintf(ofp, "\n");
 
         } else {
 
-            printf("%s", symmie[idxCtr].address);
-            printf(" %s RESB", symmie[idxCtr].label);
-            printf(" %d", length);
-            printf("\n");
+            fprintf(ofp, "%s", symmie[idxCtr].address);
+            fprintf(ofp, " %s RESB", symmie[idxCtr].label);
+            fprintf(ofp, " %d", length);
+            fprintf(ofp, "\n");
         }
     }
 }*/
@@ -609,7 +666,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
     for (int i = 1; i < symTabSize; i++) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
-            printf("%s", symmie[i].label);
+            fprintf(ofp, "%s", symmie[i].label);
         }
     }
 
@@ -634,7 +691,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
             for (int i = 0; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
-                    printf(symmie[i].label);
+                    fprintf(ofp, symmie[i].label);
                     xRegister = symTabAddressToInt;
                 }
             }
@@ -652,7 +709,7 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
             for (int i = 0; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (symTabLookup == symTabAddressToInt) {
-                    printf(symmie[i].label);
+                    fprintf(ofp, symmie[i].label);
                     bRegister = symTabAddressToInt;
                 }
             }
@@ -662,24 +719,24 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
 
 
     if (contents[0] == '0') { //COMP instruction
-        printf(" ");    //TODO: Figure out what this empty space does
-        printf("%-05s",toPrintInstruction);
-        printf("%s", niBit);
-        printf("%d", displacementValue);
+        fprintf(ofp, " ");    //TODO: Figure out what this empty space does
+        fprintf(ofp, "%-05s",toPrintInstruction);
+        fprintf(ofp, "%s", niBit);
+        fprintf(ofp, "%d", displacementValue);
     }
 
     if (contents[0] == '2' || contents[0] == 'A') { //PC Relative or PC relative with index
-        printf(" ");
+        fprintf(ofp, " ");
         targetAddress = pcctr + displacementValue;
         if (targetAddress > 4096) {
             targetAddress = targetAddress - 4096;
             for (int i = 1; i < symTabSize; i++) {
                 symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
                 if (targetAddress == symTabAddressToInt) {
-                    printf("%-05s", toPrintInstruction);
-                    printf("%s", symmie[i].label);
+                    fprintf(ofp, "%-05s", toPrintInstruction);
+                    fprintf(ofp, "%s", symmie[i].label);
                     if (contents[0] == 'A') {
-                        printf(",X");
+                        fprintf(ofp, ",X");
                     }
                 }
             }
@@ -689,9 +746,9 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         for (int i = 0; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (displacementValue2 == symTabAddressToInt) {
-                printf("%-05s", toPrintInstruction);
-                printf("%s", niBit);
-                printf(symmie[i].label);
+                fprintf(ofp, "%-05s", toPrintInstruction);
+                fprintf(ofp, "%s", niBit);
+                fprintf(ofp, symmie[i].label);
             }
         }
 
@@ -702,10 +759,10 @@ void format3(char toPrintInstruction[], char niBit[], char contents[]) {
         for (int i = 1; i < symTabSize; i++) {
             symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
             if (targetAddress == symTabAddressToInt) {
-                printf("%-05s", toPrintInstruction);
-                printf("%s", symmie[i].label);
+                fprintf(ofp, "%-05s", toPrintInstruction);
+                fprintf(ofp, "%s", symmie[i].label);
                 if (contents[0] == 'C') {
-                    printf(",X");
+                    fprintf(ofp, ",X");
                 }
             }
         }
@@ -731,7 +788,7 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
     for (int i = 1; i < symTabSize; i++) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (locctr == symTabAddressToInt) {
-            printf("%s", symmie[i].label);
+            fprintf(ofp, "%s", symmie[i].label);
         }
     }
 
@@ -745,9 +802,9 @@ void format4(char toPrintInstruction[], char niBit[], char contents[]) {
     for (int i = 0; i < symTabSize; i++) {
         symTabAddressToInt = strtol(symmie[i].address, &symmiePointer, 16);
         if (addressFieldInt == symTabAddressToInt) {
-            printf("+%s ", toPrintInstruction);
-            printf("%s", niBit);
-            printf("%s", symmie[i].label);
+            fprintf(ofp, "+%s ", toPrintInstruction);
+            fprintf(ofp, "%s", niBit);
+            fprintf(ofp, "%s", symmie[i].label);
         }
         locctr = pcctr;
     }
@@ -761,50 +818,50 @@ void format2(char toPrintInstruction[], char format2Contents[]) {
     char register1;
     char register2;
     register1 = format2Contents[0];
-    printf("%-05s", toPrintInstruction);
+    fprintf(ofp, "%-05s", toPrintInstruction);
     char register1Integer = register1;
     if (register1Integer == '0') {
-        printf("A,");
+        fprintf(ofp, "A,");
     }
     if (register1Integer == '1') {
-        printf("X,");
+        fprintf(ofp, "X,");
     }
     if (register1Integer == '2') {
-        printf("L,");
+        fprintf(ofp, "L,");
     }
     if (register1Integer == '3') {
-        printf("B,");
+        fprintf(ofp, "B,");
     }
     if (register1Integer == '4') {
-        printf("S,");
+        fprintf(ofp, "S,");
     }
     if (register1Integer == '5') {
-        printf("T,");
+        fprintf(ofp, "T,");
     }
     if (register1Integer == '6') {
-        printf("F,");
+        fprintf(ofp, "F,");
     }
 
     char register2Integer = format2Contents[1];
     if (register2Integer == '0') {
-        printf("A");
+        fprintf(ofp, "A");
     }
     if (register2Integer == '1') {
-        printf("X");
+        fprintf(ofp, "X");
     }
     if (register2Integer == '2') {
-        printf("L");
+        fprintf(ofp, "L");
     }
     if (register2Integer == '3') {
-        printf("B");
+        fprintf(ofp, "B");
     }
     if (register2Integer == '4') {
-        printf("S");
+        fprintf(ofp, "S");
     }
     if (register2Integer == '5') {
-        printf("T");
+        fprintf(ofp, "T");
     }
     if (register2Integer == '6') {
-        printf("F");
+        fprintf(ofp, "F");
     }
 }
