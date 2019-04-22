@@ -12,7 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="678fcec0-f12e-4a64-b826-ff9f4ba023e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/testfiles3.dir/main.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/sample.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/sample.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/sample.sym" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/sample.sym" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/testfiles3" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/testfiles3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -33,8 +37,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="475" lean-forward="true" selection-start-line="475" selection-end-line="475" />
+            <state relative-caret-position="237">
+              <caret line="116" column="40" selection-start-line="116" selection-start-column="40" selection-end-line="116" selection-end-column="40" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -45,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.sym">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+            <state relative-caret-position="135">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -54,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+            <state relative-caret-position="45">
+              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -64,9 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>STL</find>
-      <find>displacementValue</find>
-      <find>contents</find>
       <find>\n</find>
       <find>cpy</find>
       <find>24</find>
@@ -94,6 +95,9 @@
       <find>symmie</find>
       <find>address</find>
       <find>symtabsize</find>
+      <find>len</find>
+      <find>textRecordFields</find>
+      <find>addressDif</find>
     </findStrings>
     <replaceStrings>
       <replace>j++</replace>
@@ -105,14 +109,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cmake-build-debug/sample.obj" />
         <option value="$PROJECT_DIR$/cmake-build-debug/sample.sym" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/sample.obj" />
         <option value="$PROJECT_DIR$/main.c" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-49" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1177" />
@@ -162,7 +165,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="testfiles3" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="testfiles3" TARGET_NAME="testfiles3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="testfiles3" RUN_TARGET_NAME="testfiles3">
+    <configuration name="testfiles3" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="sample.obj sample.sym" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="testfiles3" TARGET_NAME="testfiles3" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="testfiles3" RUN_TARGET_NAME="testfiles3">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -184,32 +187,34 @@
       <workItem from="1555794414626" duration="363000" />
       <workItem from="1555794917290" duration="14892000" />
       <workItem from="1555811920612" duration="5308000" />
-      <workItem from="1555877739035" duration="15802000" />
+      <workItem from="1555877739035" duration="18350000" />
+      <workItem from="1555896323875" duration="4072000" />
+      <workItem from="1555900494263" duration="2054000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55086000" />
+    <option name="totallyTimeSpent" value="63760000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12832801" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13045794" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34101382" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.30138248" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30414745" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.34101382" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32903227" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.15852535" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.20645161" />
       <window_info anchor="bottom" id="CMake" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -221,80 +226,91 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>469</line>
-          <option name="timeStamp" value="31" />
+          <line>269</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.c</url>
+          <line>141</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="locctr" language="ObjectiveC" />
-        <watch expression="x" language="ObjectiveC" />
-        <watch expression="symTabAddy" language="ObjectiveC" />
-        <watch expression="saveSymmieAddy" language="ObjectiveC" />
-        <watch expression="symmie[idxCtr+1]" language="ObjectiveC" />
-        <watch expression="nextAddress" language="ObjectiveC" />
-        <watch expression="ch" language="ObjectiveC" />
-        <watch expression="stgch" language="ObjectiveC" />
-        <watch expression="textRecordLengthInt" language="ObjectiveC" />
         <watch expression="textRecordFields" language="ObjectiveC" />
+        <watch expression="nextTextRecordAddressInt" language="ObjectiveC" />
+        <watch expression="currentAddressPlusLength" language="ObjectiveC" />
+        <watch expression="nextSymmieAddressToInt" language="ObjectiveC" />
+        <watch expression="symmieAddressToInt" language="ObjectiveC" />
+        <watch expression="textRecordLocctr" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
+        <expression-string>textRecordLocctr</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>symmieAddressToInt</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>nextSymmieAddressToInt</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>currentAddressPlusLength</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>nextTextRecordAddressInt</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>textRecordFields</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>textRecordLengthInt</expression-string>
+        <expression-string>textRecordFields[i+1]</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>stgch</expression-string>
+        <expression-string>&amp;sh</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ch</expression-string>
+        <expression-string>&amp;v</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>nextAddress</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>symmie[idxCtr+1]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>nextToPrint</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>saveSymmieAddy</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>symTabAddy</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>toPrint</expression-string>
+        <expression-string>s</expression-string>
         <language-id>ObjectiveC</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -306,22 +322,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.obj">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+        <state relative-caret-position="45">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/sample.sym">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        <state relative-caret-position="135">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="475" lean-forward="true" selection-start-line="475" selection-end-line="475" />
+        <state relative-caret-position="237">
+          <caret line="116" column="40" selection-start-line="116" selection-start-column="40" selection-end-line="116" selection-end-column="40" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
