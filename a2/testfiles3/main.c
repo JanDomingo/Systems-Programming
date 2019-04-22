@@ -173,8 +173,6 @@ int main(int argc, char * argv[]) {
     void mainFileParser() {
     struct symTab *items = malloc(sizeof(struct symTab));
 
-    symfp = fopen("sample.sym", "r");
-
     //TODO: CREATE THE TABLE FOR THE SYMTAB
 
     char tempp[9];
@@ -190,7 +188,7 @@ int main(int argc, char * argv[]) {
     for (i = 0; i < 3; i++) {   //This skips three lines of the symbol table to skip the header labels and the name address and start directly at the body to copy symbols
         fgets(buffer, 80, symfp);
     }
-    while (!(feof(symfp))) {
+    while (1) {
 
         for (g = 0; g < 8; ++g) {
             tempp[g] = fgetc(symfp);
@@ -262,7 +260,7 @@ int main(int argc, char * argv[]) {
         ++symTabSize;
     }
     //fprintf(ofp, "%s",symmie[v-1].label);
-    int retr = strtol(symmie[v-1].address, &cnv, 16);
+
 
     //fprintf(ofp, "%d",retr);
 
@@ -511,70 +509,7 @@ int main(int argc, char * argv[]) {
 
         }
     }
-    }
-
-
-
-
-
-
-
-
-    //TODO: SAVE THE TEXT RECORD ADDRESS
-    //TODO: SAVE THE TEXT RECORD LENGTH
-    //TODO: SAVE THE NEXT TEXT RECORD ADDRESS
-    //TODO: SAVE THE NEXT TEXT RECORD LENGTH
-    //TODO: SAVE THE DIFFERENCE BETWEEN THE (TEXT RECORD ADDRESS) AND (NEXT TEXT RECORD ADDRESS)
-    //TODO: IF THEY MATCH, NO STORAGE DECLARATION. IF NO MATCH THEN STORAGE DECLARATION CREATED
-    /*
-    int idxCtr;
-    char *nextLabel;
-    int afterNextAddress;
-    int symTabAddy;
-    char *symmieAddy;
-    int saveSymmieAddy;
-    int nextAddress;
-    char *symmiePointer2;
-    int length;
-    int thirds;
-
-
-    for (int x = 1; x < symTabSize; x++) {
-        symTabAddy = strtol(symmie[x].address, &symmieAddy, 16);
-        if (locctr == symTabAddy) {
-
-            idxCtr = x;
-            saveSymmieAddy = symTabAddy;
-        }
-    }
-    fprintf(ofp, "%04s ", symmie[idxCtr].address);
-    fprintf(ofp, "%s RESW ", symmie[idxCtr].label);
-    fprintf(ofp, "\n");
-    idxCtr += 1;
-
-    for (idxCtr; idxCtr < symTabSize - 1; idxCtr++) {
-        nextAddress = strtol(symmie[idxCtr].address, &symmiePointer2, 16); //LENGTH ADDRESS (Original Address + 1)
-        afterNextAddress = strtol(symmie[idxCtr + 1].address, &nextLabel, 16); //BUFFER ADDRESS (Original Address + 2)
-        length = afterNextAddress - nextAddress;
-        if (length % 3 == 0) {
-            thirds = length / 3;
-            fprintf(ofp, "%s", symmie[idxCtr].address);
-            fprintf(ofp, " %s RESW", symmie[idxCtr].label);
-            fprintf(ofp, " %d", thirds);
-            fprintf(ofp, "\n");
-
-        } else {
-
-            fprintf(ofp, "%s", symmie[idxCtr].address);
-            fprintf(ofp, " %s RESB", symmie[idxCtr].label);
-            fprintf(ofp, " %d", length);
-            fprintf(ofp, "\n");
-        }
-    }
-}*/
-
-
-
+}
 
 
 /**THIS IS THE FUNCTION FOR FORMAT3**/
@@ -679,6 +614,8 @@ void format3(char toPrintInstruction[], char niBit[], char contents[], char opCo
 
         fprintf(ofp, "%s" ,niBit);
         fprintf(ofp, "%d", displacementValue);  //TODO: FIX PADDING
+
+        fprintf(ofp, " ");
         fprintf(ofp, "%s" , opCode);
         fprintf(ofp, "%s", contents);
 
