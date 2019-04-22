@@ -283,7 +283,7 @@ int main(int argc, char * argv[]) {
         /**This section reads in the Header Line**/
         char programName[20]; //TODO: Check if 20 is enough size to allocate
         int symmieAddressToInt;
-        int symmieAddressToIntPtr;
+        char * symmieAddressToIntPtr;
         if (ch == 'H') {
             int i = 0;
             ch = getc(ifp);
@@ -322,7 +322,7 @@ int main(int argc, char * argv[]) {
 
             /*This is the print statements for the first line*/
             fprintf(ofp, "%04x", locctr);
-            symmieAddressToInt = strtol(symmie[0].address, symmieAddressToIntPtr, 16);
+            symmieAddressToInt = strtol(symmie[0].address, &symmieAddressToIntPtr, 16);
             if (locctr == symmieAddressToInt) {
                 fprintf(ofp, symmie[0].label);
             }
@@ -333,7 +333,7 @@ int main(int argc, char * argv[]) {
 
 
             fprintf(sfp, "%04x", locctr);
-            if (locctr == symmie[0].address) {
+            if (locctr == symmieAddressToInt) {
                 fprintf(sfp, symmie[0].label);
             }
             fprintf(sfp, "%s", programName);
@@ -341,8 +341,7 @@ int main(int argc, char * argv[]) {
 
             int charStartingAddrToHex = strtol(startingAddress, &ptr, 16);
             int charEndingAddrToHex = strtol(endingAddress, &ptr, 16);
-            int addressDifference = (charEndingAddrToHex -
-                                     charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
+            int addressDifference = (charEndingAddrToHex - charEndingAddrToHex);    //TODO FIGURE OUT WHY THIS IS NOT SUBTRACTING PROPERLY
             //fprintf(ofp, "Starting Address: %d\n", charStartingAddrToHex);
             //fprintf(ofp, "Ending Address: %d\n", charEndingAddrToHex);
             //fprintf(ofp, "Program Length: %d\n", addressDifference);
@@ -762,9 +761,9 @@ void format4(char toPrintInstruction[], char niBit[], char contents[], char opCo
     }
     //addressField[5] = '\0';
 
-    addressFieldInt = strtol(addressField, addressFieldIntPointer, 16);
+    addressFieldInt = strtol(addressField, &addressFieldIntPointer, 16);
 
-    if (contents[0] == '1' && niBit == '#') { //COMP instruction
+    if (contents[0] == '1' && niBit[0] == '#') { //COMP instruction
         fprintf(ofp, " ");    //TODO: Figure out what this empty space does
         fprintf(ofp, "+%-05s", toPrintInstruction);
         fprintf(ofp, "%s", niBit);
