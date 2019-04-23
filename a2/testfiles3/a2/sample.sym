@@ -1,0 +1,16 @@
+Symbol  Value   Flags:
+-----------------------
+COPY    000000  R
+FIRST   000000  R
+CLOOP   000006  R
+ENDFIL  00001A  R
+RETADR  000030  R
+LENGTH  000033  R
+BUFFER  000036  R
+RDREC   001036  R
+ANYLABL 000230  R
+WRREC   00105D  R
+
+Name    Literal  Length Address:
+------------------------------
+        =C'EOF'     2    00002D
