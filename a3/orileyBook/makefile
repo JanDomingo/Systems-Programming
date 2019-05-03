@@ -1,4 +1,4 @@
-scanner:	scanner.l
-	flex scanner.l
+scanner:
+	flex calculatorScanner.l
 	cc lex.yy.c -ll
 	./a.out

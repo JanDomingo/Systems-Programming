@@ -452,9 +452,20 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "scanner.l"
-/*Recognize tokens for the calculator and print them out*/
-#line 458 "lex.yy.c"
+#line 1 "calculatorScanner.l"
+#line 2 "calculatorScanner.l"
+  enum yytokentype {
+    NUMBER = 258,
+    ADD = 259,
+    SUB = 260,
+    MUL = 261,
+    DIV = 262,
+    ABS = 263,
+    EOL = 264
+  };
+
+  int yylval;
+#line 469 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -636,9 +647,9 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 2 "scanner.l"
+#line 15 "calculatorScanner.l"
 
-#line 642 "lex.yy.c"
+#line 653 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -723,56 +734,56 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 3 "scanner.l"
+#line 16 "calculatorScanner.l"
 { printf("PLUS\n"); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 4 "scanner.l"
+#line 17 "calculatorScanner.l"
 { printf("MINUS\n"); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 5 "scanner.l"
+#line 18 "calculatorScanner.l"
 { printf("TIMES\n"); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 6 "scanner.l"
+#line 19 "calculatorScanner.l"
 { printf("DIVIDE\n"); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 7 "scanner.l"
+#line 20 "calculatorScanner.l"
 { printf("ABS\n"); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 8 "scanner.l"
-{ printf("NUMBER %s\n", yytext); }
+#line 21 "calculatorScanner.l"
+{ yylval = atoi(yytext); return NUMBER;}
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 9 "scanner.l"
-{ printf("NEWLINE\n"); }
+#line 22 "calculatorScanner.l"
+{ return EOL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 10 "scanner.l"
+#line 23 "calculatorScanner.l"
 { }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 11 "scanner.l"
-{ printf("Mystery character %s\n", yytext); }
+#line 24 "calculatorScanner.l"
+{ printf("Mystery character %c\n", *yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 12 "scanner.l"
+#line 25 "calculatorScanner.l"
 ECHO;
 	YY_BREAK
-#line 776 "lex.yy.c"
+#line 787 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1769,7 +1780,18 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 12 "scanner.l"
+#line 25 "calculatorScanner.l"
 
 
+
+int main (int argc, char **argv)
+{
+  int tok;
+
+  while (tok = yylex()) {
+    printf("%d", tok);
+    if(tok == NUMBER) printf(" = %d\n", yylval);
+    else printf("\n");
+  }
+}
 
