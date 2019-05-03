@@ -1,4 +1,5 @@
 exp:
 	flex exp.l
-	cc lex.yy.c -o exp -ll
+	yacc -d exp.y
+	cc lex.yy.c y.tab.c -o exp 
 	./exp
