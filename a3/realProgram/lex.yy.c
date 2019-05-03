@@ -371,7 +371,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[10] =
     {   0,
-        0,    0,    4,    3,    1,    2,    1,    2,    0
+        0,    0,    4,    3,    2,    1,    2,    1,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -382,14 +382,14 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    2,    2,    2,
         2,    2,    2,    2,    2,    2,    2,    1,    1,    1,
-        1,    1,    1,    1,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        1,    1,    1,    1,    1,    1,    3,    3,    3,    3,
+        1,    1,    1,    1,    2,    2,    2,    2,    2,    2,
+        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
+        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
+        3,    3,    3,    3,    3,    3,    4,    4,    4,    4,
 
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    1,    1,    1,    1,    1,    1,    1,    1,
+        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
+        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
+        4,    4,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -406,15 +406,15 @@ static yyconst flex_int32_t yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst flex_int32_t yy_meta[4] =
+static yyconst flex_int32_t yy_meta[5] =
     {   0,
-        1,    2,    3
+        1,    2,    2,    2
     } ;
 
 static yyconst flex_int16_t yy_base[12] =
     {   0,
         0,    0,    7,    8,    0,    0,    0,    0,    8,    4,
-        2
+        3
     } ;
 
 static yyconst flex_int16_t yy_def[12] =
@@ -423,16 +423,16 @@ static yyconst flex_int16_t yy_def[12] =
         9
     } ;
 
-static yyconst flex_int16_t yy_nxt[12] =
+static yyconst flex_int16_t yy_nxt[13] =
     {   0,
-        4,    5,    6,    8,    8,    7,    9,    3,    9,    9,
-        9
+        4,    5,    4,    6,    8,    7,    9,    3,    9,    9,
+        9,    9
     } ;
 
-static yyconst flex_int16_t yy_chk[12] =
+static yyconst flex_int16_t yy_chk[13] =
     {   0,
-        1,    1,    1,   11,   11,   10,    3,    9,    9,    9,
-        9
+        1,    1,    1,    1,   11,   10,    3,    9,    9,    9,
+        9,    9
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -722,12 +722,12 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 6 "exp.l"
-printf("NUMBER\n");
+printf("Valid variable name");
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 7 "exp.l"
-printf("WORD\n");
+printf("Invalid variable name");
 	YY_BREAK
 case 3:
 YY_RULE_SETUP

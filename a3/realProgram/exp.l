@@ -3,6 +3,6 @@
 %}
 
 %%
-[0-9]+  printf("NUMBER\n");
-[a-zA-Z][a-zA-Z0-9]*  printf("WORD\n");
+[a-z][a-zA-z0-9]* printf("Valid variable name");
+[A-Z0-9][a-zA-z0-9]*  printf("Invalid variable name");
 %%
