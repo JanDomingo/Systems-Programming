@@ -5,7 +5,7 @@
 
 %%
                                     /*TODO: DOUBLE CHECK IF VALID VARIABLE NAMES ARE ACTUALLY VALID ACCORDING TO EX.TXT*/
-[_]*[a-z][a-zA-z0-9]*|[_]*[A-Z]*    return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
+[a-z][a-zA-z0-9]*|[_]*[A-Z]*        yylval=strdup(yytext); return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
 [=]                                 return EQUALS;
 [+\-\*\%\/]                         return OP;              /*Operand*/
 \(                                  return OPARENTHESIS;    /*Opening parenthesis*/

@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <string.h>
+#define YYSTYPE char *
 
 void yyerror(const char *str)
 {
@@ -22,13 +23,31 @@ main()
 
 %%
 identifier:
-          | identifier expression
+          | identifier assignment
+          ;
+
+assignment:
+          | ID EQUALS
+          | expression
           ;
 
 expression:
-          | ID OP ID
+          | ID
+          | OP
+          | expression
+          | prnthsis
+          | SEMICOLON
           {
-            printf("expression created\n"); 
+            printf("expression created\n");
+          }
+          ;
+
+prnthsis:
+          | OPARENTHESIS
+          | expression
+          | EPARENTHESIS
+          {
+            printf("parenthsis found\n");
           }
           ;
 %%
