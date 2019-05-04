@@ -750,7 +750,7 @@ return OPARENTHESIS;    /*Opening parenthesis*/
 case 5:
 YY_RULE_SETUP
 #line 12 "exp.l"
-return EPARENTHESIS;    /*Ending parenthsesis*/
+return CPARENTHESIS;    /*Closing parenthsesis*/
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -761,7 +761,7 @@ case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
 #line 14 "exp.l"
-/*Ignore end of line*/
+
 	YY_BREAK
 case 8:
 YY_RULE_SETUP

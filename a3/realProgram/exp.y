@@ -2,52 +2,38 @@
 #include <stdio.h>
 #include <string.h>
 #define YYSTYPE char *
-
 void yyerror(const char *str)
 {
   fprintf(stderr, "error: %s\n", str);
 }
-
 int yywrap()
 {
   return 1;
 }
-
 main()
 {
   yyparse();
 }
 %}
-
-%token ID EQUALS OP OPARENTHESIS EPARENTHESIS SEMICOLON
-
+%token ID EQUALS OP OPARENTHESIS CPARENTHESIS SEMICOLON
 %%
-identifier:
-          | identifier assignment
+start:
+          | assignment
           ;
 
-assignment:
-          | ID EQUALS
-          | expression
-          ;
+assignment: ID EQUALS exp
+  {
+    printf("That is a valid assignment\n");
+  }
 
-expression:
-          | ID
-          | OP
-          | expression
-          | prnthsis
-          | SEMICOLON
-          {
-            printf("expression created\n");
-          }
-          ;
+/**TODO: CHECK IF THIS LOGIC IS RIGHT**/
+exp: exp SEMICOLON
+  |ID OP exp
+  |ID
 
-prnthsis:
-          | OPARENTHESIS
-          | expression
-          | EPARENTHESIS
-          {
-            printf("parenthsis found\n");
-          }
-          ;
+  {
+    printf("Expression valid\n");
+  }
+
+
 %%

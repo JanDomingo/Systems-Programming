@@ -43,7 +43,7 @@
      EQUALS = 259,
      OP = 260,
      OPARENTHESIS = 261,
-     EPARENTHESIS = 262,
+     CPARENTHESIS = 262,
      SEMICOLON = 263
    };
 #endif
@@ -52,7 +52,7 @@
 #define EQUALS 259
 #define OP 260
 #define OPARENTHESIS 261
-#define EPARENTHESIS 262
+#define CPARENTHESIS 262
 #define SEMICOLON 263
 
 

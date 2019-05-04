@@ -1,0 +1,134 @@
+Terminals which are not used
+
+   OPARENTHESIS
+   EPARENTHESIS
+   EOL
+
+
+Rules never reduced
+
+    3 exp: /* empty */
+    7    | exp
+
+
+State 1 conflicts: 4 shift/reduce
+State 6 conflicts: 4 reduce/reduce
+
+
+Grammar
+
+    0 $accept: identifier $end
+
+    1 identifier: /* empty */
+    2           | identifier exp
+
+    3 exp: /* empty */
+    4    | ID EQUALS
+    5    | ID
+    6    | OP
+    7    | exp
+    8    | SEMICOLON
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ID (258) 4 5
+EQUALS (259) 4
+OP (260) 6
+OPARENTHESIS (261)
+EPARENTHESIS (262)
+SEMICOLON (263) 8
+EOL (264)
+
+
+Nonterminals, with rules where they appear
+
+$accept (10)
+    on left: 0
+identifier (11)
+    on left: 1 2, on right: 0 2
+exp (12)
+    on left: 3 4 5 6 7 8, on right: 2 7
+
+
+state 0
+
+    0 $accept: . identifier $end
+
+    $default  reduce using rule 1 (identifier)
+
+    identifier  go to state 1
+
+
+state 1
+
+    0 $accept: identifier . $end
+    2 identifier: identifier . exp
+
+    $end       shift, and go to state 2
+    ID         shift, and go to state 3
+    OP         shift, and go to state 4
+    SEMICOLON  shift, and go to state 5
+
+    $end       [reduce using rule 3 (exp)]
+    ID         [reduce using rule 3 (exp)]
+    OP         [reduce using rule 3 (exp)]
+    SEMICOLON  [reduce using rule 3 (exp)]
+
+    exp  go to state 6
+
+
+state 2
+
+    0 $accept: identifier $end .
+
+    $default  accept
+
+
+state 3
+
+    4 exp: ID . EQUALS
+    5    | ID .
+
+    EQUALS  shift, and go to state 7
+
+    $default  reduce using rule 5 (exp)
+
+
+state 4
+
+    6 exp: OP .
+
+    $default  reduce using rule 6 (exp)
+
+
+state 5
+
+    8 exp: SEMICOLON .
+
+    $default  reduce using rule 8 (exp)
+
+
+state 6
+
+    2 identifier: identifier exp .
+    7 exp: exp .
+
+    $end       reduce using rule 2 (identifier)
+    $end       [reduce using rule 7 (exp)]
+    ID         reduce using rule 2 (identifier)
+    ID         [reduce using rule 7 (exp)]
+    OP         reduce using rule 2 (identifier)
+    OP         [reduce using rule 7 (exp)]
+    SEMICOLON  reduce using rule 2 (identifier)
+    SEMICOLON  [reduce using rule 7 (exp)]
+    $default   reduce using rule 2 (identifier)
+
+
+state 7
+
+    4 exp: ID EQUALS .
+
+    $default  reduce using rule 4 (exp)

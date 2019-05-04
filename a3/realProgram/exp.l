@@ -9,8 +9,8 @@
 [=]                                 return EQUALS;
 [+\-\*\%\/]                         return OP;              /*Operand*/
 \(                                  return OPARENTHESIS;    /*Opening parenthesis*/
-\)                                  return EPARENTHESIS;    /*Ending parenthsesis*/
-;                                   return SEMICOLON;
-\n                                  /*Ignore end of line*/
+\)                                  return CPARENTHESIS;    /*Closing parenthsesis*/
+";"                                 return SEMICOLON;
+\n
 [ \t]+                              /*Ignore whitespace*/
 %%
