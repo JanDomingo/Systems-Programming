@@ -17,8 +17,8 @@ main()
 %}
 %token ID EQUALS OP OPARENTHESIS CPARENTHESIS SEMICOLON
 %%
-start:
-          | assignment
+statement:
+          | statement assignment
           ;
 
 assignment: ID EQUALS exp
@@ -27,9 +27,10 @@ assignment: ID EQUALS exp
   }
 
 /**TODO: CHECK IF THIS LOGIC IS RIGHT**/
-exp: exp SEMICOLON
-  |ID OP exp
-  |ID
+exp:
+  |ID exp
+  |OP exp
+  |ID SEMICOLON
 
   {
     printf("Expression valid\n");
