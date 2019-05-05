@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #define YYSTYPE char *
-int yydebug = 1;
+int yydebug = 0;
 void yyerror(const char *str)
 {
   fprintf(stderr, "error: %s\n", str);
@@ -24,13 +24,17 @@ prog: stmts
 
 stmts:
           | stmt SEMICOLON stmts
-          | stmt error '\n'
+          {
+            printf("stmts passed \n");
+          }
           ;
 
 stmt:
           | assignment
           | exp
-          | stmt error ';'
+          {
+            printf("Assignment passed \n");
+          }
           ;
 
 assignment: ID EQUALS exp
@@ -39,19 +43,11 @@ assignment: ID EQUALS exp
 exp:
   |ID OP exp
   |ID
-  |OPARENTHESIS exp CPARENTHESIS
   {
-    printf("That is a valid expression");
+    printf("Statement Passed \n");
   }
   ;
 
-prnthsis:
-  |ID OP prnthsis
-  |ID CPARENTHESIS
-  {
-    printf("parenthsis grouped");
-  }
-  ;
 
 
 
