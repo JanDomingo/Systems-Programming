@@ -10,7 +10,7 @@
 [+\-\*\%\/]                         return OP;              /*Operand*/
 \(                                  return OPARENTHESIS;    /*Opening parenthesis*/
 \)                                  return CPARENTHESIS;    /*Closing parenthsesis*/
-";"                                 return SEMICOLON;
+;                                   return SEMICOLON;
 \n
 [ \t]+                              /*Ignore whitespace*/
 %%

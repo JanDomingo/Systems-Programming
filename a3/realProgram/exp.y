@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #define YYSTYPE char *
+int yydebug = 1;
 void yyerror(const char *str)
 {
   fprintf(stderr, "error: %s\n", str);
@@ -17,24 +18,41 @@ main()
 %}
 %token ID EQUALS OP OPARENTHESIS CPARENTHESIS SEMICOLON
 %%
-statement:
-          | statement assignment
+
+prog: stmts
+     ;
+
+stmts:
+          | stmt SEMICOLON stmts
+          | stmt error '\n'
+          ;
+
+stmt:
+          | assignment
+          | exp
+          | stmt error ';'
           ;
 
 assignment: ID EQUALS exp
-  {
-    printf("That is a valid assignment\n");
-  }
 
 /**TODO: CHECK IF THIS LOGIC IS RIGHT**/
 exp:
-  |ID exp
-  |OP exp
-  |ID SEMICOLON
-
+  |ID OP exp
+  |ID
+  |OPARENTHESIS exp CPARENTHESIS
   {
-    printf("Expression valid\n");
+    printf("That is a valid expression");
   }
+  ;
+
+prnthsis:
+  |ID OP prnthsis
+  |ID CPARENTHESIS
+  {
+    printf("parenthsis grouped");
+  }
+  ;
+
 
 
 %%
