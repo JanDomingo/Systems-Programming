@@ -13,7 +13,7 @@
 ;                                   return SEMICOLON;
 \n
 [ \t]+                              /*Ignore whitespace*/
-[A-Z0-9]*|[_]*[A-Z]*                printf("Invalid variable name");
-.                                   printf("Invalid character"); /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH INVALID STATEMENT*/
+[A-Z0-9]*|[_]*[A-Z]*                printf("Invalid variable name"); /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH, 5TH INVALID STATEMENT*/
+.                                   printf("Invalid character");
 
 %%

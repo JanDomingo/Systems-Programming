@@ -19,32 +19,30 @@ main()
 %token ID EQUALS OP OPARENTHESIS CPARENTHESIS SEMICOLON
 %%
 
-prog: stmts
-     ;
+prog:     stmts
+          ;
 
 stmts:
-          | stmt SEMICOLON stmts
-          {
-            printf("stmts passed \n");
-          }
+          | stmt stmts
           ;
 
 stmt:
           | assignment
           | exp
+          ;
+
+assignment: ID EQUALS exp SEMICOLON
           {
             printf("Assignment passed \n");
           }
-          ;
-
-assignment: ID EQUALS exp
 
 /**TODO: CHECK IF THIS LOGIC IS RIGHT**/
 exp:
   |ID OP exp
   |ID
+  |OPARENTHESIS exp CPARENTHESIS
   {
-    printf("Statement Passed \n");
+    printf("Expression passed \n");
   }
   ;
 

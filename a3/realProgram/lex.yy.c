@@ -774,12 +774,12 @@ YY_RULE_SETUP
 case 9:
 YY_RULE_SETUP
 #line 16 "exp.l"
-printf("Invalid variable name");
+printf("Invalid variable name"); /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH, 5TH INVALID STATEMENT*/
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 17 "exp.l"
-printf("Invalid character"); /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH INVALID STATEMENT*/
+printf("Invalid character");
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
