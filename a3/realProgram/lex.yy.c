@@ -360,8 +360,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 11
-#define YY_END_OF_BUFFER 12
+#define YY_NUM_RULES 10
+#define YY_END_OF_BUFFER 11
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -371,7 +371,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[23] =
     {   0,
-        1,    1,   12,   10,    8,    7,    3,    4,    5,    9,
+        1,    1,   11,   10,    8,    7,    3,    4,    5,    9,
         6,    2,    1,    1,    1,    8,    9,    1,    1,    1,
         1,    0
     } ;
@@ -462,7 +462,8 @@ char *yytext;
 #line 2 "exp.l"
 #include <stdio.h>
 #include "y.tab.h"
-#line 466 "lex.yy.c"
+int variableError();
+#line 467 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -644,10 +645,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 6 "exp.l"
+#line 7 "exp.l"
 
                                     /*TODO: DOUBLE CHECK IF VALID VARIABLE NAMES ARE ACTUALLY VALID ACCORDING TO EX.TXT*/
-#line 651 "lex.yy.c"
+#line 652 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -732,61 +733,56 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "exp.l"
+#line 9 "exp.l"
 yylval=strdup(yytext); return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "exp.l"
+#line 10 "exp.l"
 return EQUALS;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "exp.l"
+#line 11 "exp.l"
 return OP;              /*Operand*/
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "exp.l"
+#line 12 "exp.l"
 return OPARENTHESIS;    /*Opening parenthesis*/
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "exp.l"
+#line 13 "exp.l"
 return CPARENTHESIS;    /*Closing parenthsesis*/
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "exp.l"
+#line 14 "exp.l"
 return SEMICOLON;
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 14 "exp.l"
+#line 15 "exp.l"
 
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 15 "exp.l"
+#line 16 "exp.l"
 /*Ignore whitespace*/
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 16 "exp.l"
-printf("Invalid variable name"); /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH, 5TH INVALID STATEMENT*/
+#line 17 "exp.l"
+{variableError(); return (OTHER);} /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH, 5TH INVALID STATEMENT*/
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 17 "exp.l"
-printf("Invalid character");
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 19 "exp.l"
+#line 18 "exp.l"
 ECHO;
 	YY_BREAK
-#line 790 "lex.yy.c"
+#line 786 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1783,7 +1779,12 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 19 "exp.l"
+#line 18 "exp.l"
 
 
+
+int variableError(){
+  printf("ERROR: Variable improperly named");
+  return 1;
+}
 

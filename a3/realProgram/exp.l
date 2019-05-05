@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include "y.tab.h"
+int variableError();
 %}
 
 %%
@@ -13,7 +14,10 @@
 ;                                   return SEMICOLON;
 \n
 [ \t]+                              /*Ignore whitespace*/
-[A-Z0-9]*|[_]*[A-Z]*                printf("Invalid variable name"); /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH, 5TH INVALID STATEMENT*/
-.                                   printf("Invalid character");
-
+[A-Z0-9]*|[_]*[A-Z]*                {variableError(); return (OTHER);} /*NEED TO RETURN AN ERROR HERE. WILL RETURN AN ERROR ON THE 4TH, 5TH INVALID STATEMENT*/
 %%
+
+int variableError(){
+  printf("ERROR: Variable improperly named");
+  return 1;
+}

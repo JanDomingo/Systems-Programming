@@ -44,7 +44,8 @@
      OP = 260,
      OPARENTHESIS = 261,
      CPARENTHESIS = 262,
-     SEMICOLON = 263
+     SEMICOLON = 263,
+     OTHER = 264
    };
 #endif
 /* Tokens.  */
@@ -54,6 +55,7 @@
 #define OPARENTHESIS 261
 #define CPARENTHESIS 262
 #define SEMICOLON 263
+#define OTHER 264
 
 
 
