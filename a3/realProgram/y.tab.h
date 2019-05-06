@@ -45,7 +45,8 @@
      OPARENTHESIS = 261,
      CPARENTHESIS = 262,
      SEMICOLON = 263,
-     OTHER = 264
+     NEWLINE = 264,
+     QUESTIONMARK = 265
    };
 #endif
 /* Tokens.  */
@@ -55,7 +56,8 @@
 #define OPARENTHESIS 261
 #define CPARENTHESIS 262
 #define SEMICOLON 263
-#define OTHER 264
+#define NEWLINE 264
+#define QUESTIONMARK 265
 
 
 

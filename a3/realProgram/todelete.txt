@@ -1,1 +1,2 @@
-first = one1 + 22 - three3 / four4 ;
+first == one1 + two2 - three3 / four4;
+second = a + b;
