@@ -14,5 +14,5 @@
 ;                                   return SEMICOLON;
 \n                                  return NEWLINE;
 [ \t]+                              /*Ignore whitespace*/
-[?]                                 return QUESTIONMARK;
+[?]                                 return INVALIDCHAR;
 %%

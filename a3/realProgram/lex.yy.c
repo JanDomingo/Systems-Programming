@@ -774,7 +774,7 @@ YY_RULE_SETUP
 case 9:
 YY_RULE_SETUP
 #line 17 "exp.l"
-return QUESTIONMARK;
+return INVALIDCHAR;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP

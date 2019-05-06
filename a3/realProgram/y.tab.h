@@ -46,7 +46,7 @@
      CPARENTHESIS = 262,
      SEMICOLON = 263,
      NEWLINE = 264,
-     QUESTIONMARK = 265
+     INVALIDCHAR = 265
    };
 #endif
 /* Tokens.  */
@@ -57,7 +57,7 @@
 #define CPARENTHESIS 262
 #define SEMICOLON 263
 #define NEWLINE 264
-#define QUESTIONMARK 265
+#define INVALIDCHAR 265
 
 
 
