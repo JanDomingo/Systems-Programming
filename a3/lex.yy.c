@@ -458,11 +458,18 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "exp.l"
-#line 2 "exp.l"
+/*
+NAME: JAN DOMINGO
+CLASS ACCOUNT: CSSC0463
+CLASS INFORMATION: CS570, SPRING 2019, SECTION 1
+ASSIGNMENT INFORMATION: ASSIGNMENT #3, COMPILER PARSING AND GRAMMAR
+FILENAME: exp.l: FLEX PARSING
+*/
+#line 10 "exp.l"
 #include <stdio.h>
 #include "y.tab.h"
 extern int statementnum = 0;
-#line 466 "lex.yy.c"
+#line 473 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -644,10 +651,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 7 "exp.l"
+#line 15 "exp.l"
 
                                     /*TODO: DOUBLE CHECK IF VALID VARIABLE NAMES ARE ACTUALLY VALID ACCORDING TO EX.TXT*/
-#line 651 "lex.yy.c"
+#line 658 "lex.yy.c"
 
 	if ( !(yy_init) )
 		{
@@ -732,61 +739,61 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 9 "exp.l"
+#line 17 "exp.l"
 ECHO; return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 10 "exp.l"
+#line 18 "exp.l"
 ECHO; return EQUALS;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 11 "exp.l"
+#line 19 "exp.l"
 ECHO; return OP;              /*Operand*/
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 12 "exp.l"
+#line 20 "exp.l"
 ECHO; return OPARENTHESIS;    /*Opening parenthesis*/
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 13 "exp.l"
+#line 21 "exp.l"
 ECHO; return CPARENTHESIS;    /*Closing parenthsesis*/
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 14 "exp.l"
+#line 22 "exp.l"
 ECHO; return SEMICOLON;
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 15 "exp.l"
+#line 23 "exp.l"
 ECHO; statementnum++; return NEWLINE;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 16 "exp.l"
+#line 24 "exp.l"
 /*Ignore whitespace*/
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 17 "exp.l"
+#line 25 "exp.l"
 ECHO; return NUM;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 18 "exp.l"
+#line 26 "exp.l"
 ECHO; return INVALIDCHAR;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 19 "exp.l"
+#line 27 "exp.l"
 ECHO;
 	YY_BREAK
-#line 790 "lex.yy.c"
+#line 797 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1783,7 +1790,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 19 "exp.l"
+#line 27 "exp.l"
 
 
 

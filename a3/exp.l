@@ -21,7 +21,7 @@ extern int statementnum = 0;
 \)                                  ECHO; return CPARENTHESIS;    /*Closing parenthsesis*/
 ;                                   ECHO; return SEMICOLON;
 \n                                  ECHO; statementnum++; return NEWLINE;
+[ \t]+                              /*Ignore whitespace*/
 [0-9]                               ECHO; return NUM;
 .                                   ECHO; return INVALIDCHAR;
-[ \t]+                              /*Ignore whitespace*/
 %%
