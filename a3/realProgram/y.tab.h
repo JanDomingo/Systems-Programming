@@ -46,7 +46,8 @@
      CPARENTHESIS = 262,
      SEMICOLON = 263,
      NEWLINE = 264,
-     INVALIDCHAR = 265
+     NUM = 265,
+     INVALIDCHAR = 266
    };
 #endif
 /* Tokens.  */
@@ -57,7 +58,8 @@
 #define CPARENTHESIS 262
 #define SEMICOLON 263
 #define NEWLINE 264
-#define INVALIDCHAR 265
+#define NUM 265
+#define INVALIDCHAR 266
 
 
 

@@ -1,4 +1,15 @@
-
+first = one1 + two2 - three3 / four4;
+second = one1 * (two2 * three3);
+third = ONE + twenty- three;
+third = old * thirty2/b567;
+one1 * i8766e98e + bignum;
+first == one1 + two2 - three3 / four4;
+first = 1 + - two2 - three3 / four;
+first = one1 + two2 ? three3 / four4
+second = 4 + (one * two2) * (three3 + four ;
+third = one1 + 24 - three3;
+one1 +- delta
+sixty6/min = fourth;
 
 
 
@@ -10,17 +21,18 @@ third = old * thirty2/b567;
 
 WORKING INVALID STATEMENTS:
 first == one1 + two2 - three3 / four4;
+first = 1 +- two2 - three3 / four;
 first = one1 + two2 - three3 / four4
-
-ALMOST WORKING BAD STATEMENTS:
+second = 4 + (one * two2) * (three3 + four ;
+one1 * i8766e98e + bignum;
 first = 1 ? two2 - three3 / four;
-
-NOT WORKING GOOD STATEMENTS:
-one1 * i8766e98e + bignum
-
-NOTWORKING INVALID STATEMENTS:
 sixty6/min = fourth;
 
+ALMOST WORKING BAD STATEMENTS:
+
+NOT WORKING GOOD STATEMENTS:
+
+NOTWORKING INVALID STATEMENTS:
+
 NEED TO RETEST FOR VALID ID:
-first = 1 +- two2 - three3 / four;
-second = 4 + (one * two2) * (three3 + four ;
+

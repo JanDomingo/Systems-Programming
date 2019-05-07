@@ -1,7 +1,7 @@
 %{
 #include <stdio.h>
 #include "y.tab.h"
-
+extern int statementnum = 0;
 %}
 
 %%
@@ -12,7 +12,8 @@
 \(                                  ECHO; return OPARENTHESIS;    /*Opening parenthesis*/
 \)                                  ECHO; return CPARENTHESIS;    /*Closing parenthsesis*/
 ;                                   ECHO; return SEMICOLON;
-\n                                  ECHO; return NEWLINE;
+\n                                  ECHO; statementnum++; return NEWLINE;
 [ \t]+                              /*Ignore whitespace*/
-[?]                                 ECHO; return INVALIDCHAR;
+[0-9]                               ECHO; return NUM;
+.                                   ECHO; return INVALIDCHAR;
 %%

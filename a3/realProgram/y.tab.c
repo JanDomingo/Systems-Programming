@@ -73,7 +73,8 @@
      CPARENTHESIS = 262,
      SEMICOLON = 263,
      NEWLINE = 264,
-     INVALIDCHAR = 265
+     NUM = 265,
+     INVALIDCHAR = 266
    };
 #endif
 /* Tokens.  */
@@ -84,7 +85,8 @@
 #define CPARENTHESIS 262
 #define SEMICOLON 263
 #define NEWLINE 264
-#define INVALIDCHAR 265
+#define NUM 265
+#define INVALIDCHAR 266
 
 
 
@@ -96,6 +98,7 @@
 #include <string.h>
 #define YYSTYPE char *
 extern FILE *yyin;
+extern int statementnum;
 int yylex();
 int yyerror(char *s);
 int yydebug = 0;
@@ -132,7 +135,7 @@ typedef int YYSTYPE;
 
 
 /* Line 216 of yacc.c.  */
-#line 136 "y.tab.c"
+#line 139 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -345,22 +348,22 @@ union yyalloc
 #endif
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  7
+#define YYFINAL  8
 /* YYLAST -- Last index in YYTABLE.  */
 #define YYLAST   26
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  11
+#define YYNTOKENS  12
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  5
+#define YYNNTS  4
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  12
+#define YYNRULES  11
 /* YYNRULES -- Number of states.  */
 #define YYNSTATES  25
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   265
+#define YYMAXUTOK   266
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -394,7 +397,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10
+       5,     6,     7,     8,     9,    10,    11
 };
 
 #if YYDEBUG
@@ -402,24 +405,25 @@ static const yytype_uint8 yytranslate[] =
    YYRHS.  */
 static const yytype_uint8 yyprhs[] =
 {
-       0,     0,     3,     5,     8,    14,    18,    21,    22,    26,
-      28,    30,    34
+       0,     0,     3,     5,     8,    14,    19,    25,    28,    33,
+      37,    39
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      12,     0,    -1,    13,    -1,    12,    13,    -1,     3,     4,
-      14,     8,     9,    -1,     3,     4,     1,    -1,     1,     9,
-      -1,    -1,     3,     5,    14,    -1,     3,    -1,    15,    -1,
-       6,    14,     7,    -1,     5,     6,    14,     8,     1,    -1
+      13,     0,    -1,    14,    -1,    13,    14,    -1,     3,     4,
+      15,     8,     9,    -1,     3,     4,     1,     9,    -1,     3,
+       4,     1,     8,     9,    -1,     1,     9,    -1,     3,     5,
+       3,     1,    -1,     3,     5,    15,    -1,     3,    -1,     6,
+      15,     7,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    15,    15,    16,    19,    20,    21,    24,    25,    26,
-      27,    31,    32
+       0,    16,    16,    17,    20,    21,    22,    23,    24,    27,
+      28,    29
 };
 #endif
 
@@ -429,8 +433,8 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "ID", "EQUALS", "OP", "OPARENTHESIS",
-  "CPARENTHESIS", "SEMICOLON", "NEWLINE", "INVALIDCHAR", "$accept", "stmt",
-  "assignment", "exp", "prnthsis", 0
+  "CPARENTHESIS", "SEMICOLON", "NEWLINE", "NUM", "INVALIDCHAR", "$accept",
+  "stmt", "assignment", "exp", 0
 };
 #endif
 
@@ -440,22 +444,22 @@ static const char *const yytname[] =
 static const yytype_uint16 yytoknum[] =
 {
        0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265
+     265,   266
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    11,    12,    12,    13,    13,    13,    14,    14,    14,
-      14,    15,    15
+       0,    12,    13,    13,    14,    14,    14,    14,    14,    15,
+      15,    15
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     1,     2,     5,     3,     2,     0,     3,     1,
-       1,     3,     5
+       0,     2,     1,     2,     5,     4,     5,     2,     4,     3,
+       1,     3
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -463,59 +467,59 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     0,     2,     6,     0,     1,     3,     5,
-       9,     0,     7,     0,    10,     7,     7,     0,     0,     8,
-       0,    11,     4,     0,    12
+       0,     0,     0,     0,     2,     7,     0,     0,     1,     3,
+       0,    10,     0,     0,     0,     0,     5,     0,     0,     0,
+       8,     6,     9,    11,     4
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     3,     4,    13,    14
+      -1,     3,     4,    13
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -7
+#define YYPACT_NINF -12
 static const yytype_int8 yypact[] =
 {
-       0,     8,     4,    11,    -7,    -7,    -1,    -7,    -7,    -7,
-      13,    14,    10,    15,    -7,    10,    10,    12,    16,    -7,
-      18,    -7,    -7,    20,    -7
+      10,     5,    11,     7,   -12,   -12,    -1,    14,   -12,   -12,
+      -5,    13,     6,    12,    18,    15,   -12,     6,    16,    17,
+     -12,   -12,   -12,   -12,   -12
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -7,    -7,    19,    -6,    -7
+     -12,   -12,    19,   -11
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
    positive, shift that token.  If negative, reduce the rule which
    number is the opposite.  If zero, do what YYDEFACT says.
    If YYTABLE_NINF, syntax error.  */
-#define YYTABLE_NINF -8
-static const yytype_int8 yytable[] =
+#define YYTABLE_NINF -1
+static const yytype_uint8 yytable[] =
 {
-       9,     1,    10,     2,    11,    12,    17,    -7,     6,    19,
-      20,     7,     1,    10,     2,    11,    12,     5,    15,    21,
-      16,    24,     8,    18,     0,    22,    23
+      10,    18,    11,    15,    16,    12,    22,     8,     1,    11,
+       2,     1,    12,     2,     5,     6,     7,    14,    17,    20,
+      19,     0,     9,    23,    21,     0,    24
 };
 
 static const yytype_int8 yycheck[] =
 {
-       1,     1,     3,     3,     5,     6,    12,     8,     4,    15,
-      16,     0,     1,     3,     3,     5,     6,     9,     5,     7,
-       6,     1,     3,     8,    -1,     9,     8
+       1,    12,     3,     8,     9,     6,    17,     0,     1,     3,
+       3,     1,     6,     3,     9,     4,     5,     3,     5,     1,
+       8,    -1,     3,     7,     9,    -1,     9
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     1,     3,    12,    13,     9,     4,     0,    13,     1,
-       3,     5,     6,    14,    15,     5,     6,    14,     8,    14,
-      14,     7,     9,     8,     1
+       0,     1,     3,    13,    14,     9,     4,     5,     0,    14,
+       1,     3,     6,    15,     3,     8,     9,     5,    15,     8,
+       1,     9,    15,     7,     9
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1330,18 +1334,13 @@ yyreduce:
   switch (yyn)
     {
         case 4:
-#line 19 "exp.y"
-    {printf ("Valid Statement\n");}
-    break;
-
-  case 12:
-#line 32 "exp.y"
-    { ; printf("ERROR: Missing closing parenthsesis. Expected')a'\n");}
+#line 20 "exp.y"
+    {printf ("Statement #%d. Valid Statement\n\n", statementnum);}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1345 "y.tab.c"
+#line 1344 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1555,11 +1554,11 @@ yyreturn:
 }
 
 
-#line 35 "exp.y"
+#line 33 "exp.y"
 
 int yyerror(char *str)
 {
-  fprintf(stderr, "%s\n", str); /*TODO: FIGURE OUT HOW TO PROPERLY NAME ERRORS AND HAVE MULTIPLE ERRORS*/
+  fprintf(stderr, "\nStatement #%d. %s\n", statementnum+1, str); /*TODO: FIGURE OUT HOW TO PROPERLY NAME ERRORS AND HAVE MULTIPLE ERRORS*/
   return 1;
 }
 int yywrap()
@@ -1569,7 +1568,7 @@ int yywrap()
 int main()
 {
   yyin = fopen("ex.txt", "r");
-  printf("NOW READING FILE INPUT\n");
+  printf("NOW READING FILE INPUT:\n\n");
   yyparse();
   return 0;
 }
