@@ -1,10 +1,7 @@
-.PHONY:	run
-run:	exp
-	./exp
 exp:	exp.l exp.y
 	flex exp.l
 	yacc -d --debug -t exp.y
-	cc lex.yy.c y.tab.c -o exp
+	cc -o $@ lex.yy.c y.tab.c
 
 clean:
 	-rm *.o $(objects) exp

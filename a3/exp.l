@@ -1,3 +1,11 @@
+/*
+NAME: JAN DOMINGO
+CLASS ACCOUNT: CSSC0463
+CLASS INFORMATION: CS570, SPRING 2019, SECTION 1
+ASSIGNMENT INFORMATION: ASSIGNMENT #3, COMPILER PARSING AND GRAMMAR
+FILENAME: exp.l: FLEX PARSING
+*/
+
 %{
 #include <stdio.h>
 #include "y.tab.h"
@@ -13,7 +21,7 @@ extern int statementnum = 0;
 \)                                  ECHO; return CPARENTHESIS;    /*Closing parenthsesis*/
 ;                                   ECHO; return SEMICOLON;
 \n                                  ECHO; statementnum++; return NEWLINE;
-[ \t]+                              /*Ignore whitespace*/
 [0-9]                               ECHO; return NUM;
 .                                   ECHO; return INVALIDCHAR;
+[ \t]+                              /*Ignore whitespace*/
 %%

@@ -92,7 +92,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "exp.y"
+#line 9 "exp.y"
 
 #include <stdio.h>
 #include <string.h>
@@ -422,8 +422,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    16,    16,    17,    20,    21,    22,    23,    24,    27,
-      28,    29
+       0,    25,    25,    26,    30,    31,    32,    33,    34,    38,
+      39,    40
 };
 #endif
 
@@ -1334,7 +1334,7 @@ yyreduce:
   switch (yyn)
     {
         case 4:
-#line 20 "exp.y"
+#line 30 "exp.y"
     {printf ("Statement #%d. Valid Statement\n\n", statementnum);}
     break;
 
@@ -1554,11 +1554,13 @@ yyreturn:
 }
 
 
-#line 33 "exp.y"
+#line 43 "exp.y"
+ /*END OF BISON GRAMMAR SECTION*/
 
 int yyerror(char *str)
 {
-  fprintf(stderr, "\nStatement #%d. %s\n", statementnum+1, str); /*TODO: FIGURE OUT HOW TO PROPERLY NAME ERRORS AND HAVE MULTIPLE ERRORS*/
+  /*STDERR CONTAINS THE VERBOSE ERROR STATEMENTS*/
+  fprintf(stderr, "\nStatement #%d. %s\n", statementnum+1, str);
   return 1;
 }
 int yywrap()

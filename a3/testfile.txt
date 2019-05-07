@@ -1,0 +1,7 @@
+first = a + b;
+second = a + b + c;
+third = (a + b);
+fourth = (a + b) + c;
+fifth = a + (b + c);
+sixth = a + (b + c) + d;
+seventh = 12 + 13;
