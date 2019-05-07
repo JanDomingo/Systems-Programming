@@ -6,13 +6,13 @@
 
 %%
                                     /*TODO: DOUBLE CHECK IF VALID VARIABLE NAMES ARE ACTUALLY VALID ACCORDING TO EX.TXT*/
-[a-z][a-zA-Z0-9]*|[_]*[A-Z]*        yylval=strdup(yytext); return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
-[=]                                 return EQUALS;
-[+\-\*\%\/]                         return OP;              /*Operand*/
-\(                                  return OPARENTHESIS;    /*Opening parenthesis*/
-\)                                  return CPARENTHESIS;    /*Closing parenthsesis*/
-;                                   return SEMICOLON;
-\n                                  return NEWLINE;
+[a-z][a-zA-Z0-9]*|[_]*[A-Z]*        ECHO; return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
+[=]                                 ECHO; return EQUALS;
+[+\-\*\%\/]                         ECHO; return OP;              /*Operand*/
+\(                                  ECHO; return OPARENTHESIS;    /*Opening parenthesis*/
+\)                                  ECHO; return CPARENTHESIS;    /*Closing parenthsesis*/
+;                                   ECHO; return SEMICOLON;
+\n                                  ECHO; return NEWLINE;
 [ \t]+                              /*Ignore whitespace*/
-[?]                                 return INVALIDCHAR;
+[?]                                 ECHO; return INVALIDCHAR;
 %%

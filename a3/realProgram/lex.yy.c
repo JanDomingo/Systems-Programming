@@ -733,38 +733,38 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 9 "exp.l"
-yylval=strdup(yytext); return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
+ECHO; return ID;      /*Valid variable name if start with a lowercase letter or underscore or valid if all caps*/
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 10 "exp.l"
-return EQUALS;
+ECHO; return EQUALS;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 11 "exp.l"
-return OP;              /*Operand*/
+ECHO; return OP;              /*Operand*/
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 12 "exp.l"
-return OPARENTHESIS;    /*Opening parenthesis*/
+ECHO; return OPARENTHESIS;    /*Opening parenthesis*/
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 13 "exp.l"
-return CPARENTHESIS;    /*Closing parenthsesis*/
+ECHO; return CPARENTHESIS;    /*Closing parenthsesis*/
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 14 "exp.l"
-return SEMICOLON;
+ECHO; return SEMICOLON;
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
 #line 15 "exp.l"
-return NEWLINE;
+ECHO; return NEWLINE;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
@@ -774,7 +774,7 @@ YY_RULE_SETUP
 case 9:
 YY_RULE_SETUP
 #line 17 "exp.l"
-return INVALIDCHAR;
+ECHO; return INVALIDCHAR;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
